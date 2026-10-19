@@ -15,7 +15,7 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     background-color: #050505;
-    background-image: url("imagenes/propuesta 1_compressed_page-0001.jpg");
+    background-image: url("../images/propuesta 1_compressed_page-0001.jpg");
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -23,7 +23,7 @@ body {
 }
 
 body.portada-final {
-    background-image: url("imagenes/portada2.png");
+    background-image: url("../images/portada2.png");
 }
 
 #light-transition {
@@ -300,11 +300,11 @@ body.portada-final .contenido {
 @media (max-width: 768px) {
     body {
         background-attachment: scroll;
-        background-image: url("imagenes/porta1_movil.jpg");
+        background-image: url("../images/porta1_movil.jpg");
     }
 
     body.portada-final {
-        background-image: url("imagenes/porta2_movil.jpg");
+        background-image: url("../images/porta2_movil.jpg");
         background-position: left center;
     }
 

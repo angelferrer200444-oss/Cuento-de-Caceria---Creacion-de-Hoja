@@ -1,5 +1,7 @@
 # Cuento de Caceria: Creacion de Hoja
 
+![Propuesta 1: portada y logo](static/images/propuesta%201_compressed_page-0001.jpg)
+
 ## Proposito
 
 Esta web existe para facilitar la creacion de personajes para *Cuento de Caceria*. Su objetivo es reunir en un solo lugar la informacion que normalmente tendria que consultarse por separado durante la preparacion de una partida: el arquetipo, el oficio, las habilidades, los rasgos, la fobia, las maldiciones y el trasfondo del Cazador.
@@ -17,23 +19,26 @@ La herramienta funciona como apoyo para organizar la hoja y tener sus datos a ma
 
 Las opciones y sus datos se encuentran en archivos JavaScript independientes. Los scripts escuchan los cambios de los selectores y actualizan los campos relacionados sin necesidad de un servidor.
 
+## Propuestas visuales
+
+La portada actual utiliza la primera propuesta como imagen principal. Esta es una vista de la propuesta 003:
+
+![Propuesta 003](static/images/propuesta%201_compressed_page-0003.jpg)
+
 ## Estructura principal
 
-- `index.html`: portada de la web.
-- `inicio.css`: estilos y transiciones de la portada.
-- `inicio.js`: animacion de nieve, transicion inicial y navegacion hacia el formulario.
-- `creador.html`: formulario completo de creacion de la hoja.
-- `arquetipos.js`: arquetipos y datos que se cargan en el formulario.
-- `oficios.js`: oficios, habilidades, hazanas y equipamiento.
-- `fobias.js`: fobias y sus descripciones o efectos.
-- `maldiciones.js`: maldiciones y sus efectos, penalizaciones y condiciones.
+- `index.html`: punto de entrada para abrir la aplicacion y para GitHub Pages.
+- `templates/`: paginas HTML de la aplicacion.
+- `static/css/`: estilos de la interfaz.
+- `static/js/`: logica de la portada y datos del formulario.
+- `static/images/`: imagenes de portada, movil y propuestas visuales.
 - `documentacion/`: material de referencia del juego.
 
 ## Uso local
 
-No requiere instalacion de dependencias ni un servidor para probar el flujo basico. Abre `index.html` en un navegador y pulsa **Empezar**. Desde la portada puedes entrar en **Crear personaje**.
+No requiere instalacion de dependencias ni un servidor para probar el flujo basico. Abre `index.html` en un navegador y pulsa **Empezar**. Desde la portada puedes entrar en **Crear personaje**. El archivo de la raiz redirige a `templates/index.html` para conservar el punto de entrada habitual despues de organizar la aplicacion.
 
-Tambien puedes abrir directamente `creador.html` para acceder al formulario.
+Tambien puedes abrir directamente `templates/creador.html` para acceder al formulario.
 
 ## Estado actual
 
