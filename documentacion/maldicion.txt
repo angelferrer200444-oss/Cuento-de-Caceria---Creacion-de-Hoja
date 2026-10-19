@@ -1,0 +1,286 @@
+Maldicion: La Maldición de la bestia: 
+
+Efecto: Cada noche te transformas en una Bestia Horripilante. Mientras dure la 
+transformación, obtienes las siguientes Palabras Clave como Virtudes temporales 
+para tu Descripción: “Fuerte”, “Olfato de Sabueso”, “Aspecto de animal”, “Fauces y 
+Garras”. Si ya poseías Virtudes similares, el Narrador puede otorgarte +1 adicional a 
+Pruebas relacionadas. 
+
+Costos y Penalizaciones: 
+
+Recibes –2 a Pruebas Sociales mientras estés transformado. Eres percibido como una 
+amenaza; NPC hostiles pueden intentar cazarte. Al amanecer, vuelves a tu forma 
+normal y pierdes los rasgos temporales. 
+
+Cómo romperla: 
+
+Beber una poción legendaria preparada por un alquimista durante una noche de 
+luna llena.  Opcionalmente, un beso de amor verdadero también puede romperla.
+ 
+Maldicion: La Maldición de la Voz Encantada
+ 
+Efecto: Has perdido la capacidad de hablar, pero puedes susurrar. Cuando un 
+enemigo actúe contra ti, puedes usar esta Maldición como Prueba de Defensa. Si 
+tienes Éxito: El enemigo queda Aturdido durante 1 turno. Si fallas, sufres el efecto 
+que el enemigo intentaba imponerte. Un mismo objetivo no puede ser afectado más 
+de una vez por escena. 
+
+Costos y Penalizaciones 
+
+No puedes comunicarte verbalmente (solo gestos o señas). 
+
+Cómo romperla: Debes cantar una canción ritual usando la voz de otra persona, 
+sellada previamente en un amuleto. 
+
+
+Maldicion: La Maldición del Corazón Congelado: 
+
+Efecto: Te vuelves inmune a la condición de frío y puedes generar o manipular 
+hielo como acción principal. Esto incluye crear superficies resbaladizas, copos de 
+nieve o petrificar a un objetivo. Para usar este poder, realiza primero una Prueba de 
+Cordura; si fallas, recibes 1 de Corrupción. La dificultad de la prueba de Cordura se 
+determinará por el tipo de Proeza que declares realizar. Por cada nivel de Dificultad 
+por encima de fácil, recibirás 1 de Corrupción adicional en caso de fracaso. 
+ 
+Costos y Penalizaciones: 
+
+Sin embargo, a recibir la maldición, tu corazón se enfría y se vuelve insensible. 
+Debido a esto, no puedes restaurar Corrupción de manera convencional durante los 
+Interludios. Realizas Pruebas para ayudar mentalmente a otros con Desventaja y 
+recibes una penalización –1 a Pruebas Sociales o de Percepción basadas en empatía, 
+las emociones o tratar de descubrir algún rasgo en la personalidad de un NPC. 
+
+-Cómo romperla: 
+
+Debes realizar un gesto de amor genuino hacia alguien más. 
+
+Maldicion: La Maldición de las Sombras: 
+
+Efecto: Puedes gastar 1 Cordura para: 
+1. Extender tu sombra y manipular un objeto cercano.   
+2. Alterar la forma de una sombra para engañar o distraer. 
+Mientras permanezcas en oscuridad, obtienes +1 a Pruebas de Defensa en contra de 
+un ataque dirigido hacia ti. Si obtienes un éxito con incremento en tu prueba de 
+defensa, puedes gastar 1 de Cordura para moverte de una sombra a otra sin que 
+nadie pueda impedírtelo. 
+
+Costos y Penalizaciones: 
+
+Al adquirir está Maldición, te encuentras constantemente rodeado de una 
+oscuridad inquietante, lo que asusta a los aliados y causa desconfianza. Esto se 
+considera un Rasgo negativo para tu descripción. También pierdes la capacidad de 
+ver la luz del día. Si permaneces al final de tu turno expuesto a la luz del sol, 
+recibes una Herida. Además, al estar expuesto a una zona iluminada o una intensa 
+luz: recibes desventaja en tus pruebas, tirando un dado adicional y quedándote co 
+los dos peores resultados. 
+
+-Cómo romperla:
+
+Debes realizar repetidas Pruebas de Cordura (Dificultad 9) bajo la 
+luz del sol hasta que tengas éxito, repitiendo la prueba al inicio de cada turno.  Al 
+finalizar la escena, recibes un Traumatismo en forma del Estado de Quemadura.   
+No puedes recibir ayuda durante el proceso. 
+
+Maldicion: La Maldición del sueño profundo: 
+
+-Efecto: Al dormir, entras en trance y un demonio surge para combatir por ti. En 
+este estado, te encuentras inconsciente y vulnerable. Sin embargo, hay dos maneras 
+en la que te puedas despertar: 1. Realiza una Prueba de Cordura (Dificultad 
+Intermedia 9) al inicio de cada turno, te despertarás si tienes éxito. Un aliado 
+puede ayudarte como acción, proporcionándote un dado adicional a la prueba y 
+quedándote con los dos mejores resultados. 2. Reducir a 0 las heridas del Demonio. 
+Mientras permaneces dormido, el demonio aparecerá en Escena. Este demonio es 
+tan fuerte como tú nivel de corrupción acumulado. Es decir, por cada nivel de 
+Corrupción que poseas, el demonio podrá realizar sus Pruebas en cada turno, 
+sumando un +2 o +1 a su nivel de Dificultad (Su Dificultad base es de 7).  
+El Demonio tiene sus propias Heridas. Estás Heridas son igual a tu cantidad de 
+Vitalidad que tengas para el momento en el que el Demonio sale en (Revisar reglas 
+de Magia) 
+
+Costos y Penalizaciones: 
+
+Sin embargo, a adquirir está Maldición, cada vez que te quedas dormido, 
+irremediablemente aparecerá el Demonio en Escena. El objetivo del demonio es 
+eliminar toda criatura que esté a su paso; sean aliados o enemigos. Enfocará sus 
+ataques a quién tenga más próximo. Al despertar, realizas una prueba de Cordura contra el Estado de Estrés, 
+exponiéndote a tu fobia. En caso de fracaso, este Estado Permanecerá hasta tu 
+siguiente Interludio Largo. La Dificultad es de Fácil 7, subiendo en +1 por cada nivel 
+de Corrupción que poseas por encima del nivel 1. 
+
+-Cómo Romperla:
+
+Derrotar al demonio y sellarlo con éxito. 
+
+Maldicion: La Maldición del Espejo Roto: 
+
+-Efecto: Al adquirir está maldición, Una vez por día, puedes preguntar al DJ sobre 
+un evento pasado o futuro. El DJ puede responder con la ambigüedad que deseé en 
+base a tu pregunta formulada. Además, una vez por escena, gastando 1 Cordura, 
+puedes de un espejo a otro si se encuentran cerca. 
+
+Costos y Penalizaciones: 
+Si te reflejas en un espejo, puedes quedar atrapado dentro de él por toda la escena.  
+Para salir, debes superar una Prueba de Cordura (Dificultad 9) al inicio de la 
+siguiente escena. Si el espejo queda cubierto o destruido, no puedes intentar 
+liberarte. 
+
+-Cómo Romperla: 
+
+Reunir los fragmentos de un espejo antiguo y restaurarlo en una 
+ceremonia especial. Con ese mismo espejo, arrastra a una persona incapaz de 
+oponer resistencia a su Interior y déjala atrapada. Cada vez que te reflejes en el 
+espejo, la persona atrapada será capaz de observarte e intentar atraerte adentro 
+para devolverte la maldición. 
+
+Maldicion: La Maldición de la Sangre de Dragón: 
+
+-Efecto: Al adquirir está Maldición, agrega a tu descripción de Personaje:  - “Garras Afiladas” en las manos y en los pies con lo que puedes causar daño o 
+escalar sobre superficies con mayor facilidad.  - Una piel de escamas que te permite resistir el calor intenso.  -Tu aliento, se convierte en una llamarada de fuego.  
+Si obtienes un éxito con incremento con el aliento de fuego, provocas el Estado de Quemado en tu objetivo.  
+
+Costos y Penalizaciones: 
+
+Puedes herir accidentalmente a otros con solo rozarlos con tus garras; el Narrador 
+puede pedir Pruebas para evitarlo. En escenas de sigilo, tensión o interacción social –1 a Pruebas 
+por el esfuerzo de contener tu aliento inestable. Si fallas una Prueba 
+Social o de Sigilo » expulsas una explosión de fuego involuntario. Tanto tus escamas, 
+ojos de reptil y garras, son vistos con repulsión por otros NPCS. 
+ 
+Cómo romperla: 
+
+Beber un “caldo de sangre de dragón” mezclado con plata y oro en polvo.
+
+Maldicion: La Maldición del Bosque Embrujado:
+
+-Efecto: Puedes gastar 1 Cordura para controlar plantas y árboles, creando 
+barreras, látigos o raíces. 
+
+Costos y Penalizaciones 
+
+No puedes alejarte demasiado del bosque; si lo haces, recibes 2 Estados de Estrés por 
+Agotamiento. 
+
+Cómo romperla: Convencer al espíritu guardián de un bosque completando una 
+misión en su corazón. 
+
+Maldicion: La Maldición del Sapo Hechizado: 
+
+-Efectos: Saltas grandes distancias y nadas con facilidad.  Tu saliva ha adquirido 
+atributos venenosos como los de una rana. Quién es lamido o besado por ti, queda 
+intoxicado durante el resto de la escena, recibiendo una penalización de -2 a su 
+Dificultad o Pruebas. Para ello, realiza una Prueba de Acción contra la Dificultad 
+de tu objetivo. Si tienes éxito, recibirá los efectos de tu veneno. Para mantener el 
+estado, repites la Prueba cada turno con –1 acumulativo. No puedes Envenenar a un 
+mismo objetivo más de una vez por Escena. 
+
+Costos y Penalizaciones: 
+
+Tu apariencia se vuelve grotesca y repulsiva: Un rostro verdoso y repulsivo, una piel 
+húmeda como los sapos, ojos desorbitados, una postura jorobada de por vida, labios 
+resecos untados de toxinas ausentes de dientes. Cualquier NPC te rechazará o 
+sentirá repulsión con solo ver tu apariencia. “La maldición de la fealdad”, como 
+algunos estudiosos de la materia lo denominarían.
+ 
+Cómo romperla: 
+
+Beso del verdadero amor. 
+
+Maldicion: La Maldición de la Rosa Negra
+ 
+Efecto: Puedes gastar 1 Cordura para hacer brotar espinas negras de tu cuerpo, 
+infligiendo 1 Herida a todas las criaturas cercanas. Cada vez que uses este efecto, la 
+rosa absorbe una pequeña cantidad de tu sangre, infligiéndote 1 Herida. Si el 
+narrador lo permite, puedes usar un sustituto como acción. 
+
+Costos y Penalizaciones: 
+
+Desde que adquieres la maldición, tu vida queda unida a una rosa negra que debes 
+cuidar: 
+
+- Debes regarla y exponerla al sol dos veces al día (mañana y tarde).   
+- Si fallas en hacerlo, la rosa entra en Estado de Debilitamiento.  
+- Si termina el día debilitada, se Marchita y tú mueres.   
+- Además, la rosa debe alimentarse cada noche con sangre humana. Si no lo haces 
+o lo haces antes de la noche, entra en Debilitamiento. La sangre humana que tiene 
+que consumir, equivale a Restar 2 Heridas a un ser humano. 
+
+-Cómo Romperla 
+
+Debes sacrificar la vida de tu esposo o esposa, plantar la rosa en 
+su pecho bajo la luz de la luna y esperar a que sus pétalos se vuelvan blancos.
+ 
+Maldicion: La Maldición de los Rizos dorados
+
+Un parásito se oculta en tu cabello, hambriento y caprichoso 
+
+-Efecto: Puedes mover tu cabello como si fueran tentáculos, recorriendo una 
+distancia considerable, además, cuentas con una segunda boca oculta bajo tu 
+melena de enorme colmillos, y apetito. ¡Nadie se esperaría un ataque detrás de tu 
+nuca! 
+
+Costos y Penalizaciones 
+
+La segunda boca exige comida constantemente, comiendo hasta el doble de una 
+persona normal. Si no la alimentas, soltará un alarido estremecedor que te provoca 
+dolor intenso, otorgándote Estrés durante un Interludio. A discreción del Narrador, 
+este alarido podría ocasionar también estrés en tus aliados si no concilian el sueño. 
+Al alimentarte poco por culpa de la segunda boca, recibes Agotamiento como Estrés. 
+La segunda boca puede insultar, hablar por ti o actuar sin tu permiso, complicando 
+interacciones sociales. 
+
+Cómo Romperla: La segunda boca debe devorar a siete personas del género opuesto 
+al tuyo. Solo entonces el parásito se desprende. 
+
+Maldicion: Maldición de la Armadura
+
+Efecto: Tu cuerpo está cubierto por una armadura oxidada que se ha adherido a tu 
+piel. No se puede quitar por medios normales, ni siquiera si el portador muere (la 
+armadura permanece fusionada al cadáver). Al inicio de cada Escena, obtienes 1 de 
+Armadura que te protege de la primera Herida o Lesión que recibas del 
+enfrentamiento. Al estar incapacitado, puedes una vez por escena realizar una 
+acción, dónde sea la armadura quien maniobra el cuerpo. Una vez ejecuta está 
+acción, caerás desplomado al suelo nuevamente. Está acción no puede ser para 
+lanzar magia o emplear las palabras. 
+
+Costos y Penalizaciones 
+
+Al adquirir está maldición, no puedes equiparte otra armadura o vestuario. La 
+armadura es demasiado pesada, por lo tanto, todas tus acciones que requieran la 
+velocidad o la agilidad, recibirán una penalización de 
+
+-2. Los ataques eléctricos o 
+efectos con objetivo al metal, impactaran automáticamente. 
+Por último, de ti emana un terrible olor que será percibido desde lejos.  
+
+Cómo Romperla: Exponerte a un intenso calor comparable a entrar en contacto con 
+la lava de un volcán y sobrevivir. La armadura no lo tolerará, desprendiéndose. 
+
+Maldicion: La Maldición de Rumpelstiltskin
+
+-Efecto: Una vez al día, el personaje puede transformar paja en oro: este oro 
+equivale a 5 Monedas de Oro. A cambio, gasta 1 de Cordura y conviértelo en 
+Corrupción. 
+
+Costos y Penalizaciones 
+
+Sin embargo, al adquirir está maldición, un duendecillo te pedirá algo a cambio. 
+Una vez presentes tu personaje a tu Narrador, el narrador Tira un d6 para ver qué 
+es: 
+1.“El primer recuerdo de tu infancia”: Si el PJ posee un Rasgo de su Descripción 
+arraigado a su trasfondo, a discreción del Narrador, podría hacer que lo olvidé por 
+completo. 
+2 “Tu nombre verdadero”: El PJ elije un rasgo de su Descripción y se reemplaza por 
+otro. 
+3 “El aliento de tu primer amor”: El PJ siente un vacío por dentro que no puede 
+explicar. Recibe el Estado de “Estar Borracho me mantiene Cuerdo” del nivel 3 de 
+Corrupción. 
+4.“Tu capacidad de mentir”: El PJ ya no puede realizar Pruebas de Engaño o 
+alternativamente, recibe Desventaja en alguna prueba de Persuasión. 
+5. “Tu mayor talento”: El PJ elige una habilidad o rasgo Virtuoso que olvidará 
+6. “El primer hijo que tengas”: El PJ tira en la tabla de Corrupción nivel 3 y se 
+queda con el resultado que obtenga, producto del trauma de perder a un familiar. 
+Al volver a crear oro, el duendecillo podría volver a aparecer y exigir la misma paga, 
+tirar en el dado otra vez o ser considerado, pero con una advertencia. 
+
+-Cómo Romperla: Adivinar el nombre verdadero del ente mágico. Al hacerlo, 
+recuperas o eliminas algún rasgo de tu elección.

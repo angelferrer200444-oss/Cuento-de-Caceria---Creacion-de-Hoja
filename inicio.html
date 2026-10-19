@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050505">
+
+    <title>Fondo nevado</title>
+    <link rel="stylesheet" href="inicio.css">
+</head>
+
+<body>
+
+    <!-- CONTENIDO DE LA PÁGINA -->
+    <main class="contenido">
+
+        <!-- Componente: botón y mensaje posterior al clic -->
+        <div class="start-component">
+            <button class="start-button" id="startButton" type="button">
+                Empezar
+            </button>
+            <p class="status" id="startStatus" role="status" aria-live="polite"></p>
+        </div>
+
+    </main>
+
+    <div class="final-layout">
+        <div class="final-text-block">
+            <p class="mobile-final-copy">
+                Esta web tiene como objetivo integrar un método que facilite a los jugadores una hoja donde puedan obtener toda la información de sus personajes y tenerlas a mano. No obstante, para poder jugar y conocer el efecto de ciertas habilidades y condiciones se requiere obligatoriamente de la Guía. Esta se puede obtener en el Discord del creador.
+            </p>
+        </div>
+        <div class="final-actions" aria-label="Acciones principales">
+            <button class="final-button guide-button" type="button">
+                Conseguir guia.
+            </button>
+            <button class="final-button create-character-button" id="createCharacterButton" type="button">
+                Crear personaje.
+            </button>
+        </div>
+    </div>
+
+    <div id="light-transition" aria-hidden="true"></div>
+
+    <!-- CANVAS PARA DIBUJAR LA NIEVE -->
+    <canvas id="snow-effect" aria-hidden="true"></canvas>
+
+    <script src="inicio.js"></script>
+
+</body>
+</html>

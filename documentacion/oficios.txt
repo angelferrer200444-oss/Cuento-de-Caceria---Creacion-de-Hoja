@@ -1,0 +1,175 @@
+arquetipo: Apostol
+  
+Descripción: 
+Portadores de una fe inquebrantable, los Apóstoles son 
+guerreros consagrados que canalizan la luz divina para 
+curar heridas, reforzar la moral y bendecir a sus 
+aliados en los momentos más oscuros. Sin embargo, su 
+conexión con lo sagrado requiere un gran esfuerzo 
+espiritual, llevando su cuerpo al límite con cada 
+intervención milagrosa. Su magia es diferente a la 
+blasfema brujería. Ya que su motor principal es la 
+pureza de sus intenciones, y cuando duda o empieza a 
+envidiar, sus poderes se diluyen. Muchos son lo que 
+cuestionan sus motivaciones. 
+
+Hazañas: Puntos Divinos (PD), Puntos del Consagrado 
+(PC), Puntos del Justiciero (PJ) 
+Equipamiento .
+
+Equipamiento
+
+• Báculo de Fe
+• Ropa Consagrada 
+• Mochila con: un conjunto de 5 velas, 1 barra de incienso, un incensario, raciones 
+para 2 días. 
+• Limosnas: 10 monedas de Bronce. 
+• Libro de Oraciones: Contiene cánticos y bendiciones. Durante un Interludio, opten bonificación de +1 
+en tiradas relacionadas con la recuperación mental. 
+ 
+Habilidades:
+
+• Toque de Sanación (Activo) – (2 PD)
+• Bendición (Activo) – (2 PD)
+• Decretos de Anulación (Activo) (3 PD)
+• Escudo Sagrado (Activo) (3 PD)
+• Milagro (Activo) (4 PD) 
+• Devoto (Pasivo) – (2 PC)
+• Fuerza en la Voluntad – (2 PC) 
+• Voz del Pastor (Pasivo) – (2 PC)
+• Revelación Divina (Activo) – (3 PC)
+• Auxilio del Cielo – (Activo) - (4 PC)  
+• Ojos Despiertos (Pasivo) – (2 PJ)
+• Discernimiento (Pasivo) – (2 PJ) 
+• Decretos de Verdad (Activo) – (3 PJ)
+• Martillo de Luz (Activo) – (4 PJ) 
+• Llama Redentora (4 PJ)
+
+arquetipo: Alquimista
+  
+Descripción: 
+Maestros del arte de la creación y 
+transformación, los Alquimistas son individuos 
+que combinan la ciencia con la magia para 
+alcanzar logros extraordinarios. Desde pociones 
+curativas hasta venenos mortales, modificar 
+cuerpos ajenos o crear esclavos de carnes que 
+obedezcan sus ordenes. Sus habilidades ofrecen 
+infinitas posibilidades. Su obsesión por la 
+perfección los lleva a desafiar las leyes de la 
+naturaleza, aventurándose en territorios 
+prohibidos con una curiosidad insaciable. Sin 
+embargo, manipular el equilibrio de la materia 
+tiene sus riesgos y consecuencias. 
+
+Hazañas: Puntos de Herborista (PH), Puntos de Transmutador (PT), Puntos de Investigador (PI) 
+
+Equipamiento:
+
+• Cuchillo de Herborista  
+• Atuendo de investigación
+• Kit de Alquimia
+• Ingredientes acorde al descriptor
+
+Habilidades: 
+ 
+• Brebaje Curativo (Activo) – (2 PC): 
+• Envenenador (Activo) – (2 PC)
+• Suero Calmante (Activo) – (2 PC):  
+• Sistema Inmunológico Reforzado (Pasivo) – (3 PC)
+• Elixir de la Vida (Activo) (6 PC) 
+• Alterar Objeto (Activo) – (2 PT)
+• Alterar Cuerpo (Activo) – (2 PT)
+• Científico Loco – (Pasivo) - (3 PT)
+• Homúnculo – (Activo) – (4 PT) 
+• Ingenio (Pasivo) – (2 PI)
+• Investigador de Campo (Pasivo) – (2 PI):  
+• Poder de Deducción (Activo) – (3 PI)
+• ¡Eureka! (Activo) – (4 PI)
+• Maestro Tenaz (Activo) – (4 PI)
+
+arquetipo: Guarrdia Real
+  
+Descripción: 
+Como soldados élite al servicio de la nobleza y la 
+corona, los Guardias Reales representan el 
+pináculo del honor, la disciplina y la lealtad. 
+Entrenados para proteger y servir, son maestros en 
+el combate defensivo y poseen habilidades 
+excepcionales para liderar y mantener la moral en 
+sus filas. Sin embargo, su devoción a su causa 
+puede llevarlos a sacrificarlo todo, incluso su 
+propia libertad para tomar decisiones 
+independientes. 
+
+Hazañas: Puntos del Protector (PP), Puntos de la 
+Espada (PE), Puntos del Comandante (PC).
+
+Equipamiento 
+ 
+• Espada Bastarda
+• Escudo Heráldico
+• Armadura de Placas 
+• Salario: 10 Monedas de Bronce 
+• Sello del Rey
+
+Habilidades: 
+
+• Habilidad Postura de Guardia (Pasivo) – (2 PP)
+• Muralla Inamovible (Pasivo) – (2 PP)
+• Escudo Noble (Activo) – (3 PP)
+• Piel de Hierro (Activo) – (3 PP)
+• Bastión Real (Activo) – (4 PP)
+• Corte Preciso (Activo) – (2 PE)
+• Contraataque – (Pasivo) - (2 PE)
+• Provocación (Activo) – (3 PE)
+• Estocada – (Activo) – (3 PE) 
+• Flujo de Combate (Activo) – (4 PE)
+• Voz de Mando (Pasivo) – (2 PC) 
+• Presencia Imponente (Pasivo) – (2 PC) 
+• Formación Real (Activo) – (3 PC)
+• Estratega (Activo) – (3 PC)
+• ¡Todos para uno y uno para todos! – (Activo) – (4 PC)
+
+
+arquetipo: Pirata  
+
+Descripción: 
+Temidos y admirados por igual, los Piratas son 
+individuos que viven bajo su propio código de libertad. 
+Maestros del saqueo y el combate improvisado, 
+navegan los mares y enfrentan aventuras llenas de 
+peligro. Sus conocimientos del entorno y su ingenio 
+les permiten convertir cualquier situación en una 
+oportunidad para ganar oro… o un enemigo nuevo. 
+Aunque no siempre son de fiar, su encanto y astucia 
+los hacen indispensables en cualquier tripulación. 
+
+Hazañas: Puntos del Corsario (PC), Puntos del 
+Marinero (PM), Puntos del Bribón (PB)
+ 
+Equipamiento 
+
+• Espada de Corsario
+• Pistola de Chispa (Munición x3) 
+• Equipo de Navegación: sextante, 1 brújula, 1 regla, 3 cartas, 1 pergamino, 1 frasco de tinta y pluma 
+• Botella de Ron (x2) 
+• Bolsita: 5 monedas de bronce 
+
+Habilidades: 
+
+1. Espadachín Improvisado (Pasivo) – (2 PC)
+2.Disparo Certero (Pasivo) – (2 PC)
+3.As del duelo (Activo) – (3 PC) 
+4.Arma Escondida (Activo) – (3 PC)
+5.Resbaladizo (Activo) – (3 PC)
+1.Mono de aparejos – (Pasivo) - (2 PM)
+2.Patas de mar resistentes – (Pasivo) – (2 PM)
+3.Conocedor del Mar – (Pasivo) – (2 PM) 
+4.Amante del Alcohol – (Pasivo) – (3 PM)
+5.Bombas Caseras (Activo) – (4 PM)
+1.Manos Ligeras – (Pasivo) – (2 PB)
+2.Lobo de Mar – (Pasivo) – (2 PB)
+3.Mal Perdedor – (Pasivo) – (2 PB)
+4.Sea Shanties – (Activo) – (3 PB) 
+5.Ladron de Oportunidades – (Activo) – (4 PB)

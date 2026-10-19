@@ -1,0 +1,466 @@
+Arquetipo: Licantropo
+
+Descripción: Cazadores con sentidos sobrehumanos, capaces de 
+rastrear a cualquier criatura por el olor o el sonido que 
+emitan. Su naturaleza bestial los vuelve desconfiados y 
+extremadamente sensibles a estímulos fuertes. La plata es su 
+mayor debilidad: incluso el contacto mínimo les quema la piel. 
+
+Rasgos Virtuosos: 
+
+• Sentidos Agudos. 
+
+Rasgos Defectuosos:
+
+• Hipersensible. 
+• Desconfiado. 
+• Vulnerabilidad a la plata. 
+ 
+Peculiaridades: 
+
+• Debilidad a la plata (Pasiva)
+• Dualidad (Pasiva)
+
+Habilidades: 
+
+• Olfato del Cazador (Activa)
+
+Limite de Cordura 
+
+• Transformación a Lobo (Pasivo)
+  
+(Habilidad Bloqueada 🔒) 
+• Usurpación (Activo)
+
+Requisito: Opten una Reputación Positiva por mérito propio (a 
+discreción del Narrador).
+
+Dieta: Carne 
+Afinidad: Fuego      
+Cordura: 5 
+Heridas 5 
+
+Arquetipo: LOS NIÑOS PERDIDOS 
+
+Descripción: Huérfanos astutos que emplean su encanto 
+infantil para manipular a los adultos y alcanzar sus objetivos. 
+A pesar de su debilidad física debido a sus cuerpos infantiles y 
+su reducido tamaño que los hace objeto de burlas, lo que 
+dificulta su liderazgo, poseen una conexión mágica que les 
+permite controlar plantas y animales a su voluntad. Sin 
+embargo, su resistencia mental es limitada, y la manifestación 
+de su magia se evidencia en sus ojos vacíos y en las ramas que 
+emergen de sus cabezas, llamando la atención inevitablemente.
+ 
+Rasgos Virtuosos: 
+
+• Astucia Infantil. 
+• Magia Innata. 
+
+Rasgos Defectuosos:
+ 
+• Cuerpo infantil. 
+• Fuerza mental de un niño. 
+
+Habilidades:
+
+• Encanto Infantil (activo)
+• Migajas de pan (Activa)  
+• Devuelta a casa (Costo: 1 Cordura) 
+• Dulce trampa (Costo: 1 Cordura)
+ 
+Limite de Cordura: 
+
+• Magia maldita del bosque y Fuerza Fraterna
+
+Habilidad bloqueado 🔒:
+ 
+Adultez
+
+• Condición de Desbloqueo: Este efecto se desbloquea cuando el 
+niño perdido firma un pacto o sacrificio, entregando algo muy 
+valioso a cambio de poder.  
+
+Dieta: Dulces, trigo 
+Afinidad mágica: Tierra 🪨 
+Cordura: 4 
+Heridas 4 
+
+Arquetipo: Brujería 
+
+
+Descripción: Los brujos y brujas de Alderland son maestros 
+de la magia oscura, nacidos de un legado de sacrificios y 
+venganza. Su poder emana de antiguos rituales que requieren 
+el derramamiento de sangre. Su debilidad física la compensan 
+con astucia y engaño, siempre sabiendo qué palabras usar 
+para convencer a cualquiera de firmar un contrato con ellos; 
+parecen leer los deseos más profundos y retorcidos de las 
+personas. El fuego los consume ferozmente, y la santidad los 
+hiere. Al acercarse a una iglesia o al tocar un objeto bendito, 
+sienten como si su alma se desgarrara. Tanto tiempo 
+practicando las artes oscuras tiene sus consecuencias: son 
+incapaces de discernir como personas normales, oyen voces 
+donde no las hay, son extremadamente paranoicos y sienten 
+que todos conspiran en su contra. Y, en el fondo, una hambre 
+voraz... ¿será por la carne humana? 
+
+Rasgos Virtuosos: 
+
+• Magia oscura. 
+• Maestros manipuladores.
+
+Rasgos Defectuosos:
+
+• Debilidad física. 
+• Presencia malévola. 
+• Mente corrompida.  
+
+Habilidades 
+
+• Verdades ocultas (Activa) 
+• Familiares (Pasiva) 
+
+Limite de Cordura 
+
+• Maleficio (Activa) y ¿Leíste las letras pequeñas?" (Activa)
+
+Habilidad Bloqueada:
+
+• Líder Sectario (Activo)
+
+Requisito: Tener vivo a cinco seres vivos y inteligentes bajo 
+lealtad incondicional hacia ti. También cuentan los seres vivos 
+bajo el Efecto de "¿Leíste las letras pequeñas?" 
+
+Dieta: Insectos, lagartos, carne humana 
+Afinidad mágica: Agua 
+Cordura: 5 Heridas 5 
+
+Arquetipo: Autómata 
+ 
+Descripción: Los Autómatas son seres construidos a partir de  
+madera, metal o compuestos mágicos, creados por artesanos,  
+brujos o maldiciones. Aunque poseen fuerza sobrehumana y  
+una resistencia que supera a la de cualquier humano, están  
+atados a las órdenes de su creador o amo original. No sienten  
+dolor, cansancio ni frío, pero su cuerpo es vulnerable a golpes  
+contundentes y, sobre todo, al fuego, que puede reducirlos a  
+cenizas. Su mente es inocente: no comprenden la mentira y,  
+por su propia naturaleza, no pueden pronunciar falsedades sin  
+que su cuerpo lo delate o se dañe. Aunque desconocen su origen  
+exacto, una energía mágica fluye en su interior, otorgándoles  
+habilidades únicas… y un destino incierto. 
+
+Rasgos Virtuosos:
+ 
+• Fuerza sobrehumana.  
+• Invulnerabilidad 
+• Sensibilidad Mágica
+ 
+Rasgos Defectuosos:
+ 
+• Vulnerabilidad al fuego 
+• Cuerpo imperfecto 
+• Inocencia 
+• La mentira crece
+ 
+Habilidades: 
+ 
+• Prótesis mejoradas (Pasiva) 
+• Ensamblaje (Activo)
+  
+Limite de Cordura:
+ 
+• Titiritero (Activo)  
+ 
+Habilidad Bloqueada:
+ 
+• Un niño de verdad (Activo)
+ 
+Requisito: Debes cumplir un objetivo impuesto por tu amo o  
+creador. Ir en contra de este objetivo provocará en ti el estado  
+de Depresión —Indecisión, dudas, sentimientos de culpa—. Sin  
+embargo, desobedecerlo 5 veces te permitirá romper las ataduras y acercarte a convertirte en un “niño de verdad”.  
+ 
+Dieta: Clavos, aceite, madera   
+Afinidad mágica: Tierra  
+Cordura: 4             
+Heridas: 5 
+ 
+Arquetipo: Linaje Maldito 
+  
+Descripción: Su belleza y nobleza innatas les permiten ganarse la confianza de los demás, irradiando un encanto que cautiva a quienes los rodean. Sin embargo, su maldición se convierte en un obstáculo que les impide conocer a fondo a las personas, ya que a menudo son rechazados y tratados como si llevaran consigo una enfermedad contagiosa. A pesar de su apariencia deslumbrante, hay un aire inquietante en su  
+presencia que atrae fuerzas sobrenaturales. Ante la  
+desesperanza, han cultivado una determinación feria frente a  
+la adversidad, aunque el dolor del rechazo les afecta profundamente. 
+ 
+Rasgos Virtuosos: 
+ 
+• Atractivo. 
+• Resiliencia. 
+ 
+Rasgos Defectuosos:
+ 
+• Maldito.  
+• Búsqueda de Aceptación. 
+• Malas energías.
+ 
+Habilidades: 
+ 
+• Herencia Maldita (Pasiva) 
+• Conocimientos malditos (Activa) 
+ 
+Limite de Cordura:
+ 
+• Maldición Desatada 
+ 
+Habilidad Bloqueada:
+ 
+• Liberación del Destino (Activo)
+ 
+Requisito: Logra un acto heroico significativo. Esto debe ser  
+realizado en una escena clave con testigos importantes (a  
+discreción del Narrador).  
+ 
+Afinidad mágica: Fuego 
+Dieta: Hierbas amargas, Frutos oscuros (como moras o  
+ciruelas) 
+Cordura: 5  
+Heridas 5  
+ 
+Heroico  
+ 
+Descripción: Posee todas las aptitudes para ser el protagonista  
+de esta historia: habilidad con la espada, voluntad inquebrantable, un fiel corcel, dotes de liderazgo y un cabello reluciente. Sin embargo, no es nadie especial. No cuenta con la fuerza de un ogro, la magia de una bruja o la resistencia de  
+un lobo; es un hombre común que busca hacer el bien, ya sea  
+justificado o no, desinteresadamente o por egoísmo. Partió de su hogar acomodado en busca de cumplir su gran propósito, pero la inexperiencia pesa y Alderland es cruel con aquellos que son pocos aptos para sobrevivir. Su encanto natural y sus palabras logran ganarse fácilmente el amor del pueblo, no obstante, la reputación le afecta profundamente, ya que busca complacer a todos por igual. Su conciencia le pesa, recordándole día y noche sus actos malvados. 
+ 
+Rasgos Virtuosos: 
+ 
+• Habilidoso con la Espada. 
+• Fiel Corcel. 
+• Líder innato.
+ 
+Rasgos Defectuosos:
+ 
+• Cuna dorada. 
+• Ego frágil. 
+• Conciencia.
+ 
+Habilidades:
+ 
+• En Guardia (Activo) 
+• Grito de Guerra (Activo)
+
+Límite de Cordura:
+ 
+• Antihéroe (Activo) y Determinación Oscura (Activo) 
+ 
+Habilidad Bloqueada: 
+ 
+• Paladín brillante (Activo) 
+ 
+Requisito: Aplica los efectos de “Ultima Gota de Determinación” con éxito. Al finalizar la escena, quedas en un estado de Agotamiento.  
+ 
+Afinidad Mágica: Fuego  
+Dieta: Frutas frescas: Manzanas doradas, peras jugosas y  
+Bayas silvestres. Verduras: Espinacas, zanahorias y brócoli.  
+Cordura: 6  
+Heridas: 5 
+  
+Arquetipo: OGRO  
+ 
+Descripción: Un ser tan alto como un oso y tan fuerte como un  
+caballo de guerra. Capaz de arrancar árboles jóvenes,  
+desmembrar a un hombre o derribar un caballo de un solo  
+golpe. Su piel gruesa actúa como una armadura natural, aunque su aspecto grotesco y su temperamento impulsivo suelen  
+causar rechazo. Son vulnerables a la magia y a menudo caen  
+en la trampa de su propia arrogancia. Sin embargo, bajo su  
+exterior brutal, muchos ocultan un talento artístico sorprendente, y un corazón enorme; literalmente. 
+ 
+Rasgos Virtuosos: 
+ 
+• Fuerza sobrehumana. 
+• Piel Gruesa. 
+• Artista.
+ 
+Rasgos Defectuosos:
+ 
+• Fealdad. 
+• Mala Actitud.  
+• Vulnerabilidad a la magia.
+ 
+Habilidades 
+ 
+• Huelo a Carne fresca (activa)  
+• Intimidación (Activa) 
+ 
+Limite de Cordura  
+ 
+• Berserker (Activa) 
+ 
+Habilidad Bloqueado
+ 
+• Protector Leal (Activa) 
+ 
+Requisito: Esta Habilidad se desbloquea cuando el ogro realiza  
+un acto de salvación heroica que involucra proteger a un  
+compañero en peligro, amortiguando un ataque mortal que iba dirigido a él (Debe estar a 1 Herida o 2) Este acto debe  
+realizarse en una situación crítica y debe ser reconocido por  
+los compañeros del ogro. 
+  
+Dieta: Carne  
+Afinidad mágica: Tierra  
+Cordura: 5  
+Herida: 6  
+ 
+Arquetipo: Soñador
+  
+Descripción: Mantiene una mente firme y fuerte pero a la vez  
+imaginativa. Esta dualidad le otorga vastas reservas de poder  
+mental, que se manifiestan a través de sus habilidades psíquicas y una expresión más controlada y poderosa de su Límite de Cordura. Cuenta con un amigo imaginario, una entidad que solo él puede ver. Este compañero puede ofrecer ayuda y consejos, pero también tiene sus propios caprichos y necesidades. A menudo, el Soñador se escapa de la realidad para evitar lidiar con los problemas, buscando refugio ante el estrés o la adversidad. 
+ 
+Rasgos Virtuosos: 
+ 
+• Imaginación Poderosa. 
+• Poderosa mente. 
+• Amigo Imaginario.
+ 
+Rasgos Defectuosos 
+ 
+• Escapismo. 
+• Mundo interior. 
+ 
+Peculiaridades:
+ 
+• Locura (Pasiva) 
+• Amigo Imaginario (Pasivo)  
+
+Nota: Hay que crear un apartado de descripción nada más para el amigo imaginario.
+ 
+• Dimensión de Bolsillo (Activa) 
+
+Nota: Hay que crear un apartado de descripción nada más para la dimensión de Bolsillo. 
+ 
+Habilidad Bloqueado:
+ 
+• Materialización (Activa)
+ 
+Requisito: Supera los bloqueos mentales que te limitan, así  
+como los traumas que han tejido tus fantasías y los demonios  
+internos que te persiguen en los sueños. Ahora, sin miedos ni  
+prejuicios sobre tu efecto, podrás liberar un potencial que ni tú  
+creías posible. Realiza 3 pruebas exitosas de dificultad intermedia en tus viajes oníricos cuando son Pesadillas (El Narrador puede  
+reducirlo en 1 o 2 Pruebas, dependiendo de la duración de la  
+Campaña). 
+  
+Dieta: Medicinas, hiervas medicinales o alucinógenos. 
+  
+Afinidad mágica: Aire  
+Cordura: 4  
+Heridas 4  
+ 
+Arquetipo: ANIMAL ASTUTO 
+  
+Descripción: La enigmática raza enmascarada puede  
+adaptarse a diversos roles al ocultar su verdadera identidad  
+tras coloridas máscaras. Son elocuentes y persuasivos, lo que les permite integrarse en la sociedad humana. Se dice que poseen  
+la habilidad mágica de manipular almas y hacer pactos con  
+entidades poderosas para acceder a sus habilidades ilusionistas. Con destreza física y astucia innata, enfrentan el estigma de su apariencia y las promesas incumplidas. Luchan
+entre su verdadera naturaleza y la imagen que proyectan, lo  
+que genera conflictos internos y confusión en su identidad. Con un terror irracional vinculado a su naturaleza, prefieren evitar el conflicto directo con un desencadenante a su miedo. Se dice, que son seres hechos de magia. 
+ 
+Rasgos Virtuosos: 
+ 
+• Maestro del disfraz. 
+• Embaucador. 
+• Ágil. 
+• Magia Innata.
+ 
+Rasgos Defectuosos:
+ 
+• Fragmentado. 
+• Miedo Primitivo. 
+• Existencia Mágica.  
+ 
+Peculiaridades:
+ 
+• Animal Antropomórficos (Pasivo): 
+
+Nota: Hay que crear un apartado para determinar qué animal eres, eligiendo uno de tamaño pequeño. 
+ 
+Habilidades:  
+ 
+• Nueve vidas como un gato (Activo) 
+• Máscara encantada (Pasivo)
+• Vinculo de Alma (Activo):   
+ 
+Limite de Cordura:
+ 
+• Espíritu maligno (Activo) 
+ 
+Habilidad bloqueado:
+ 
+• Maestro ilusionista (Activo)
+ 
+Requisito: Aumenta tus conocimientos y poderes mágicos. 
+  
+Afinidad: Aire  
+Cordura: 5  
+Heridas: 4  
+ 
+Arquetipo: Feérico 
+ 
+Descripción: Los Feéricos no son hadas, son entidades antiguas,  
+hechas de magia pura, que no pueden existir en el mundo  
+humano sin un recipiente. Usan cuerpos humanos como  
+carcazas, habitándolos como marionetas. Encarnan conceptos  
+(miedo, deseo, engaño, hambre, belleza, caos…) y pueden sellar  
+pactos con mortales para obtener influencia a cambio de  
+poder. Su cuerpo está compuesto de magia, empleándolo sin  
+casi esfuerzo. Los Feéricos son poderosos, pero su vínculo con la  
+carcaza es frágil: si la magia se descontrola, la máscara  
+humana se rompe. Aunque busque controlar a los humanos, se  
+le hace impráctico sus costumbres o sentir empatía. La manera  
+más eficiente de mantener a un Feérico alejado es con el  
+hierro o con los ríos, que sirve como barrera natural. 
+ 
+Rasgos Virtuosos: 
+ 
+• Magia Innata. 
+• Encarnación Conceptual. 
+
+Nota: Hay que crear un apartadado en donde el usuario describe su Encarnación Conceptual. Ejemplo: Encarnar el terror a los lobos,  
+podría darte una virtud para usar su fiereza o sentidos desarrollados, pero adquirir su aversión por la plata o encarnar el terror a los incendios, pero ser vulnerable al agua. 
+ 
+Rasgos Defectuosos: 
+ 
+• Inhumanidad. 
+• Debilidad de las Hadas.
+ 
+Peculiaridades: 
+ 
+• Carcaza frágil (Pasivo).
+ 
+Habilidades:
+ 
+• Abracadabra (Activa)  
+• Deseo, 24 horas (Activa) 
+• Aberraciones (Activa) 
+ 
+Limite de Cordura:
+ 
+• Terror de los Cuentos de Hadas (Activa)
+ 
+Habilidad Bloqueada: 
+ 
+• Soberano de la Realidad (Activa) 
+  
+Requisito: Si tú nombre resuena con temor en un grupo humano, y te temen o veneran por tus poderes en esos rumores, obtienes la Habilidad. Si te dejan de venerar o temer, pierdes estos poderes.  
+ 
+Dieta: Carne, trigo, Platas . 
+Afinidad Mágica: (a tu elección entre agua, fuego, tierra o  
+viento)  
+Heridas: 4  
+Cordura: 6 
