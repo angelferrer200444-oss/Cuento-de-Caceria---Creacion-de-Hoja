@@ -114,6 +114,7 @@ function renderOccupationEquipment() {
 
   selectedOccupationEquipment.forEach((selectedEquipment, index) => {
     const row = document.createElement("span");
+    row.className = "equipment-row";
     const input = document.createElement("input");
     input.type = "text";
     input.id = `occupation-equipment-${index + 1}`;
@@ -129,6 +130,15 @@ function renderOccupationEquipment() {
     label.textContent = `Equipo ${index + 1}`;
     row.appendChild(label);
     row.appendChild(input);
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.className = "remove-equipment";
+    removeButton.textContent = "Eliminar";
+    removeButton.addEventListener("click", () => {
+      selectedOccupationEquipment.splice(index, 1);
+      renderOccupationEquipment();
+    });
+    row.appendChild(removeButton);
     list.appendChild(row);
   });
 }

@@ -4,16 +4,37 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Creaci&oacute;n de Cazador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/creador.css">
 </head>
 <body>
   <main>
     <header>
+      <p class="eyebrow">CUENTO DE CACER&Iacute;A</p>
       <h1>Creaci&oacute;n de Cazador</h1>
-      <p>Completa los pasos para construir la hoja de tu personaje.</p>
+      <p>Completa cada paso para construir la hoja de tu personaje.</p>
     </header>
 
+    <div class="step-progress" aria-label="Progreso de la creaci&oacute;n">
+      <span class="step-progress-label">Paso <strong id="current-step">1</strong> de 7</span>
+      <div class="step-progress-track">
+        <div class="step-progress-fill" id="step-progress-fill"></div>
+      </div>
+      <div class="step-indicators" aria-hidden="true">
+        <span class="step-dot active"></span>
+        <span class="step-dot"></span>
+        <span class="step-dot"></span>
+        <span class="step-dot"></span>
+        <span class="step-dot"></span>
+        <span class="step-dot"></span>
+        <span class="step-dot"></span>
+      </div>
+    </div>
+
     <form action="#" method="post">
-      <fieldset>
+      <fieldset class="creator-step active">
         <legend>Paso 1: Elegir Arquetipo</legend>
 
         <p>El Arquetipo define la identidad, los rasgos, las habilidades y la resistencia mental y f&iacute;sica del personaje.</p>
@@ -119,7 +140,7 @@
         </p>
       </fieldset>
 
-      <fieldset>
+      <fieldset class="creator-step">
         <legend>Paso 2: Elecci&oacute;n de Oficio</legend>
 
         <p>
@@ -152,7 +173,7 @@
           <label for="occupation-abilities">Habilidades y Rutas del Oficio</label><br>
           <span id="occupation-abilities-list"></span>
         </p>
-        <p><button type="button" id="add-occupation-ability">A&ntilde;adir habilidad</button></p>
+        <p><button type="button" class="add-option" id="add-occupation-ability">A&ntilde;adir habilidad</button></p>
 
         <p>
           <label for="occupation-feats">Hazañas y puntos disponibles</label><br>
@@ -163,11 +184,11 @@
           <label for="occupation-equipment">Equipamiento inicial del Oficio</label><br>
           <span id="occupation-equipment-list"></span>
         </p>
-        <p><button type="button" id="add-occupation-equipment">A&ntilde;adir equipo</button></p>
+        <p><button type="button" class="add-option" id="add-occupation-equipment">A&ntilde;adir equipo</button></p>
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="creator-step">
         <legend>Paso 3: Creaci&oacute;n de Rasgos</legend>
 
         <p>Agrega rasgos propios a la descripci&oacute;n del personaje. Un rasgo favorable suma +2, uno perjudicial resta -1 y uno no aplicable no modifica la tirada.</p>
@@ -176,27 +197,33 @@
         <div id="additional-virtues-list">
           <p>
             <label for="additional-virtue-1">Virtud adicional 1</label>
-            <input type="text" id="additional-virtue-1" name="additional_virtues[]">
+            <input type="text" id="additional-virtue-1" name="additional_virtues[]" required>
+          </p>
+          <p>
+            <label for="additional-virtue-2">Virtud adicional 2</label>
+            <input type="text" id="additional-virtue-2" name="additional_virtues[]" required>
           </p>
         </div>
-        <p><button type="button" id="add-virtue">A&ntilde;adir otra virtud</button></p>
+        <p><button type="button" class="add-option" id="add-virtue">A&ntilde;adir otra virtud</button></p>
 
         <h2>Defectos adicionales</h2>
         <div id="additional-defects-list">
           <p>
             <label for="additional-defect-1">Defecto adicional 1</label>
-            <input type="text" id="additional-defect-1" name="additional_defects[]">
+            <input type="text" id="additional-defect-1" name="additional_defects[]" required>
+          </p>
+          <p>
+            <label for="additional-defect-2">Defecto adicional 2</label>
+            <input type="text" id="additional-defect-2" name="additional_defects[]" required>
           </p>
         </div>
-        <p><button type="button" id="add-defect">A&ntilde;adir otro defecto</button></p>
-
         <p>
           <label for="character-description">Descripci&oacute;n completa del personaje</label><br>
           <textarea id="character-description" name="character_description" rows="7" cols="60"></textarea>
         </p>
       </fieldset>
 
-      <fieldset>
+      <fieldset class="creator-step">
         <legend>Paso 4: Elegir una Fobia</legend>
 
         <div id="phobias-list">
@@ -259,7 +286,7 @@
         <p><button type="button" id="add-phobia">A&ntilde;adir otra fobia</button></p>
       </fieldset>
 
-      <fieldset>
+      <fieldset class="creator-step">
         <legend>Paso 5: Maldici&oacute;n opcional</legend>
 
         <p>
@@ -303,7 +330,7 @@
         </p>
       </fieldset>
 
-      <fieldset>
+      <fieldset class="creator-step">
         <legend>Paso 6: Vicio opcional</legend>
 
         <p>
@@ -317,7 +344,7 @@
         </p>
       </fieldset>
 
-      <fieldset>
+      <fieldset class="creator-step">
         <legend>Paso 7: Identifica tu Cazador</legend>
 
         <p>
@@ -336,7 +363,11 @@
         </p>
       </fieldset>
 
-      <p>
+      <div class="form-navigation">
+        <button type="button" class="btn-atras" id="previous-step">Atr&aacute;s</button>
+        <button type="button" class="btn-guardar" id="next-step">Continuar</button>
+      </div>
+      <p class="form-actions" id="form-actions">
         <button type="submit">Guardar hoja</button>
         <button type="reset">Limpiar formulario</button>
       </p>
@@ -346,5 +377,6 @@
   <script src="../static/js/oficios.js"></script>
   <script src="../static/js/maldiciones.js"></script>
   <script src="../static/js/fobias.js"></script>
+  <script src="../static/js/creador.js"></script>
 </body>
 </html>

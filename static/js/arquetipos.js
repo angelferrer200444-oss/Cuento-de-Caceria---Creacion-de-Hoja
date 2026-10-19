@@ -158,11 +158,23 @@ function renderArchetypeTraits(listId, prefix, labelText, traits) {
   list.innerHTML = "";
   const traitValues = traits.filter(Boolean);
 
-  traitValues.concat("").forEach((trait, index) => {
+  traitValues.forEach((trait, index) => {
     const row = document.createElement("span");
     row.innerHTML = `<br><label for="${prefix}-${index + 1}">${labelText} ${index + 1}</label> <input type="text" id="${prefix}-${index + 1}" name="${prefix.replace("-", "_")}[]" value="${decodeHtml(trait).replace(/&/g, "&amp;").replace(/"/g, "&quot;")}">`;
     list.appendChild(row);
   });
+
+  const addButton = document.createElement("button");
+  addButton.type = "button";
+  addButton.className = "add-option";
+  addButton.textContent = `Añadir ${decodeHtml(labelText).toLowerCase()}`;
+  addButton.addEventListener("click", () => {
+    const nextNumber = list.querySelectorAll("input").length + 1;
+    const row = document.createElement("span");
+    row.innerHTML = `<br><label for="${prefix}-${nextNumber}">${labelText} ${nextNumber}</label> <input type="text" id="${prefix}-${nextNumber}" name="${prefix.replace("-", "_")}[]">`;
+    list.insertBefore(row, addButton);
+  });
+  list.appendChild(addButton);
 }
 
 function fillArchetype() {
@@ -207,16 +219,86 @@ function addTraitRow(listId, prefix, labelText) {
   const list = document.querySelector(`#${listId}`);
   const nextNumber = list.querySelectorAll("input").length + 1;
   const row = document.createElement("p");
-  row.innerHTML = `<label for="${prefix}-${nextNumber}">${labelText} ${nextNumber}</label> <input type="text" id="${prefix}-${nextNumber}" name="${prefix.replace("-", "_")}[]">`;
+  row.innerHTML = `<label for="${prefix}-${nextNumber}">${labelText} ${nextNumber}</label> <input type="text" id="${prefix}-${nextNumber}" name="${prefix.replace("-", "_")}[]" required>`;
   list.appendChild(row);
 }
 
+function removeAdditionalTraitPair(index) {
+  const virtueRows = document.querySelectorAll("#additional-virtues-list p");
+  const defectRows = document.querySelectorAll("#additional-defects-list p");
+  const virtue = virtueRows[index];
+  const defect = defectRows[index];
+
+  if (!virtue || !defect || virtueRows.length <= 2) {
+    return;
+  }
+
+  virtue.remove();
+  defect.remove();
+  renumberAdditionalTraits();
+}
+
+function refreshAdditionalTraitControls() {
+  const lists = [
+    ["#additional-virtues-list", "Virtud"],
+    ["#additional-defects-list", "Defecto"]
+  ];
+
+  lists.forEach(([listSelector]) => {
+    const list = document.querySelector(listSelector);
+    const rows = Array.from(list.querySelectorAll("p"));
+
+    rows.forEach((row) => {
+      const removeButton = row.querySelector(".remove-trait");
+      if (removeButton) {
+        removeButton.remove();
+      }
+    });
+
+    if (rows.length <= 2) {
+      return;
+    }
+
+    rows.forEach((row, index) => {
+      const removeButton = document.createElement("button");
+      removeButton.type = "button";
+      removeButton.className = "remove-trait";
+      removeButton.textContent = "Eliminar";
+      removeButton.addEventListener("click", () => removeAdditionalTraitPair(index));
+      row.appendChild(removeButton);
+    });
+  });
+}
+
+function renumberAdditionalTraits() {
+  ["virtue", "defect"].forEach((type) => {
+    document.querySelectorAll(`#additional-${type}s-list input`).forEach((input, index) => {
+      const number = index + 1;
+      input.id = `additional-${type}-${number}`;
+      input.previousElementSibling.htmlFor = input.id;
+      input.previousElementSibling.textContent = `${type === "virtue" ? "Virtud" : "Defecto"} adicional ${number}`;
+    });
+  });
+
+  refreshAdditionalTraitControls();
+}
+
 document.querySelector("#add-virtue").addEventListener("click", () => {
-  addTraitRow("additional-virtues-list", "additional-virtue", "Virtud adicional");
+  const virtueList = document.querySelector("#additional-virtues-list");
+  const defectList = document.querySelector("#additional-defects-list");
+  const nextNumber = virtueList.querySelectorAll("input").length + 1;
+
+  [virtueList, defectList].forEach((list, index) => {
+    const type = index === 0 ? "virtue" : "defect";
+    const label = index === 0 ? "Virtud" : "Defecto";
+    const row = document.createElement("p");
+    row.innerHTML = `<label for="additional-${type}-${nextNumber}">${label} adicional ${nextNumber}</label> <input type="text" id="additional-${type}-${nextNumber}" name="additional_${type}s[]" required>`;
+    list.appendChild(row);
+  });
+
+  refreshAdditionalTraitControls();
 });
 
-document.querySelector("#add-defect").addEventListener("click", () => {
-  addTraitRow("additional-defects-list", "additional-defect", "Defecto adicional");
-});
+refreshAdditionalTraitControls();
 
 archetypeSelect.addEventListener("change", fillArchetype);
