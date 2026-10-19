@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Creaci&oacute;n de Cazador</title>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Creaci&oacute;n de Cazador</h1>
+      <p>Completa los pasos para construir la hoja de tu personaje.</p>
+    </header>
+
+    <form action="#" method="post">
+      <fieldset>
+        <legend>Paso 1: Elegir Arquetipo</legend>
+
+        <p>El Arquetipo define la identidad, los rasgos, las habilidades y la resistencia mental y f&iacute;sica del personaje.</p>
+
+        <p>
+          <label for="archetype">Arquetipo</label>
+          <select id="archetype" name="archetype" required>
+            <option value="">Selecciona un Arquetipo</option>
+            <option value="licantropo">Lic&aacute;ntropo</option>
+            <option value="ninos-perdidos">Los Ni&ntilde;os Perdidos</option>
+            <option value="brujeria">Brujer&iacute;a</option>
+            <option value="automata">Aut&oacute;mata</option>
+            <option value="linaje-maldito">Linaje Maldito</option>
+            <option value="heroico">Heroico</option>
+            <option value="ogro">Ogro</option>
+            <option value="sonador">So&ntilde;ador</option>
+            <option value="animal-astuto">Animal Astuto</option>
+            <option value="feerico">Fe&eacute;rico</option>
+          </select>
+        </p>
+
+        <p>
+          <label for="archetype-description">Descripci&oacute;n del Arquetipo</label><br>
+          <textarea id="archetype-description" name="archetype_description" rows="5" cols="60"></textarea>
+        </p>
+
+        <p>
+          <label for="archetype-virtues">Rasgos Virtuosos del Arquetipo</label><br>
+          <span id="archetype-virtues-list"></span>
+        </p>
+
+        <p>
+          <label for="archetype-defects">Rasgos Defectuosos del Arquetipo</label><br>
+          <span id="archetype-defects-list"></span>
+        </p>
+
+        <h2>Habilidades del Arquetipo</h2>
+        <p>Las habilidades se cargan desde el Arquetipo seleccionado.</p>
+        <p>
+          <label for="archetype-abilities">Habilidades</label><br>
+          <span id="archetype-abilities-list"></span>
+        </p>
+
+        <p>
+          <label for="archetype-peculiarities">Peculiaridades</label><br>
+          <span id="archetype-peculiarities-list"></span>
+        </p>
+
+        <p>
+          <label for="locked-ability">Habilidad Bloqueada</label><br>
+          <textarea id="locked-ability" name="locked_ability" rows="4" cols="60"></textarea>
+        </p>
+
+        <p>
+          <label for="locked-ability-requirement">Requisito de desbloqueo</label><br>
+          <textarea id="locked-ability-requirement" name="locked_ability_requirement" rows="5" cols="60"></textarea>
+        </p>
+
+        <p>
+          <label for="sanity-limit">L&iacute;mite de Cordura</label><br>
+          <span id="sanity-limit-list"></span>
+        </p>
+
+        <p>
+          <label for="maximum-sanity">Reserva M&aacute;xima de Cordura</label>
+          <input type="number" id="maximum-sanity" name="maximum_sanity" min="0">
+        </p>
+
+        <p>
+          <label for="wound-limit">L&iacute;mite de Heridas</label>
+          <input type="number" id="wound-limit" name="wound_limit" min="0">
+        </p>
+
+        <p>
+          <label for="diet">Dieta</label>
+          <input type="text" id="diet" name="diet">
+        </p>
+
+        <p>
+          <label for="magical-affinity">Afinidad M&aacute;gica</label>
+          <select id="magical-affinity" name="magical_affinity">
+            <option value="">Selecciona un elemento</option>
+            <option value="agua">Agua</option>
+            <option value="fuego">Fuego</option>
+            <option value="tierra">Tierra</option>
+            <option value="viento">Viento</option>
+          </select>
+        </p>
+
+        <p id="special-description-field" hidden>
+          <label for="special-description">Descripci&oacute;n especial del Arquetipo</label><br>
+          <textarea id="special-description" name="special_description" rows="7" cols="60"></textarea>
+        </p>
+
+        <p id="imaginary-friend-description-field" hidden>
+          <label for="imaginary-friend-description">Descripci&oacute;n del Amigo Imaginario</label><br>
+          <textarea id="imaginary-friend-description" name="imaginary_friend_description" rows="5" cols="60"></textarea>
+        </p>
+
+        <p id="pocket-dimension-description-field" hidden>
+          <label for="pocket-dimension-description">Descripci&oacute;n de la Dimensi&oacute;n de Bolsillo</label><br>
+          <textarea id="pocket-dimension-description" name="pocket_dimension_description" rows="5" cols="60"></textarea>
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Paso 2: Elecci&oacute;n de Oficio</legend>
+
+        <p>
+          <label for="occupation">Oficio</label>
+          <select id="occupation" name="occupation" required>
+            <option value="">Selecciona un Oficio</option>
+            <option value="cazadores-lobos">Cazadores de lobos</option>
+            <option value="cazador-brujas">Cazador de brujas</option>
+            <option value="comerciante">Comerciante</option>
+            <option value="ocultista">Ocultista</option>
+            <option value="mercenario">Mercenario</option>
+            <option value="apostol">Ap&oacute;stol</option>
+            <option value="alquimista">Alquimista</option>
+            <option value="guardia-real">Guardia Real</option>
+            <option value="pirata">Pirata</option>
+          </select>
+        </p>
+
+        <p>
+          <label for="occupation-description">Descripci&oacute;n del Oficio</label><br>
+          <textarea id="occupation-description" name="occupation_description" rows="5" cols="60"></textarea>
+        </p>
+
+        <p>
+          <label for="characteristic-points">Puntos de Caracter&iacute;stica disponibles</label>
+          <input type="number" id="characteristic-points" name="characteristic_points" min="0" value="2">
+        </p>
+
+        <p>
+          <label for="occupation-abilities">Habilidades y Rutas del Oficio</label><br>
+          <span id="occupation-abilities-list"></span>
+        </p>
+        <p><button type="button" id="add-occupation-ability">A&ntilde;adir habilidad</button></p>
+
+        <p>
+          <label for="occupation-feats">Hazañas y puntos disponibles</label><br>
+          <span id="occupation-feats-list"></span>
+        </p>
+
+        <p>
+          <label for="occupation-equipment">Equipamiento inicial del Oficio</label><br>
+          <span id="occupation-equipment-list"></span>
+        </p>
+        <p><button type="button" id="add-occupation-equipment">A&ntilde;adir equipo</button></p>
+
+      </fieldset>
+
+      <fieldset>
+        <legend>Paso 3: Creaci&oacute;n de Rasgos</legend>
+
+        <p>Agrega rasgos propios a la descripci&oacute;n del personaje. Un rasgo favorable suma +2, uno perjudicial resta -1 y uno no aplicable no modifica la tirada.</p>
+
+        <h2>Virtudes adicionales</h2>
+        <div id="additional-virtues-list">
+          <p>
+            <label for="additional-virtue-1">Virtud adicional 1</label>
+            <input type="text" id="additional-virtue-1" name="additional_virtues[]">
+          </p>
+        </div>
+        <p><button type="button" id="add-virtue">A&ntilde;adir otra virtud</button></p>
+
+        <h2>Defectos adicionales</h2>
+        <div id="additional-defects-list">
+          <p>
+            <label for="additional-defect-1">Defecto adicional 1</label>
+            <input type="text" id="additional-defect-1" name="additional_defects[]">
+          </p>
+        </div>
+        <p><button type="button" id="add-defect">A&ntilde;adir otro defecto</button></p>
+
+        <p>
+          <label for="character-description">Descripci&oacute;n completa del personaje</label><br>
+          <textarea id="character-description" name="character_description" rows="7" cols="60"></textarea>
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Paso 4: Elegir una Fobia</legend>
+
+        <p>
+          <label for="phobia">Fobia</label>
+          <select id="phobia" name="phobia" required>
+            <option value="">Selecciona una Fobia</option>
+            <option value="zoofobia">Zoofobia</option>
+            <option value="aracnofobia">Aracnofobia</option>
+            <option value="cinofobia">Cinofobia</option>
+            <option value="murofobia">Murofobia o Surifobia</option>
+            <option value="quiroptofobia">Quiroptofobia</option>
+            <option value="ailurofobia">Ailurofobia</option>
+            <option value="bufonofobia">Bufonofobia</option>
+            <option value="equinofobia">Equinofobia</option>
+            <option value="escolequifobia">Escolequifobia</option>
+            <option value="lepidopterofobia">Lepidopterofobia</option>
+            <option value="lupofobia">Lupofobia</option>
+            <option value="ofidiofobia">Ofidiofobia</option>
+            <option value="ornitofobia">Ornitofobia</option>
+            <option value="entomofobia">Entomofobia</option>
+            <option value="nictofobia">Nictofobia</option>
+            <option value="claustrofobia">Claustrofobia</option>
+            <option value="hematofobia">Hematofobia</option>
+            <option value="tanatofobia">Tanatofobia</option>
+            <option value="necrofobia">Necrofobia</option>
+            <option value="aicmofobia">Aicmofobia</option>
+            <option value="hidrofobia">Hidrofobia</option>
+            <option value="acrofobia">Acrofobia</option>
+            <option value="fobia-social">Fobia Social</option>
+            <option value="pirofobia">Pirofobia</option>
+            <option value="vicafobia">Vicafobia</option>
+            <option value="enfermedad">Fobia a la Enfermedad</option>
+            <option value="autofobia">Autofobia</option>
+            <option value="contreltofobia">Contreltofobia o Agrafobia</option>
+            <option value="teratofobia">Teratofobia</option>
+            <option value="germofobia">Germofobia</option>
+            <option value="brontofobia">Brontofobia</option>
+            <option value="erotofobia">Erotofobia</option>
+          </select>
+        </p>
+
+        <p>
+          <label for="custom-phobia">Fobia personalizada</label>
+          <input type="text" id="custom-phobia" name="custom_phobia">
+        </p>
+
+        <p id="zoophobia-type-field" hidden>
+          <label for="zoophobia-type">Animal de la Zoofobia</label>
+          <input type="text" id="zoophobia-type" name="zoophobia_type">
+        </p>
+
+        <p>
+          <label for="phobia-effect">Efecto narrativo o situaci&oacute;n que provoca Estr&eacute;s</label><br>
+          <textarea id="phobia-effect" name="phobia_effect" rows="4" cols="60"></textarea>
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Paso 5: Maldici&oacute;n opcional</legend>
+
+        <p>
+          <label for="curse">Maldici&oacute;n elegida</label>
+          <select id="curse" name="curse">
+            <option value="">Selecciona una Maldici&oacute;n</option>
+            <option value="bestia">La Maldici&oacute;n de la Bestia</option>
+            <option value="voz-encantada">La Maldici&oacute;n de la Voz Encantada</option>
+            <option value="corazon-congelado">La Maldici&oacute;n del Coraz&oacute;n Congelado</option>
+            <option value="sombras">La Maldici&oacute;n de las Sombras</option>
+            <option value="sueno-profundo">La Maldici&oacute;n del Sue&ntilde;o Profundo</option>
+            <option value="espejo-roto">La Maldici&oacute;n del Espejo Roto</option>
+            <option value="sangre-dragon">La Maldici&oacute;n de la Sangre de Drag&oacute;n</option>
+            <option value="bosque-embrujado">La Maldici&oacute;n del Bosque Embrujado</option>
+            <option value="sapo-hechizado">La Maldici&oacute;n del Sapo Hechizado</option>
+            <option value="rosa-negra">La Maldici&oacute;n de la Rosa Negra</option>
+            <option value="rizos-dorados">La Maldici&oacute;n de los Rizos Dorados</option>
+            <option value="armadura">Maldici&oacute;n de la Armadura</option>
+            <option value="rumpelstiltskin">La Maldici&oacute;n de Rumpelstiltskin</option>
+          </select>
+        </p>
+
+        <p>
+          <label for="custom-curse">Maldici&oacute;n personalizada</label>
+          <input type="text" id="custom-curse" name="custom_curse">
+        </p>
+
+        <p>
+          <label for="curse-benefit">Efecto</label><br>
+          <textarea id="curse-benefit" name="curse_benefit" rows="4" cols="60"></textarea>
+        </p>
+
+        <p>
+          <label for="curse-penalty">Penalizaci&oacute;n o complicaci&oacute;n</label><br>
+          <textarea id="curse-penalty" name="curse_penalty" rows="4" cols="60"></textarea>
+        </p>
+
+        <p>
+          <label for="curse-condition">Condici&oacute;n para romperla</label><br>
+          <textarea id="curse-condition" name="curse_condition" rows="4" cols="60"></textarea>
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Paso 6: Vicio opcional</legend>
+
+        <p>
+          <label for="vice">Vicio</label>
+          <input type="text" id="vice" name="vice">
+        </p>
+
+        <p>
+          <label for="vice-description">Descripci&oacute;n del vicio y forma de satisfacerlo</label><br>
+          <textarea id="vice-description" name="vice_description" rows="5" cols="60"></textarea>
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Paso 7: Identifica tu Cazador</legend>
+
+        <p>
+          <label for="character-name">Nombre del personaje</label>
+          <input type="text" id="character-name" name="character_name" required>
+        </p>
+
+        <p>
+          <label for="player-name">Nombre del jugador</label>
+          <input type="text" id="player-name" name="player_name">
+        </p>
+
+        <p>
+          <label for="origin-story">Cuento de Origen (Trasfondo)</label><br>
+          <textarea id="origin-story" name="origin_story" rows="10" cols="60" required></textarea>
+        </p>
+      </fieldset>
+
+      <p>
+        <button type="submit">Guardar hoja</button>
+        <button type="reset">Limpiar formulario</button>
+      </p>
+    </form>
+  </main>
+  <script src="arquetipos.js"></script>
+  <script src="oficios.js"></script>
+  <script src="maldiciones.js"></script>
+  <script src="fobias.js"></script>
+</body>
+</html>

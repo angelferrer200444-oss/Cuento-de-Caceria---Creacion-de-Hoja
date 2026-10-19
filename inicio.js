@@ -153,7 +153,7 @@ const createCharacterButton = document.getElementById("createCharacterButton");
 const transitionDuration = 2200;
 
 createCharacterButton.addEventListener("click", () => {
-    window.location.href = "index.html";
+    window.location.href = "creador.html";
 });
 
 startButton.addEventListener("click", (event) => {

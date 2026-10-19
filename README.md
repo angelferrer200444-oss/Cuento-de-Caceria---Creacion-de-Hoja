@@ -19,10 +19,10 @@ Las opciones y sus datos se encuentran en archivos JavaScript independientes. Lo
 
 ## Estructura principal
 
-- `inicio.html`: portada de la web.
+- `index.html`: portada de la web.
 - `inicio.css`: estilos y transiciones de la portada.
 - `inicio.js`: animacion de nieve, transicion inicial y navegacion hacia el formulario.
-- `index.html`: formulario completo de creacion de la hoja.
+- `creador.html`: formulario completo de creacion de la hoja.
 - `arquetipos.js`: arquetipos y datos que se cargan en el formulario.
 - `oficios.js`: oficios, habilidades, hazanas y equipamiento.
 - `fobias.js`: fobias y sus descripciones o efectos.
@@ -31,9 +31,9 @@ Las opciones y sus datos se encuentran en archivos JavaScript independientes. Lo
 
 ## Uso local
 
-No requiere instalacion de dependencias ni un servidor para probar el flujo basico. Abre `inicio.html` en un navegador y pulsa **Empezar**. Desde la portada puedes entrar en **Crear personaje**.
+No requiere instalacion de dependencias ni un servidor para probar el flujo basico. Abre `index.html` en un navegador y pulsa **Empezar**. Desde la portada puedes entrar en **Crear personaje**.
 
-Tambien puedes abrir directamente `index.html` para acceder al formulario.
+Tambien puedes abrir directamente `creador.html` para acceder al formulario.
 
 ## Estado actual
 
