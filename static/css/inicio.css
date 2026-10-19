@@ -45,6 +45,11 @@ body.portada-final #light-transition {
     transition: opacity 2.8s ease-out;
 }
 
+body.portada-final.navigating #light-transition {
+    opacity: 1;
+    transition: opacity 2.2s ease-in;
+}
+
 .final-layout {
     position: fixed;
     z-index: 2;

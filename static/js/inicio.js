@@ -153,7 +153,16 @@ const createCharacterButton = document.getElementById("createCharacterButton");
 const transitionDuration = 2200;
 
 createCharacterButton.addEventListener("click", () => {
-    window.location.href = "templates/creador.html";
+    if (document.body.classList.contains("navigating")) {
+        return;
+    }
+
+    createCharacterButton.disabled = true;
+    document.body.classList.add("navigating");
+
+    window.setTimeout(() => {
+        window.location.href = "templates/creador.html";
+    }, transitionDuration);
 });
 
 startButton.addEventListener("click", (event) => {

@@ -199,9 +199,11 @@
       <fieldset>
         <legend>Paso 4: Elegir una Fobia</legend>
 
-        <p>
-          <label for="phobia">Fobia</label>
-          <select id="phobia" name="phobia" required>
+        <div id="phobias-list">
+          <div class="phobia-entry">
+          <p>
+          <label for="phobia-1">Fobia</label>
+          <select id="phobia-1" name="phobias[]" required>
             <option value="">Selecciona una Fobia</option>
             <option value="zoofobia">Zoofobia</option>
             <option value="aracnofobia">Aracnofobia</option>
@@ -239,19 +241,22 @@
         </p>
 
         <p>
-          <label for="custom-phobia">Fobia personalizada</label>
-          <input type="text" id="custom-phobia" name="custom_phobia">
+          <label for="custom-phobia-1">Fobia personalizada</label>
+          <input type="text" id="custom-phobia-1" name="custom_phobias[]">
         </p>
 
-        <p id="zoophobia-type-field" hidden>
-          <label for="zoophobia-type">Animal de la Zoofobia</label>
-          <input type="text" id="zoophobia-type" name="zoophobia_type">
+        <p id="zoophobia-type-field-1" hidden>
+          <label for="zoophobia-type-1">Animal de la Zoofobia</label>
+          <input type="text" id="zoophobia-type-1" name="zoophobia_types[]">
         </p>
 
         <p>
-          <label for="phobia-effect">Efecto narrativo o situaci&oacute;n que provoca Estr&eacute;s</label><br>
-          <textarea id="phobia-effect" name="phobia_effect" rows="4" cols="60"></textarea>
+          <label for="phobia-effect-1">Efecto narrativo o situaci&oacute;n que provoca Estr&eacute;s</label><br>
+          <textarea id="phobia-effect-1" name="phobia_effects[]" rows="4" cols="60"></textarea>
         </p>
+          </div>
+        </div>
+        <p><button type="button" id="add-phobia">A&ntilde;adir otra fobia</button></p>
       </fieldset>
 
       <fieldset>

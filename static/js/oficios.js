@@ -114,33 +114,21 @@ function renderOccupationEquipment() {
 
   selectedOccupationEquipment.forEach((selectedEquipment, index) => {
     const row = document.createElement("span");
-    const select = document.createElement("select");
-    select.id = `occupation-equipment-${index + 1}`;
-    select.name = "occupation_equipment[]";
-
-    const emptyOption = document.createElement("option");
-    emptyOption.value = "";
-    emptyOption.textContent = "Selecciona un equipo";
-    select.appendChild(emptyOption);
-
-    selectedOccupationEquipment.options.forEach((equipment) => {
-      const option = document.createElement("option");
-      option.value = equipment;
-      option.textContent = decodeHtml(equipment);
-      option.selected = equipment === selectedEquipment;
-      select.appendChild(option);
-    });
-
-    select.addEventListener("change", () => {
-      selectedOccupationEquipment[index] = select.value;
+    const input = document.createElement("input");
+    input.type = "text";
+    input.id = `occupation-equipment-${index + 1}`;
+    input.name = "occupation_equipment[]";
+    input.value = decodeHtml(selectedEquipment);
+    input.addEventListener("input", () => {
+      selectedOccupationEquipment[index] = input.value;
     });
 
     row.appendChild(document.createElement("br"));
     const label = document.createElement("label");
-    label.htmlFor = select.id;
+    label.htmlFor = input.id;
     label.textContent = `Equipo ${index + 1}`;
     row.appendChild(label);
-    row.appendChild(select);
+    row.appendChild(input);
     list.appendChild(row);
   });
 }
@@ -154,7 +142,7 @@ function fillOccupation() {
   selectedOccupationAbilities.options = occupation ? parseList(occupation.abilities) : [];
   renderOccupationAbilities();
   renderFixedOccupationList("occupation-feats-list", "occupation-feat", "Hazaña", occupation ? parseList(occupation.feats) : []);
-  selectedOccupationEquipment = occupation ? [""] : [];
+  selectedOccupationEquipment = occupation ? parseList(occupation.equipment) : [];
   selectedOccupationEquipment.options = occupation ? parseList(occupation.equipment) : [];
   renderOccupationEquipment();
 }

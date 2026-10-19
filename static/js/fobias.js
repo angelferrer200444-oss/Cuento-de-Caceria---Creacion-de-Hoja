@@ -33,18 +33,44 @@ const phobias = {
   "erotofobia": "Miedo a lo er&oacute;tico o a la desnudez."
 };
 
-const phobiaSelect = document.querySelector("#phobia");
-const phobiaEffect = document.querySelector("#phobia-effect");
-const zoophobiaTypeField = document.querySelector("#zoophobia-type-field");
-
-function fillPhobia() {
+function fillPhobia(entry) {
+  const phobiaSelect = entry.querySelector("select");
+  const phobiaEffect = entry.querySelector("textarea");
+  const zoophobiaTypeField = entry.querySelector("[id^='zoophobia-type-field-']");
+  const zoophobiaType = entry.querySelector("[id^='zoophobia-type-']");
   const description = phobias[phobiaSelect.value];
+
   phobiaEffect.value = description ? decodeHtml(description) : "";
   zoophobiaTypeField.hidden = phobiaSelect.value !== "zoofobia";
 
   if (phobiaSelect.value !== "zoofobia") {
-    document.querySelector("#zoophobia-type").value = "";
+    zoophobiaType.value = "";
   }
 }
 
-phobiaSelect.addEventListener("change", fillPhobia);
+function bindPhobia(entry) {
+  entry.querySelector("select").addEventListener("change", () => fillPhobia(entry));
+}
+
+document.querySelectorAll(".phobia-entry").forEach(bindPhobia);
+
+document.querySelector("#add-phobia").addEventListener("click", () => {
+  const list = document.querySelector("#phobias-list");
+  const entry = list.querySelector(".phobia-entry").cloneNode(true);
+  const number = list.querySelectorAll(".phobia-entry").length + 1;
+
+  entry.querySelectorAll("[id]").forEach((field) => {
+    field.id = field.id.replace(/-\d+$/, `-${number}`);
+  });
+  entry.querySelectorAll("[for]").forEach((label) => {
+    label.htmlFor = label.htmlFor.replace(/-\d+$/, `-${number}`);
+  });
+  entry.querySelectorAll("input, textarea").forEach((field) => {
+    field.value = "";
+  });
+  entry.querySelector("select").value = "";
+  entry.querySelector("[id^='zoophobia-type-field-']").hidden = true;
+
+  list.appendChild(entry);
+  bindPhobia(entry);
+});
