@@ -27,7 +27,7 @@ La portada actual utiliza la primera propuesta como imagen principal. Esta es un
 
 ## Estructura principal
 
-- `index.html`: punto de entrada para abrir la aplicacion y para GitHub Pages.
+- `index.html`: portada de la web y punto de entrada para GitHub Pages.
 - `templates/`: paginas HTML de la aplicacion.
 - `static/css/`: estilos de la interfaz.
 - `static/js/`: logica de la portada y datos del formulario.
@@ -36,7 +36,7 @@ La portada actual utiliza la primera propuesta como imagen principal. Esta es un
 
 ## Uso local
 
-No requiere instalacion de dependencias ni un servidor para probar el flujo basico. Abre `index.html` en un navegador y pulsa **Empezar**. Desde la portada puedes entrar en **Crear personaje**. El archivo de la raiz redirige a `templates/index.html` para conservar el punto de entrada habitual despues de organizar la aplicacion.
+No requiere instalacion de dependencias ni un servidor para probar el flujo basico. Abre `index.html` en un navegador y pulsa **Empezar**. Desde la portada puedes entrar en **Crear personaje**.
 
 Tambien puedes abrir directamente `templates/creador.html` para acceder al formulario.
 
