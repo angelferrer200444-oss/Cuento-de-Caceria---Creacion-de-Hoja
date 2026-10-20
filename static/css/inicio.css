@@ -1,0 +1,382 @@
+/* ===== CONFIGURACIÓN GENERAL ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    background: #050505;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: #050505;
+    background-image: url("../images/propuesta 1_compressed_page-0001.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+body.portada-final {
+    background-image: url("../images/portada2.png");
+}
+
+#light-transition {
+    position: fixed;
+    z-index: 10000;
+    inset: 0;
+    background: #000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 2.2s ease-in;
+}
+
+body.lights-out #light-transition {
+    opacity: 1;
+}
+
+body.portada-final #light-transition {
+    opacity: 0;
+    transition: opacity 2.8s ease-out;
+}
+
+body.portada-final.navigating #light-transition {
+    opacity: 1;
+    transition: opacity 2.2s ease-in;
+}
+
+.final-layout {
+    position: fixed;
+    z-index: 2;
+    left: clamp(28px, 9.3vw, 140px);
+    top: clamp(26vh, 32vh, 38vh);
+    display: grid;
+    width: min(620px, 45vw);
+    grid-template-rows: clamp(180px, 25vh, 280px) auto;
+    justify-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(14px);
+    transition:
+        opacity 1.2s ease-out 0.8s,
+        transform 1.2s ease-out 0.8s,
+        visibility 0s linear 2s;
+}
+
+.final-text-block {
+    width: 100%;
+}
+
+.mobile-final-copy {
+    display: none;
+    margin: 0;
+    color: #111;
+    font: 400 20px/1.45 Arial, sans-serif;
+    text-align: left;
+}
+
+.final-actions {
+    display: grid;
+    width: min(320px, 100%);
+    gap: 14px;
+}
+
+body.portada-final .final-layout {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition-delay: 0.8s, 0.8s, 0s;
+}
+
+.final-button {
+    min-height: 48px;
+    padding: 14px 22px;
+    border: 1px solid rgba(73, 87, 97, .7);
+    border-radius: 2px;
+    color: #f7f8f8;
+    background: rgba(27, 39, 48, .82);
+    box-shadow: 0 8px 24px rgba(42, 52, 59, .18);
+    font: 600 11px/1 Arial, sans-serif;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+        background .3s ease,
+        border-color .3s ease,
+        transform .3s ease;
+}
+
+.final-button:hover,
+.final-button:focus-visible {
+    border-color: #263943;
+    background: rgba(47, 66, 78, .94);
+    transform: translateY(-2px);
+}
+
+.final-button:focus-visible {
+    outline: 2px solid #607b89;
+    outline-offset: 4px;
+}
+
+@keyframes gentle-vibration {
+    0%, 86%, 100% { transform: translate(0, 0); }
+    88% { transform: translate(-0.7px, 0.4px); }
+    90% { transform: translate(0.7px, -0.4px); }
+    92% { transform: translate(-0.4px, -0.3px); }
+    94% { transform: translate(0.4px, 0.3px); }
+}
+
+body.portada-final .create-character-button {
+    animation: gentle-vibration 2.8s ease-in-out infinite;
+}
+
+/* ===== CAPA DE NIEVE ===== */
+
+#snow-effect {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    pointer-events: none;
+
+    z-index: 9999;
+}
+
+/* ===== CONTENIDO DE LA WEB ===== */
+
+.contenido {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 78vh;
+    transition: opacity 2.8s ease-out;
+}
+
+body.portada-final .contenido {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* ===== BOTÓN DE INICIO ===== */
+
+:root {
+    --snow-white: #edf2f5;
+    --ice: #b8c8d5;
+}
+
+.start-component {
+    display: grid;
+    justify-items: center;
+    gap: 22px;
+    padding: 0 28px 28px;
+    text-align: center;
+}
+
+.start-button {
+    position: relative;
+    isolation: isolate;
+    min-width: 220px;
+    padding: 17px 38px;
+    overflow: hidden;
+    border: 1px solid rgba(218, 230, 240, .62);
+    border-radius: 2px;
+    color: var(--snow-white);
+    background: rgba(13, 17, 21, .55);
+    font: 600 11px/1 Arial, sans-serif;
+    letter-spacing: .34em;
+    text-transform: uppercase;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,.025) inset,
+        0 8px 30px rgba(0,0,0,.28),
+        0 0 22px rgba(187,211,229,.035);
+    transition:
+        color .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease,
+        transform .35s cubic-bezier(.2,.8,.2,1),
+        background .35s ease;
+}
+
+.start-button::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(
+        110deg,
+        transparent 15%,
+        rgba(225,237,247,.05) 35%,
+        rgba(225,237,247,.32) 50%,
+        rgba(225,237,247,.05) 65%,
+        transparent 85%
+    );
+    transform: translateX(-130%);
+    transition: transform .7s cubic-bezier(.2,.7,.2,1);
+}
+
+.start-button::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px solid transparent;
+    pointer-events: none;
+    transition: border-color .35s ease;
+}
+
+.start-button:hover {
+    color: #fff;
+    border-color: rgba(235,244,250,.95);
+    background: rgba(125,146,163,.13);
+    box-shadow:
+        0 0 0 1px rgba(226,238,247,.08),
+        0 0 22px rgba(192,216,233,.17),
+        0 0 55px rgba(192,216,233,.09),
+        0 12px 32px rgba(0,0,0,.35);
+    transform: translateY(-3px);
+}
+
+.start-button:hover::before,
+.start-button:focus-visible::before {
+    transform: translateX(130%);
+}
+
+.start-button:hover::after,
+.start-button:focus-visible::after {
+    border-color: rgba(220,232,241,.13);
+}
+
+.start-button:active {
+    transform: translateY(0) scale(.96);
+    box-shadow:
+        0 0 35px rgba(210,229,242,.3),
+        0 0 0 5px rgba(210,229,242,.06);
+    background: rgba(164,188,205,.22);
+}
+
+.start-button:focus-visible {
+    outline: 2px solid var(--ice);
+    outline-offset: 5px;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    background: rgba(230,242,250,.35);
+    transform: scale(0);
+    animation: ripple .65s ease-out forwards;
+}
+
+@keyframes ripple {
+    to { transform: scale(1); opacity: 0; }
+}
+
+.status {
+    min-height: 18px;
+    color: rgba(220,229,237,.72);
+    font: 11px/1.6 Arial, sans-serif;
+    letter-spacing: .08em;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity .35s ease, transform .35s ease;
+}
+
+.status.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Adaptación para móviles */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+        background-image: url("../images/porta1_movil.jpg");
+    }
+
+    body.portada-final {
+        background-image: url("../images/porta2_movil.jpg");
+        background-position: left center;
+    }
+
+    .final-actions {
+        width: min(320px, 100%);
+    }
+
+    .final-layout {
+        left: 50%;
+        top: 27vh;
+        width: min(320px, calc(100vw - 40px));
+        grid-template-rows: auto auto;
+        transform: translate(-50%, 14px);
+    }
+
+    .mobile-final-copy {
+        display: block;
+        font-size: clamp(12px, 3.5vw, 17px);
+        text-align: center;
+    }
+
+    body.portada-final .final-layout {
+        transform: translate(-50%, 0);
+    }
+
+    .final-actions {
+        width: min(320px, 100%);
+        margin-top: 14px;
+    }
+
+    .final-button {
+        min-height: 52px;
+        padding: 15px 18px;
+        font-size: 12px;
+    }
+
+    .contenido {
+        padding-top: 74vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .start-button {
+        min-width: 205px;
+    }
+}
+
+/* Menos movimiento si el usuario lo solicita */
+@media (prefers-reduced-motion: reduce) {
+    #snow-effect {
+        opacity: 0.65;
+    }
+
+    #light-transition {
+        transition-duration: .01ms !important;
+    }
+
+    .start-button,
+    .start-button::before,
+    .start-button::after,
+    .ripple,
+    .status,
+    .final-layout,
+    .create-character-button {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+
+}
