@@ -338,8 +338,10 @@ Peculiaridades:
 • Amigo Imaginario (Pasivo)  
 
 Nota: Hay que crear un apartado de descripción nada más para el amigo imaginario.
- 
-• Dimensión de Bolsillo (Activa) 
+
+Límite de Cordura:
+
+• Dimensión de Bolsillo (Activa)
 
 Nota: Hay que crear un apartado de descripción nada más para la dimensión de Bolsillo. 
  

@@ -87,9 +87,9 @@ const archetypes = {
   "sonador": {
     description: "Mantiene una mente firme e imaginativa. Esta dualidad le otorga reservas de poder mental que se manifiestan como habilidades ps&iacute;quicas. Cuenta con un amigo imaginario que solo &eacute;l puede ver, pero a menudo escapa de la realidad para evitar el estr&eacute;s o la adversidad.",
     traits: "Virtuosos:\n- Imaginaci&oacute;n Poderosa.\n- Poderosa mente.\n- Amigo Imaginario.\n\nDefectuosos:\n- Escapismo.\n- Mundo interior.",
-    peculiarities: "- Locura (Pasiva)\n- Amigo Imaginario (Pasivo)\n- Dimensi&oacute;n de Bolsillo (Activa)",
+    peculiarities: "- Locura (Pasiva)\n- Amigo Imaginario (Pasivo)",
     abilities: "- Evasión Onírica (Activo)\n- Amigo Imaginario (Pasivo)\n- Cabeza en las Nubes (Activa)",
-    sanityLimit: "El L&iacute;mite de Cordura se manifiesta a trav&eacute;s de sus habilidades ps&iacute;quicas.",
+    sanityLimit: "- Dimensi&oacute;n de Bolsillo (Activa)",
     lockedAbility: "- Materializaci&oacute;n (Activa)",
     requirement: "Superar los bloqueos mentales, traumas y demonios internos. Realizar 3 pruebas exitosas de dificultad intermedia durante viajes on&iacute;ricos en Pesadillas; el Narrador puede reducirlas.",
     imaginaryFriendDescription: "Describe qui&eacute;n es el Amigo Imaginario, c&oacute;mo se manifiesta, qu&eacute; ayuda ofrece y qu&eacute; caprichos o necesidades tiene.",
