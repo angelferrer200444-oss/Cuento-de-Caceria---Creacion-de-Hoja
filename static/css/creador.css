@@ -197,6 +197,45 @@ textarea:focus {
   outline: none;
 }
 
+.ability-error {
+  align-items: center;
+  background: #fff4e5;
+  border: 1px solid #d97706;
+  border-left: 5px solid #d97706;
+  border-radius: 4px;
+  color: #7c2d12;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 10px;
+  padding: 11px 42px 11px 14px;
+  position: relative;
+}
+
+.ability-error strong {
+  flex: 0 0 100%;
+  color: #9a3412;
+}
+
+.ability-error button {
+  background: transparent;
+  color: #9a3412;
+  font-size: 22px;
+  line-height: 1;
+  padding: 2px 6px;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}
+
+.ability-error[hidden] {
+  display: none;
+}
+
+.ability-error button:hover {
+  transform: none;
+}
+
 span[id$="-list"] {
   display: block;
 }
@@ -215,6 +254,28 @@ span[id$="-list"] select {
 
 .equipment-row input {
   flex: 1 1 260px;
+}
+
+#occupation-abilities-list span {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+}
+
+#occupation-abilities-list {
+  width: 100%;
+}
+
+#occupation-abilities-list span label {
+  flex: 0 0 100%;
+}
+
+#occupation-abilities-list span select {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
 }
 
 .remove-equipment {

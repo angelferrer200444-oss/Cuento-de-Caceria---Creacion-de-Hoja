@@ -56,8 +56,35 @@ const occupations = {
 };
 
 const occupationSelect = document.querySelector("#occupation");
+const characteristicPoints = document.querySelector("#characteristic-points");
+const abilityError = document.querySelector("#ability-error");
+const abilityErrorMessage = document.querySelector("#ability-error-message");
+const dismissAbilityError = document.querySelector("#dismiss-ability-error");
+let initialCharacteristicPoints = Number(characteristicPoints.value) || 0;
 let selectedOccupationAbilities = [];
 let selectedOccupationEquipment = [];
+
+function hideAbilityError() {
+  abilityError.hidden = true;
+}
+
+function showAbilityError(ability, remainingPoints) {
+  abilityErrorMessage.textContent = `Te quedan ${remainingPoints} punto${remainingPoints === 1 ? "" : "s"}, pero esta habilidad requiere ${getAbilityCost(ability)}.`;
+  abilityError.hidden = false;
+}
+
+function getAbilityCost(ability) {
+  const match = decodeHtml(ability).match(/\((\d+)\s+[A-Z]+\)$/);
+  return match ? Number(match[1]) : 0;
+}
+
+function getSelectedAbilityCost() {
+  return selectedOccupationAbilities.reduce((total, ability) => total + getAbilityCost(ability), 0);
+}
+
+function updateCharacteristicPoints() {
+  characteristicPoints.value = initialCharacteristicPoints - getSelectedAbilityCost();
+}
 
 function renderFixedOccupationList(listId, prefix, labelText, values) {
   const list = document.querySelector(`#${listId}`);
@@ -95,17 +122,40 @@ function renderOccupationAbilities() {
     });
 
     select.addEventListener("change", () => {
+      const previousValue = selectedOccupationAbilities[index];
       selectedOccupationAbilities[index] = select.value;
+
+      if (getSelectedAbilityCost() > initialCharacteristicPoints) {
+        showAbilityError(select.value, initialCharacteristicPoints - getSelectedAbilityCost() + getAbilityCost(select.value));
+        selectedOccupationAbilities[index] = previousValue;
+        renderOccupationAbilities();
+        return;
+      }
+
+      hideAbilityError();
+      updateCharacteristicPoints();
     });
 
-    row.appendChild(document.createElement("br"));
     const label = document.createElement("label");
     label.htmlFor = select.id;
     label.textContent = `Habilidad ${index + 1}`;
     row.appendChild(label);
     row.appendChild(select);
+
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.className = "remove-trait";
+    removeButton.textContent = "Eliminar";
+    removeButton.addEventListener("click", () => {
+      selectedOccupationAbilities.splice(index, 1);
+      renderOccupationAbilities();
+    });
+    row.appendChild(removeButton);
+
     list.appendChild(row);
   });
+
+  updateCharacteristicPoints();
 }
 
 function renderOccupationEquipment() {
@@ -150,6 +200,8 @@ function fillOccupation() {
   description.value = occupation ? decodeHtml(occupation.description) : "";
   selectedOccupationAbilities = occupation ? [""] : [];
   selectedOccupationAbilities.options = occupation ? parseList(occupation.abilities) : [];
+  characteristicPoints.value = initialCharacteristicPoints;
+  hideAbilityError();
   renderOccupationAbilities();
   renderFixedOccupationList("occupation-feats-list", "occupation-feat", "Hazaña", occupation ? parseList(occupation.feats) : []);
   selectedOccupationEquipment = occupation ? parseList(occupation.equipment) : [];
@@ -168,3 +220,9 @@ document.querySelector("#add-occupation-equipment").addEventListener("click", ()
 });
 
 occupationSelect.addEventListener("change", fillOccupation);
+dismissAbilityError.addEventListener("click", hideAbilityError);
+characteristicPoints.addEventListener("input", () => {
+  const enteredPoints = Math.max(0, Number(characteristicPoints.value) || 0);
+  initialCharacteristicPoints = enteredPoints + getSelectedAbilityCost();
+  updateCharacteristicPoints();
+});

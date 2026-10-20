@@ -198,6 +198,11 @@
         <p>
           <label for="characteristic-points">Puntos de Caracter&iacute;stica disponibles</label>
           <input type="number" id="characteristic-points" name="characteristic_points" min="0" value="2">
+          <span id="ability-error" class="ability-error" role="alert" hidden>
+            <strong>No hay suficientes puntos</strong>
+            <span id="ability-error-message"></span>
+            <button type="button" id="dismiss-ability-error" aria-label="Cerrar aviso">&times;</button>
+          </span>
         </p>
 
         <p>
