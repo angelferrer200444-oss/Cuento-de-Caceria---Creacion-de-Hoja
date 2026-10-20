@@ -1,10 +1,10 @@
-# Cuento de Caceria: Creacion de Hoja
+# Cuentos de Caceria: Creacion de Hoja
 
 ![Propuesta 1: portada y logo](static/images/propuesta%201_compressed_page-0001.jpg)
 
 ## Proposito
 
-Esta web existe para facilitar la creacion de personajes para *Cuento de Caceria*. Su objetivo es reunir en un solo lugar la informacion que normalmente tendria que consultarse por separado durante la preparacion de una partida: el arquetipo, el oficio, las habilidades, los rasgos, la fobia, las maldiciones y el trasfondo del Cazador.
+Esta web existe para facilitar la creacion de personajes para *Cuentos de Caceria*. Su objetivo es reunir en un solo lugar la informacion que normalmente tendria que consultarse por separado durante la preparacion de una partida: el arquetipo, el oficio, las habilidades, los rasgos, la fobia, las maldiciones y el trasfondo del Cazador.
 
 La herramienta funciona como apoyo para organizar la hoja y tener sus datos a mano. La guia del juego sigue siendo necesaria para consultar el significado completo de las habilidades, condiciones y reglas.
 
@@ -15,7 +15,7 @@ La herramienta funciona como apoyo para organizar la hoja y tener sus datos a ma
 3. Se selecciona un oficio para cargar su descripcion, rutas de habilidades, hazanas y equipamiento. Tambien se pueden anadir habilidades y equipo al personaje.
 4. Se completan los rasgos adicionales, la fobia y su efecto narrativo.
 5. De forma opcional, se puede anadir una maldicion y un vicio.
-6. Por ultimo, se identifican el personaje y el jugador, y se escribe el cuento de origen.
+6. Por ultimo, se identifican el personaje y el jugador, y se escriben los cuentos de origen.
 
 Las opciones y sus datos se encuentran en archivos JavaScript independientes. Los scripts escuchan los cambios de los selectores y actualizan los campos relacionados sin necesidad de un servidor.
 
