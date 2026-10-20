@@ -153,12 +153,142 @@ function parseList(value) {
   return value.split("\n").map((item) => item.replace(/^-\s*/, "").trim()).filter(Boolean);
 }
 
+function renderArchetypeTraitPair(virtueList, defectList, index, virtueValue = "", defectValue = "", requireDefect = false) {
+  const virtueRow = document.createElement("p");
+  const defectRow = document.createElement("p");
+  const virtueInputId = `archetype-virtue-${index}`;
+  const defectInputId = `archetype-defect-${index}`;
+
+  virtueRow.innerHTML = `<label for="${virtueInputId}">Virtud ${index}</label>`;
+  defectRow.innerHTML = `<label for="${defectInputId}">Defecto ${index}</label>`;
+
+  const virtueInput = document.createElement("input");
+  virtueInput.type = "text";
+  virtueInput.id = virtueInputId;
+  virtueInput.name = "archetype_virtue[]";
+  virtueInput.value = decodeHtml(virtueValue);
+
+  const defectInput = document.createElement("input");
+  defectInput.type = "text";
+  defectInput.id = defectInputId;
+  defectInput.name = "archetype_defect[]";
+  defectInput.value = decodeHtml(defectValue);
+  defectInput.required = requireDefect;
+
+  virtueRow.appendChild(virtueInput);
+  defectRow.appendChild(defectInput);
+
+  const removePair = () => {
+    virtueRow.remove();
+    defectRow.remove();
+    renumberArchetypeTraitPairs();
+  };
+
+  [virtueRow, defectRow].forEach((row) => {
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.className = "remove-trait";
+    removeButton.textContent = "Eliminar";
+    removeButton.addEventListener("click", removePair);
+    row.appendChild(removeButton);
+  });
+  virtueList.appendChild(virtueRow);
+  defectList.appendChild(defectRow);
+}
+
+function renderArchetypeSingleTrait(list, type, index, value = "") {
+  const row = document.createElement("p");
+  const inputId = `archetype-${type}-${index}`;
+  const label = type === "virtue" ? "Virtud" : "Defecto";
+
+  row.innerHTML = `<label for="${inputId}">${label} ${index}</label>`;
+
+  const input = document.createElement("input");
+  input.type = "text";
+  input.id = inputId;
+  input.name = `archetype_${type}[]`;
+  input.value = decodeHtml(value);
+  row.appendChild(input);
+
+  const removeButton = document.createElement("button");
+  removeButton.type = "button";
+  removeButton.className = "remove-trait";
+  removeButton.textContent = "Eliminar";
+  removeButton.addEventListener("click", () => {
+    row.remove();
+    renumberArchetypeTraitPairs();
+  });
+  row.appendChild(removeButton);
+  list.appendChild(row);
+}
+
+function renumberArchetypeTraitPairs() {
+  const virtueRows = Array.from(document.querySelectorAll("#archetype-virtues-list p"));
+  const defectRows = Array.from(document.querySelectorAll("#archetype-defects-list p"));
+
+  virtueRows.forEach((row, index) => {
+    const number = index + 1;
+    const input = row.querySelector("input");
+    input.id = `archetype-virtue-${number}`;
+    row.querySelector("label").htmlFor = input.id;
+    row.querySelector("label").textContent = `Virtud ${number}`;
+  });
+
+  defectRows.forEach((row, index) => {
+    const number = index + 1;
+    const input = row.querySelector("input");
+    input.id = `archetype-defect-${number}`;
+    row.querySelector("label").htmlFor = input.id;
+    row.querySelector("label").textContent = `Defecto ${number}`;
+  });
+}
+
+function renderArchetypeTraitPairs(virtues, defects) {
+  const virtueList = document.querySelector("#archetype-virtues-list");
+  const defectList = document.querySelector("#archetype-defects-list");
+  virtueList.innerHTML = "";
+  defectList.innerHTML = "";
+
+  const pairedTraits = Math.min(virtues.length, defects.length);
+  for (let index = 0; index < pairedTraits; index += 1) {
+    renderArchetypeTraitPair(virtueList, defectList, index + 1, virtues[index], defects[index]);
+  }
+
+  for (let index = pairedTraits; index < virtues.length; index += 1) {
+    renderArchetypeSingleTrait(virtueList, "virtue", index + 1, virtues[index]);
+  }
+
+  for (let index = pairedTraits; index < defects.length; index += 1) {
+    renderArchetypeSingleTrait(defectList, "defect", index + 1, defects[index]);
+  }
+
+  const addTraitPair = () => {
+    const nextNumber = virtueList.querySelectorAll("input").length + 1;
+    renderArchetypeTraitPair(virtueList, defectList, nextNumber, "", "", true);
+    virtueList.appendChild(addVirtueButton);
+    defectList.appendChild(addDefectButton);
+  };
+
+  const addVirtueButton = document.createElement("button");
+  addVirtueButton.type = "button";
+  addVirtueButton.className = "add-option";
+  addVirtueButton.textContent = "Añadir virtud";
+  addVirtueButton.addEventListener("click", addTraitPair);
+  virtueList.appendChild(addVirtueButton);
+
+  const addDefectButton = document.createElement("button");
+  addDefectButton.type = "button";
+  addDefectButton.className = "add-option";
+  addDefectButton.textContent = "Añadir defecto";
+  addDefectButton.addEventListener("click", addTraitPair);
+  defectList.appendChild(addDefectButton);
+}
+
 function renderArchetypeTraits(listId, prefix, labelText, traits) {
   const list = document.querySelector(`#${listId}`);
   list.innerHTML = "";
-  const traitValues = traits.filter(Boolean);
 
-  traitValues.forEach((trait, index) => {
+  traits.filter(Boolean).forEach((trait, index) => {
     const row = document.createElement("span");
     row.innerHTML = `<br><label for="${prefix}-${index + 1}">${labelText} ${index + 1}</label> <input type="text" id="${prefix}-${index + 1}" name="${prefix.replace("-", "_")}[]" value="${decodeHtml(trait).replace(/&/g, "&amp;").replace(/"/g, "&quot;")}">`;
     list.appendChild(row);
@@ -195,14 +325,12 @@ function fillArchetype() {
     const traitSections = archetype.traits.split("\n\nDefectuosos:\n");
     const virtues = traitSections[0].replace("Virtuosos:\n", "").split("\n-").map((trait) => trait.replace(/^-\s*/, "").trim());
     const defects = (traitSections[1] || "").split("\n-").map((trait) => trait.replace(/^-\s*/, "").trim());
-    renderArchetypeTraits("archetype-virtues-list", "archetype-virtue", "Virtud", virtues);
-    renderArchetypeTraits("archetype-defects-list", "archetype-defect", "Defecto", defects);
+    renderArchetypeTraitPairs(virtues, defects);
         renderArchetypeTraits("archetype-abilities-list", "archetype-ability", "Habilidad", parseList(archetype.abilities));
         renderArchetypeTraits("archetype-peculiarities-list", "archetype-peculiarity", "Peculiaridad", parseList(archetype.peculiarities || ""));
         renderArchetypeTraits("sanity-limit-list", "sanity-limit", "L&iacute;mite de Cordura", parseList(archetype.sanityLimit));
   } else {
-    renderArchetypeTraits("archetype-virtues-list", "archetype-virtue", "Virtud", []);
-    renderArchetypeTraits("archetype-defects-list", "archetype-defect", "Defecto", []);
+    renderArchetypeTraitPairs([], []);
         renderArchetypeTraits("archetype-abilities-list", "archetype-ability", "Habilidad", []);
         renderArchetypeTraits("archetype-peculiarities-list", "archetype-peculiarity", "Peculiaridad", []);
         renderArchetypeTraits("sanity-limit-list", "sanity-limit", "L&iacute;mite de Cordura", []);
@@ -292,91 +420,5 @@ addCorruptionStatusButton.addEventListener("click", () => {
 refreshCorruptionStatusControls();
 corruptionPoints.addEventListener("input", updateCorruptionLevel);
 updateCorruptionLevel();
-
-function addTraitRow(listId, prefix, labelText) {
-  const list = document.querySelector(`#${listId}`);
-  const nextNumber = list.querySelectorAll("input").length + 1;
-  const row = document.createElement("p");
-  row.innerHTML = `<label for="${prefix}-${nextNumber}">${labelText} ${nextNumber}</label> <input type="text" id="${prefix}-${nextNumber}" name="${prefix.replace("-", "_")}[]" required>`;
-  list.appendChild(row);
-}
-
-function removeAdditionalTraitPair(index) {
-  const virtueRows = document.querySelectorAll("#additional-virtues-list p");
-  const defectRows = document.querySelectorAll("#additional-defects-list p");
-  const virtue = virtueRows[index];
-  const defect = defectRows[index];
-
-  if (!virtue || !defect || virtueRows.length <= 2) {
-    return;
-  }
-
-  virtue.remove();
-  defect.remove();
-  renumberAdditionalTraits();
-}
-
-function refreshAdditionalTraitControls() {
-  const lists = [
-    ["#additional-virtues-list", "Virtud"],
-    ["#additional-defects-list", "Defecto"]
-  ];
-
-  lists.forEach(([listSelector]) => {
-    const list = document.querySelector(listSelector);
-    const rows = Array.from(list.querySelectorAll("p"));
-
-    rows.forEach((row) => {
-      const removeButton = row.querySelector(".remove-trait");
-      if (removeButton) {
-        removeButton.remove();
-      }
-    });
-
-    if (rows.length <= 2) {
-      return;
-    }
-
-    rows.forEach((row, index) => {
-      const removeButton = document.createElement("button");
-      removeButton.type = "button";
-      removeButton.className = "remove-trait";
-      removeButton.textContent = "Eliminar";
-      removeButton.addEventListener("click", () => removeAdditionalTraitPair(index));
-      row.appendChild(removeButton);
-    });
-  });
-}
-
-function renumberAdditionalTraits() {
-  ["virtue", "defect"].forEach((type) => {
-    document.querySelectorAll(`#additional-${type}s-list input`).forEach((input, index) => {
-      const number = index + 1;
-      input.id = `additional-${type}-${number}`;
-      input.previousElementSibling.htmlFor = input.id;
-      input.previousElementSibling.textContent = `${type === "virtue" ? "Virtud" : "Defecto"} adicional ${number}`;
-    });
-  });
-
-  refreshAdditionalTraitControls();
-}
-
-document.querySelector("#add-virtue").addEventListener("click", () => {
-  const virtueList = document.querySelector("#additional-virtues-list");
-  const defectList = document.querySelector("#additional-defects-list");
-  const nextNumber = virtueList.querySelectorAll("input").length + 1;
-
-  [virtueList, defectList].forEach((list, index) => {
-    const type = index === 0 ? "virtue" : "defect";
-    const label = index === 0 ? "Virtud" : "Defecto";
-    const row = document.createElement("p");
-    row.innerHTML = `<label for="additional-${type}-${nextNumber}">${label} adicional ${nextNumber}</label> <input type="text" id="additional-${type}-${nextNumber}" name="additional_${type}s[]" required>`;
-    list.appendChild(row);
-  });
-
-  refreshAdditionalTraitControls();
-});
-
-refreshAdditionalTraitControls();
 
 archetypeSelect.addEventListener("change", fillArchetype);

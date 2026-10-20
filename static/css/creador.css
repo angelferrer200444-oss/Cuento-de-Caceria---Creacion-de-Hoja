@@ -258,6 +258,22 @@ span[id$="-list"] select {
   width: auto;
 }
 
+#archetype-virtues-list,
+#archetype-defects-list {
+  width: 100%;
+}
+
+#archetype-virtues-list p,
+#archetype-defects-list p {
+  width: 100%;
+}
+
+#archetype-virtues-list p input,
+#archetype-defects-list p input {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 .corruption-status-entry {
   align-items: center;
   display: flex;
