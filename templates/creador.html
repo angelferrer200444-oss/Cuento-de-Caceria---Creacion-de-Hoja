@@ -124,6 +124,47 @@
           </select>
         </p>
 
+        <p>
+          <label for="corruption-points">Punto de corrupci&oacute;n</label>
+          <input type="number" id="corruption-points" name="corruption_points" min="0" max="16" value="0">
+        </p>
+
+        <p>
+          <label for="corruption-level">Nivel de corrupci&oacute;n</label>
+          <input type="text" id="corruption-level" name="corruption_level" value="Sin corrupci&oacute;n (0 puntos)" readonly>
+        </p>
+
+        <p>
+          <label>Estado de corrupci&oacute;n</label>
+          <span id="corruption-status-list">
+            <span class="corruption-status-entry">
+              <label for="corruption-status-1">Estado 1</label>
+              <select id="corruption-status-1" name="corruption_statuses[]">
+                <option value="">Selecciona un estado</option>
+                <option value="no-confies-de-nadie">No te f&iacute;es de nadie. (Nivel 1)</option>
+                <option value="reaccion-violenta">Reacci&oacute;n Violenta (Nivel 1)</option>
+                <option value="manten-la-calma">Mant&eacute;n la calma, pero estate alerta. (Nivel 1)</option>
+                <option value="iracundo">Iracundo (Nivel 1)</option>
+                <option value="no-confies-en-tus-sentidos">No conf&iacute;es en tus sentidos. (Nivel 1)</option>
+                <option value="pequeno-cambio-comportamiento">Un peque&ntilde;o cambio en tu comportamiento. (Nivel 1)</option>
+                <option value="confia-solo-en-ti-mismo">Conf&iacute;a solo en ti mismo. (Nivel 2)</option>
+                <option value="pierdes-el-control">Pierdes el control en situaciones de estr&eacute;s. (Nivel 2)</option>
+                <option value="no-muestres-debilidad">No muestres debilidad. (Nivel 2)</option>
+                <option value="sientes-paranoia">Sientes paranoia. (Nivel 2)</option>
+                <option value="mania-obsesiva">Man&iacute;a Obsesiva. (Nivel 2)</option>
+                <option value="episodio-ansiedad-miedo">Episodio de ansiedad o miedo. (Nivel 2)</option>
+                <option value="no-confies-en-nadie">&iexcl;No conf&iacute;es en nadie, ni siquiera en ti mismo! (Nivel 3)</option>
+                <option value="alucinaciones">Alucinaciones visuales o auditivas. (Nivel 3)</option>
+                <option value="destruye-todo">&iexcl;Debes destruir todo lo que te rodea! (Nivel 3)</option>
+                <option value="borracho-me-mantiene-cuerdo">Estar borracho me mantiene cuerdo (Nivel 3)</option>
+                <option value="amnesia-parcial">Amnesia parcial. (Nivel 3)</option>
+                <option value="delirio">Delirio. (Nivel 3)</option>
+              </select>
+            </span>
+          </span>
+        </p>
+        <p><button type="button" class="add-option" id="add-corruption-status">A&ntilde;adir estado de corrupci&oacute;n</button></p>
+
         <p id="special-description-field" hidden>
           <label for="special-description">Descripci&oacute;n especial del Arquetipo</label><br>
           <textarea id="special-description" name="special_description" rows="7" cols="60"></textarea>

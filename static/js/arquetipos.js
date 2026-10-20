@@ -215,6 +215,84 @@ function fillArchetype() {
   }
 }
 
+const corruptionStatusList = document.querySelector("#corruption-status-list");
+const addCorruptionStatusButton = document.querySelector("#add-corruption-status");
+const corruptionPoints = document.querySelector("#corruption-points");
+const corruptionLevel = document.querySelector("#corruption-level");
+
+function updateCorruptionLevel() {
+  const points = Math.min(16, Math.max(0, Number(corruptionPoints.value) || 0));
+  corruptionPoints.value = points;
+
+  if (points === 0) {
+    corruptionLevel.value = "Sin corrupción (0 puntos)";
+  } else if (points <= 5) {
+    corruptionLevel.value = "Nivel 1: Corrupción Leve (1-5 puntos)";
+  } else if (points <= 10) {
+    corruptionLevel.value = "Nivel 2: Corrupción Moderada (6-10 puntos)";
+  } else if (points <= 15) {
+    corruptionLevel.value = "Nivel 3: Corrupción Grave (11-15 puntos)";
+  } else {
+    corruptionLevel.value = "Nivel 4: Transformación Irreversible (16 puntos)";
+  }
+}
+
+function renumberCorruptionStatuses() {
+  corruptionStatusList.querySelectorAll("select").forEach((select, index) => {
+    const number = index + 1;
+    select.id = `corruption-status-${number}`;
+    select.previousElementSibling.htmlFor = select.id;
+    select.previousElementSibling.textContent = `Estado ${number}`;
+  });
+}
+
+function refreshCorruptionStatusControls() {
+  const entries = Array.from(corruptionStatusList.querySelectorAll(".corruption-status-entry"));
+
+  entries.forEach((entry, index) => {
+    const existingButton = entry.querySelector(".remove-trait");
+    if (existingButton) {
+      existingButton.remove();
+    }
+
+    if (entries.length > 1) {
+      const removeButton = document.createElement("button");
+      removeButton.type = "button";
+      removeButton.className = "remove-trait";
+      removeButton.textContent = "Eliminar";
+      removeButton.addEventListener("click", () => {
+        entry.remove();
+        renumberCorruptionStatuses();
+        refreshCorruptionStatusControls();
+      });
+      entry.appendChild(removeButton);
+    }
+  });
+}
+
+addCorruptionStatusButton.addEventListener("click", () => {
+  const number = corruptionStatusList.querySelectorAll("select").length + 1;
+  const entry = corruptionStatusList.querySelector(".corruption-status-entry").cloneNode(true);
+  const select = entry.querySelector("select");
+  const label = entry.querySelector("label");
+
+  select.id = `corruption-status-${number}`;
+  label.htmlFor = select.id;
+  label.textContent = `Estado ${number}`;
+  select.required = false;
+  select.value = "";
+  const existingButton = entry.querySelector(".remove-trait");
+  if (existingButton) {
+    existingButton.remove();
+  }
+  corruptionStatusList.appendChild(entry);
+  refreshCorruptionStatusControls();
+});
+
+refreshCorruptionStatusControls();
+corruptionPoints.addEventListener("input", updateCorruptionLevel);
+updateCorruptionLevel();
+
 function addTraitRow(listId, prefix, labelText) {
   const list = document.querySelector(`#${listId}`);
   const nextNumber = list.querySelectorAll("input").length + 1;

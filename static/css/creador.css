@@ -253,6 +253,28 @@ span[id$="-list"] select {
   width: auto;
 }
 
+.creator-step p:has(.remove-trait) select {
+  flex: 1 1 240px;
+  width: auto;
+}
+
+.corruption-status-entry {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.corruption-status-entry label {
+  margin-bottom: 0;
+}
+
+.corruption-status-entry select {
+  flex: 1 1 240px;
+  width: auto;
+}
+
 .remove-trait:hover {
   background: #8f001b;
   color: #fff;
