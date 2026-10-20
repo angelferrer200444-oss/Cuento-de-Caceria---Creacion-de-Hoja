@@ -84,17 +84,18 @@ header > p:last-child {
 }
 
 .step-dot {
-  background: #eadfe1;
-  border: 2px solid #eadfe1;
+  background: linear-gradient(135deg, #6f0016, #c3002c);
+  border: 2px solid #8f001b;
   border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(143, 0, 27, .2);
   height: 12px;
   transition: .3s;
   width: 12px;
 }
 
 .step-dot.active {
-  background: #9c001e;
-  border-color: #9c001e;
+  background: linear-gradient(135deg, #8f001b, #e0003a);
+  border-color: #8f001b;
   box-shadow: 0 0 0 4px rgba(156, 0, 30, .14);
 }
 
@@ -168,14 +169,16 @@ label {
 input,
 select,
 textarea {
-  background: #fff;
+  appearance: none;
+  background: linear-gradient(135deg, #fff, #fff8f8);
   border: 1px solid #cdbfc2;
-  border-radius: 2px;
+  border-left: 4px solid #8f001b;
+  border-radius: 4px;
   color: #171313;
   font: 16px/1.5 Georgia, "Times New Roman", serif;
   max-width: 100%;
   padding: 12px 16px;
-  transition: .3s;
+  transition: border-color .3s, box-shadow .3s, background .3s;
   width: 100%;
 }
 
@@ -186,15 +189,200 @@ select {
 
 textarea {
   min-height: 110px;
+  line-height: 1.6;
   resize: vertical;
+}
+
+select {
+  background-image:
+    linear-gradient(45deg, transparent 50%, #8f001b 50%),
+    linear-gradient(135deg, #8f001b 50%, transparent 50%),
+    linear-gradient(135deg, #fff, #fff8f8);
+  background-position:
+    calc(100% - 19px) 22px,
+    calc(100% - 13px) 22px,
+    0 0;
+  background-repeat: no-repeat;
+  background-size: 6px 6px, 6px 6px, 100% 100%;
+  cursor: pointer;
+  padding-right: 42px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #8c777b;
+  opacity: 1;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: #a30023;
+  box-shadow: 0 4px 12px rgba(143, 0, 27, .08);
 }
 
 input:focus,
 select:focus,
 textarea:focus {
+  background: #fff;
   border-color: #a30023;
-  box-shadow: 0 0 0 3px rgba(163, 0, 35, .12);
+  box-shadow: 0 0 0 3px rgba(163, 0, 35, .12), 0 6px 16px rgba(143, 0, 27, .08);
   outline: none;
+}
+
+input[readonly],
+textarea[readonly],
+input:disabled,
+select:disabled,
+textarea:disabled {
+  background: #f4edef;
+  color: #6e5a5e;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+select option {
+  background: #fff8f8;
+  color: #302124;
+  font: 16px Georgia, "Times New Roman", serif;
+  padding: 10px 14px;
+}
+
+select option:checked {
+  background: #8f001b linear-gradient(0deg, #8f001b, #8f001b);
+  color: #fff;
+  font-weight: bold;
+}
+
+select option:hover {
+  background: #f4dfe3;
+  color: #8f001b;
+}
+
+.custom-select {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select select {
+  height: 1px;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 1px;
+}
+
+.custom-select-button {
+  align-items: center;
+  background: linear-gradient(135deg, #fff, #fff8f8);
+  border: 1px solid #cdbfc2;
+  border-left: 4px solid #8f001b;
+  border-radius: 4px;
+  color: #171313;
+  display: flex;
+  font: 16px/1.5 Georgia, "Times New Roman", serif;
+  justify-content: space-between;
+  min-height: 50px;
+  padding: 12px 16px;
+  text-align: left;
+  transition: border-color .3s, box-shadow .3s, background .3s;
+  width: 100%;
+}
+
+.custom-select-button::after {
+  border-bottom: 2px solid #8f001b;
+  border-right: 2px solid #8f001b;
+  content: "";
+  height: 8px;
+  margin-left: 16px;
+  transform: rotate(45deg) translateY(-3px);
+  transition: transform .2s ease;
+  width: 8px;
+}
+
+.custom-select.open .custom-select-button,
+.custom-select-button:hover,
+.custom-select-button:focus-visible {
+  background: #fff;
+  border-color: #a30023;
+  box-shadow: 0 0 0 3px rgba(163, 0, 35, .12), 0 6px 16px rgba(143, 0, 27, .08);
+  outline: none;
+}
+
+.custom-select.open .custom-select-button::after {
+  transform: rotate(225deg) translate(-2px, -2px);
+}
+
+.custom-select-options {
+  background: #fff8f8;
+  border: 1px solid #cdbfc2;
+  border-top: 3px solid #8f001b;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 10px 22px rgba(75, 22, 30, .16);
+  display: none;
+  left: 0;
+  max-height: 260px;
+  overflow-y: auto;
+  position: absolute;
+  top: calc(100% - 1px);
+  width: 100%;
+  z-index: 20;
+}
+
+.custom-select.open .custom-select-options {
+  display: block;
+}
+
+.custom-select-option {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #f0dfe2;
+  border-radius: 0;
+  color: #302124;
+  display: block;
+  font: 16px/1.4 Georgia, "Times New Roman", serif;
+  padding: 11px 14px;
+  text-align: left;
+  transition: background .2s, color .2s;
+  width: 100%;
+}
+
+.custom-select-option:last-child {
+  border-bottom: 0;
+}
+
+.custom-select-option:hover,
+.custom-select-option:focus-visible {
+  background: #f4dfe3;
+  color: #8f001b;
+  outline: none;
+}
+
+.custom-select-option.selected {
+  background: linear-gradient(90deg, #8f001b, #c3002c);
+  color: #fff;
+  font-weight: bold;
+}
+
+.custom-select-option.selected:hover,
+.custom-select-option.selected:focus-visible {
+  background: linear-gradient(90deg, #710015, #a30023);
+  color: #fff;
+}
+
+.custom-select-button:disabled {
+  background: #f4edef;
+  color: #6e5a5e;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.custom-select:has(select:disabled) .custom-select-button {
+  background: #f4edef;
+  color: #6e5a5e;
+  cursor: not-allowed;
 }
 
 .ability-error {
@@ -245,6 +433,67 @@ span[id$="-list"] select {
   margin: 6px 0 10px;
 }
 
+.occupation-feat {
+  background: linear-gradient(135deg, #fff8f8, #f8edef);
+  border: 1px solid #d8cacc;
+  border-left: 5px solid #8f001b;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(75, 22, 30, .06);
+  color: #302124;
+  display: block;
+  font-weight: bold;
+  line-height: 1.5;
+  margin: 8px 0;
+  padding: 13px 16px;
+  transition: border-color .3s, box-shadow .3s, transform .3s;
+}
+
+.occupation-feat::before {
+  color: #8f001b;
+  content: "\2726";
+  margin-right: 10px;
+}
+
+.occupation-feat:hover {
+  border-color: #8f001b;
+  box-shadow: 0 8px 18px rgba(75, 22, 30, .12);
+  transform: translateX(4px);
+}
+
+fieldset > p:has(#characteristic-points),
+fieldset > p:has(#corruption-points),
+fieldset > p:has(#corruption-level),
+fieldset > p:has(#maximum-sanity),
+fieldset > p:has(#wound-limit) {
+  background: linear-gradient(135deg, #fff8f8, #f8edef);
+  border: 1px solid #d8cacc;
+  border-left: 5px solid #8f001b;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(75, 22, 30, .06);
+  padding: 13px 16px;
+  transition: border-color .3s, box-shadow .3s, transform .3s;
+}
+
+fieldset > p:has(#characteristic-points)::before,
+fieldset > p:has(#corruption-points)::before,
+fieldset > p:has(#corruption-level)::before,
+fieldset > p:has(#maximum-sanity)::before,
+fieldset > p:has(#wound-limit)::before {
+  color: #8f001b;
+  content: "\2726";
+  margin-right: 10px;
+}
+
+fieldset > p:has(#characteristic-points):hover,
+fieldset > p:has(#corruption-points):hover,
+fieldset > p:has(#corruption-level):hover,
+fieldset > p:has(#maximum-sanity):hover,
+fieldset > p:has(#wound-limit):hover {
+  border-color: #8f001b;
+  box-shadow: 0 8px 18px rgba(75, 22, 30, .12);
+  transform: translateX(4px);
+}
+
 .equipment-row {
   align-items: center;
   display: flex;
@@ -273,6 +522,12 @@ span[id$="-list"] select {
 }
 
 #occupation-abilities-list span select {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+}
+
+#occupation-abilities-list span .custom-select {
   flex: 1 1 auto;
   min-width: 0;
   width: auto;
@@ -319,6 +574,11 @@ span[id$="-list"] select {
   width: auto;
 }
 
+.creator-step p:has(.remove-trait) .custom-select {
+  flex: 1 1 240px;
+  width: auto;
+}
+
 #archetype-virtues-list,
 #archetype-defects-list {
   width: 100%;
@@ -348,6 +608,11 @@ span[id$="-list"] select {
 }
 
 .corruption-status-entry select {
+  flex: 1 1 240px;
+  width: auto;
+}
+
+.corruption-status-entry .custom-select {
   flex: 1 1 240px;
   width: auto;
 }

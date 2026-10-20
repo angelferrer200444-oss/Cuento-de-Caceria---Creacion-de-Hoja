@@ -10,6 +10,122 @@
   const formActions = document.querySelector("#form-actions");
   let activeStep = 0;
 
+  function enhanceSelect(select) {
+    if (select.closest(".custom-select")) {
+      return;
+    }
+
+    const wrapper = document.createElement("div");
+    const button = document.createElement("button");
+    const optionsList = document.createElement("div");
+
+    wrapper.className = "custom-select";
+    button.className = "custom-select-button";
+    button.type = "button";
+    button.setAttribute("aria-controls", `${select.id}-options`);
+    button.setAttribute("aria-expanded", "false");
+    button.setAttribute("aria-haspopup", "listbox");
+    optionsList.className = "custom-select-options";
+    optionsList.id = `${select.id}-options`;
+    optionsList.setAttribute("role", "listbox");
+
+    select.parentNode.insertBefore(wrapper, select);
+    wrapper.append(select, button, optionsList);
+
+    const close = () => {
+      wrapper.classList.remove("open");
+      button.setAttribute("aria-expanded", "false");
+    };
+
+    const sync = () => {
+      button.textContent = select.selectedOptions[0]?.textContent || "";
+      optionsList.querySelectorAll(".custom-select-option").forEach((optionButton, index) => {
+        const selected = select.selectedIndex === index;
+        optionButton.classList.toggle("selected", selected);
+        optionButton.setAttribute("aria-selected", String(selected));
+      });
+    };
+
+    const open = () => {
+      if (select.disabled) {
+        return;
+      }
+
+      wrapper.classList.add("open");
+      button.setAttribute("aria-expanded", "true");
+      optionsList.querySelector(".selected")?.focus();
+    };
+
+    Array.from(select.options).forEach((option, index) => {
+      const optionButton = document.createElement("button");
+
+      optionButton.className = "custom-select-option";
+      optionButton.type = "button";
+      optionButton.textContent = option.textContent;
+      optionButton.setAttribute("role", "option");
+      optionButton.addEventListener("click", () => {
+        select.selectedIndex = index;
+        select.dispatchEvent(new Event("change", { bubbles: true }));
+        close();
+        button.focus();
+      });
+      optionsList.appendChild(optionButton);
+    });
+
+    button.addEventListener("click", () => {
+      sync();
+
+      if (wrapper.classList.contains("open")) {
+        close();
+      } else {
+        open();
+      }
+    });
+
+    button.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        open();
+      }
+    });
+
+    select.addEventListener("change", sync);
+    sync();
+  }
+
+  function enhanceAllSelects() {
+    document.querySelectorAll("select").forEach(enhanceSelect);
+  }
+
+  enhanceAllSelects();
+
+  const selectObserver = new MutationObserver(enhanceAllSelects);
+  selectObserver.observe(document.querySelector("form"), { childList: true, subtree: true });
+
+  document.addEventListener("click", (event) => {
+    document.querySelectorAll(".custom-select.open").forEach((wrapper) => {
+      if (!wrapper.contains(event.target)) {
+        wrapper.classList.remove("open");
+        wrapper.querySelector(".custom-select-button").setAttribute("aria-expanded", "false");
+      }
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const label = event.target.closest("label[for]");
+
+    if (!label) {
+      return;
+    }
+
+    const select = document.getElementById(label.htmlFor);
+    const customSelect = select && select.closest(".custom-select");
+
+    if (customSelect) {
+      customSelect.querySelector(".custom-select-button").focus();
+    }
+  });
+
   function getDirectContainer(element, step) {
     let container = element;
 

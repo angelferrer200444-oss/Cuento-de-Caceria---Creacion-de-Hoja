@@ -92,8 +92,8 @@ function renderFixedOccupationList(listId, prefix, labelText, values) {
 
   values.forEach((value, index) => {
     const row = document.createElement("span");
-    const text = decodeHtml(value).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
-    row.innerHTML = `<br><label for="${prefix}-${index + 1}">${labelText} ${index + 1}</label> <input type="text" id="${prefix}-${index + 1}" name="${prefix.replace("-", "_")}[]" value="${text}" readonly>`;
+    row.className = "occupation-feat";
+    row.textContent = decodeHtml(value);
     list.appendChild(row);
   });
 }
