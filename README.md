@@ -42,4 +42,4 @@ Tambien puedes abrir directamente `templates/creador.html` para acceder al formu
 
 ## Estado actual
 
-La aplicacion es una interfaz estatica del lado del cliente. Los botones **Guardar hoja** y **Limpiar formulario** pertenecen al formulario, pero actualmente no existe un backend ni una exportacion persistente implementada; los datos se mantienen mientras la pagina permanezca abierta.
+La aplicacion es una interfaz estatica del lado del cliente. Al pulsar **Guardar hoja**, los datos se guardan en el almacenamiento local del navegador y se abre `ficha_rpg_dinamica/index.html` con la ficha rellenada. Desde esa ficha se puede editar el contenido y exportarlo como PNG o JPG.

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ficha de personaje RPG gótico</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="toolbar">
+    <div>
+      <strong>Generador de ficha RPG</strong>
+      <span>Haz clic en los campos para escribir. La ficha crece con el contenido.</span>
+    </div>
+    <div class="toolbar-actions">
+      <button id="clearBtn" class="btn btn-ghost" type="button">Limpiar campos</button>
+      <button id="downloadPng" class="btn" type="button">Descargar PNG</button>
+      <button id="downloadJpg" class="btn btn-dark" type="button">Descargar JPG</button>
+    </div>
+  </header>
+
+  <main class="sheet-wrap">
+    <article id="sheet" class="sheet" aria-label="Ficha de personaje">
+      <section class="identity">
+        <div class="portrait frame">
+          <div class="portrait-placeholder"><span>✦</span><small>RETRATO</small></div>
+          <label class="portrait-upload" title="Añadir retrato"><span aria-hidden="true">＋</span><input id="portraitInput" type="file" accept="image/*"></label>
+          <img id="portraitImage" alt="Retrato del personaje" hidden>
+        </div>
+        <div class="identity-fields">
+          <div class="identity-field">
+            <div class="ribbon"><span>NOMBRE DEL PERSONAJE:</span></div>
+            <div class="identity-value editable" contenteditable="true" data-placeholder="Escribe el nombre del personaje" data-field="nombre"></div>
+          </div>
+          <div class="identity-field">
+            <div class="ribbon"><span>NOMBRE DEL JUGADOR:</span></div>
+            <div class="identity-value editable" contenteditable="true" data-placeholder="Escribe el nombre del jugador" data-field="jugador"></div>
+          </div>
+        </div>
+        <div class="haunted-silhouette" aria-hidden="true">♜</div>
+      </section>
+
+      <section class="overview">
+        <div class="panel emblem-panel">
+          <div class="panel-title centered">ARQUETIPO</div>
+          <div class="emblem eye-emblem">◉</div>
+          <div class="name-plaque editable" contenteditable="true" data-placeholder="Nombre del arquetipo" data-field="arquetipo"></div>
+        </div>
+        <div class="panel emblem-panel">
+          <div class="panel-title centered">OFICIO</div>
+          <div class="emblem crossed">⚒</div>
+          <div class="name-plaque editable" contenteditable="true" data-placeholder="Nombre del oficio" data-field="oficio"></div>
+        </div>
+        <div class="panel description-panel">
+          <div class="description-heading">DESCRIPCIÓN DEL ARQUETIPO</div>
+          <div class="editable body-copy" contenteditable="true" data-placeholder="Describe el arquetipo..." data-field="descripcionArquetipo"></div>
+        </div>
+        <div class="panel description-panel">
+          <div class="description-heading">DESCRIPCIÓN DEL OFICIO</div>
+          <div class="editable body-copy" contenteditable="true" data-placeholder="Describe el oficio..." data-field="descripcionOficio"></div>
+        </div>
+        <div class="stacked-panels">
+          <div class="panel compact-list">
+            <div class="panel-title">HABILIDADES DEL ARQUETIPO</div>
+            <div class="editable lines" contenteditable="true" data-placeholder="◆ Habilidad 1&#10;◆ Habilidad 2&#10;◆ Habilidad 3" data-field="habilidadesArquetipo"></div>
+          </div>
+          <div class="panel compact-list">
+            <div class="panel-title">PECULIARIDADES</div>
+            <div class="editable lines" contenteditable="true" data-placeholder="◆ Peculiaridad 1&#10;◆ Peculiaridad 2&#10;◆ Peculiaridad 3" data-field="peculiaridades"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-row">
+        <div class="panel stat-panel">
+          <div class="stat-icon">♙</div><div class="panel-title">HABILIDAD BLOQUEADA</div>
+          <div class="editable stat-content" contenteditable="true" data-placeholder=" " data-field="habilidadBloqueada"></div>
+        </div>
+        <div class="panel stat-panel">
+          <div class="stat-icon">✥</div><div class="panel-title">REQUISITO DE DESBLOQUEO</div>
+          <div class="editable stat-content" contenteditable="true" data-placeholder=" " data-field="requisitoDesbloqueo"></div>
+        </div>
+        <div class="panel stat-panel narrow-stat">
+          <div class="stat-icon">❋</div><div class="panel-title">LÍMITE DE CORDURA</div>
+          <div class="editable stat-content" contenteditable="true" data-placeholder=" " data-field="limiteCordura"></div>
+        </div>
+        <div class="panel stat-panel narrow-stat">
+          <div class="stat-icon">❋</div><div class="panel-title">RESERVA MÁX. DE CORDURA</div>
+          <div class="editable stat-content" contenteditable="true" data-placeholder=" " data-field="reservaCordura"></div>
+        </div>
+        <div class="panel stat-panel narrow-stat">
+          <div class="stat-icon">♥</div><div class="panel-title">LÍMITE DE HERIDAS</div>
+          <div class="editable stat-content" contenteditable="true" data-placeholder=" " data-field="limiteHeridas"></div>
+        </div>
+      </section>
+
+      <section class="attributes-row">
+        <div class="panel attribute">
+          <div class="stat-icon">♜</div><div class="panel-title">DIETA</div>
+          <div class="editable attribute-content" contenteditable="true" data-placeholder=" " data-field="dieta"></div>
+        </div>
+        <div class="panel attribute">
+          <div class="stat-icon">✡</div><div class="panel-title">AFINIDAD MÁGICA</div>
+          <div class="editable attribute-content" contenteditable="true" data-placeholder=" " data-field="afinidadMagica"></div>
+        </div>
+        <div class="panel attribute">
+          <div class="stat-icon">◉</div><div class="panel-title">PUNTO DE CORRUPCIÓN</div>
+          <div class="editable attribute-content" contenteditable="true" data-placeholder=" " data-field="puntoCorrupcion"></div>
+        </div>
+        <div class="panel attribute">
+          <div class="stat-icon">§</div><div class="panel-title">NIVEL DE CORRUPCIÓN</div>
+          <div class="editable attribute-content corruption-dots" contenteditable="true" data-placeholder="○ ○ ○ ○ ○" data-field="nivelCorrupcion"></div>
+        </div>
+        <div class="panel attribute">
+          <div class="stat-icon">✵</div><div class="panel-title">ESTADO DE CORRUPCIÓN</div>
+          <div class="editable attribute-content" contenteditable="true" data-placeholder=" " data-field="estadoCorrupcion"></div>
+        </div>
+      </section>
+
+      <section class="wide-row">
+        <div class="panel points-panel">
+          <div class="panel-title"><span class="title-icon">★</span>PUNTOS DE CARACTERÍSTICAS DISPONIBLES</div>
+          <div class="editable points-value" contenteditable="true" data-placeholder=" " data-field="puntosCaracteristicas"></div>
+        </div>
+        <div class="panel list-panel">
+          <div class="panel-title"><span class="title-icon">♜</span>HAZAÑAS</div>
+          <div class="editable lines" contenteditable="true" data-placeholder="◆ Hazaña 1&#10;◆ Hazaña 2&#10;◆ Hazaña 3&#10;◆ Hazaña 4&#10;◆ Hazaña 5" data-field="hazanas"></div>
+        </div>
+        <div class="panel list-panel">
+          <div class="panel-title"><span class="title-icon">⚙</span>HABILIDADES</div>
+          <div class="editable lines" contenteditable="true" data-placeholder="◆ Habilidad 1&#10;◆ Habilidad 2&#10;◆ Habilidad 3&#10;◆ Habilidad 4&#10;◆ Habilidad 5" data-field="habilidades"></div>
+        </div>
+      </section>
+
+      <section class="triple-row">
+        <div class="panel list-panel">
+          <div class="panel-title"><span class="title-icon">♟</span>EQUIPAMIENTO</div>
+          <div class="editable lines" contenteditable="true" data-placeholder="◆ Objeto 1&#10;◆ Objeto 2&#10;◆ Objeto 3&#10;◆ Objeto 4" data-field="equipamiento"></div>
+        </div>
+        <div class="panel list-panel">
+          <div class="panel-title"><span class="title-icon">➤</span>VIRTUDES</div>
+          <div class="editable lines" contenteditable="true" data-placeholder="◆ Virtud 1&#10;◆ Virtud 2&#10;◆ Virtud 3&#10;◆ Virtud 4" data-field="virtudes"></div>
+        </div>
+        <div class="panel list-panel">
+          <div class="panel-title"><span class="title-icon">⛓</span>DEFECTOS</div>
+          <div class="editable lines" contenteditable="true" data-placeholder="◆ Defecto 1&#10;◆ Defecto 2&#10;◆ Defecto 3&#10;◆ Defecto 4" data-field="defectos"></div>
+        </div>
+      </section>
+
+      <section class="triple-row story-row">
+        <div class="panel text-panel">
+          <div class="panel-title"><span class="title-icon">♟</span>DESCRIPCIÓN DEL PERSONAJE</div>
+          <div class="editable body-copy" contenteditable="true" data-placeholder="Apariencia, personalidad y detalles..." data-field="descripcionPersonaje"></div>
+        </div>
+        <div class="panel text-panel">
+          <div class="panel-title"><span class="title-icon">!</span>FOBIA</div>
+          <div class="editable body-copy" contenteditable="true" data-placeholder=" " data-field="fobia"></div>
+        </div>
+        <div class="panel text-panel">
+          <div class="panel-title"><span class="title-icon">▤</span>EFECTO NARRATIVO DE LA FOBIA</div>
+          <div class="editable body-copy" contenteditable="true" data-placeholder=" " data-field="efectoFobia"></div>
+        </div>
+      </section>
+
+      <section class="triple-row curse-row">
+        <div class="panel text-panel">
+          <div class="panel-title"><span class="title-icon">◉</span>MALDICIÓN</div>
+          <div class="editable body-copy" contenteditable="true" data-placeholder=" " data-field="maldicion"></div>
+        </div>
+        <div class="panel text-panel">
+          <div class="panel-title"><span class="title-icon">✴</span>EFECTO DE LA MALDICIÓN</div>
+          <div class="editable body-copy" contenteditable="true" data-placeholder=" " data-field="efectoMaldicion"></div>
+        </div>
+        <div class="panel text-panel">
+          <div class="panel-title"><span class="title-icon">!</span>PENALIZACIÓN DE LA MALDICIÓN</div>
+          <div class="editable body-copy" contenteditable="true" data-placeholder=" " data-field="penalizacionMaldicion"></div>
+        </div>
+      </section>
+
+      <section class="panel rupture-panel">
+        <div class="panel-title"><span class="title-icon">☠</span>CONDICIÓN DE RUPTURA DE LA MALDICIÓN</div>
+        <div class="editable body-copy" contenteditable="true" data-placeholder=" " data-field="rupturaMaldicion"></div>
+      </section>
+
+      <section class="triple-row final-row">
+        <div class="panel text-panel">
+          <div class="panel-title"><span class="title-icon">♨</span>VICIO</div>
+          <div class="editable body-copy" contenteditable="true" data-placeholder=" " data-field="vicio"></div>
+        </div>
+        <div class="panel text-panel">
+          <div class="panel-title"><span class="title-icon">▤</span>DESCRIPCIÓN DEL VICIO</div>
+          <div class="editable body-copy" contenteditable="true" data-placeholder=" " data-field="descripcionVicio"></div>
+        </div>
+        <div class="panel text-panel">
+          <div class="panel-title"><span class="title-icon">▧</span>CUENTO DE ORIGEN</div>
+          <div class="editable body-copy" contenteditable="true" data-placeholder=" " data-field="cuentoOrigen"></div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

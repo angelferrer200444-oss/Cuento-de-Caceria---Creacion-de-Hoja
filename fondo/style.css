@@ -1,0 +1,194 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: #250909;
+  color: #f3e9df;
+}
+
+.scene {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  min-height: 500px;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(
+    180deg,
+    #2e0609 0%,
+    #5b0f17 40%,
+    #7d2525 74%,
+    #2a0b0f 100%
+  );
+}
+
+.scene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(
+      ellipse at 70% 35%,
+      rgba(255, 214, 181, 0.12),
+      transparent 45%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(24, 2, 6, 0.32),
+      transparent 55%,
+      rgba(31, 3, 9, 0.24)
+    );
+  pointer-events: none;
+}
+
+.moon {
+  position: absolute;
+  z-index: 0;
+  top: 13%;
+  right: 17%;
+  width: clamp(55px, 9vw, 100px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #e7e4d8;
+  box-shadow:
+    0 0 30px rgba(255, 228, 202, 0.24),
+    0 0 85px rgba(255, 225, 195, 0.15);
+}
+
+#forest {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mist {
+  position: absolute;
+  z-index: 1;
+  left: -20%;
+  width: 140%;
+  height: 15%;
+  border-radius: 50%;
+  background: rgba(236, 192, 176, 0.1);
+  filter: blur(28px);
+  pointer-events: none;
+  animation: mistDrift 18s ease-in-out infinite alternate;
+}
+
+.mist-one {
+  bottom: 16%;
+}
+
+.mist-two {
+  bottom: 32%;
+  opacity: 0.65;
+  animation-duration: 27s;
+  animation-direction: alternate-reverse;
+}
+
+.wind-lines {
+  position: absolute;
+  z-index: 1;
+  top: 48%;
+  right: -5%;
+  width: 36%;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.wind-lines i {
+  display: block;
+  height: 1px;
+  margin: 22px 0 0 auto;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(248, 214, 203, 0.68),
+    transparent
+  );
+  animation: breeze 5s ease-in-out infinite;
+}
+
+#snow-effect {
+  display: block;
+  height: 100%;
+  inset: 0;
+  pointer-events: none;
+  position: fixed;
+  width: 100%;
+  z-index: 4;
+}
+
+.wind-lines i:nth-child(1) {
+  width: 68%;
+}
+
+.wind-lines i:nth-child(2) {
+  width: 100%;
+  animation-delay: -1.7s;
+}
+
+.wind-lines i:nth-child(3) {
+  width: 47%;
+  animation-delay: -3s;
+}
+
+.wind-lines i:nth-child(4) {
+  width: 82%;
+  animation-delay: -2.2s;
+}
+
+.wind-lines i:nth-child(5) {
+  width: 57%;
+  animation-delay: -0.8s;
+}
+
+@keyframes breeze {
+  0%, 100% {
+    transform: translateX(12px);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateX(-28px);
+    opacity: 0.9;
+  }
+}
+
+@keyframes mistDrift {
+  from {
+    transform: translateX(-3%);
+  }
+  to {
+    transform: translateX(5%);
+  }
+}
+
+@media (max-width: 600px) {
+  .moon {
+    top: 25%;
+    right: 13%;
+  }
+
+  .wind-lines {
+    top: 43%;
+    width: 55%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mist,
+  .wind-lines i {
+    animation: none;
+  }
+}

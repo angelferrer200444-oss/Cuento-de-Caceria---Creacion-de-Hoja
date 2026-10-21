@@ -288,5 +288,108 @@
     document.querySelector("#character-name").focus();
   });
 
+  function getFieldValue(selector) {
+    const field = document.querySelector(selector);
+    if (!field) {
+      return "";
+    }
+
+    return typeof field.value === "string"
+      ? field.value.trim()
+      : field.textContent.trim();
+  }
+
+  function getSelectedText(selector) {
+    const field = document.querySelector(selector);
+    return field?.selectedOptions[0]?.textContent.trim() || "";
+  }
+
+  function getCorruptionLevel() {
+    const points = Number(getFieldValue("#corruption-points")) || 0;
+    return points === 0 ? "Nivel 0" : `Nivel ${Math.ceil(points / 5)}`;
+  }
+
+  function getListValue(selector, prefix = "◆ ") {
+    const matchedFields = Array.from(document.querySelectorAll(selector));
+    if (!matchedFields.length) {
+      return "";
+    }
+
+    const field = matchedFields.length === 1 ? matchedFields[0] : null;
+    const listItems = field?.matches("input, select, textarea")
+      ? [field]
+      : field
+        ? Array.from(field.querySelectorAll("input, select, textarea"))
+        : matchedFields;
+    const lines = (listItems.length ? listItems : [field])
+      .map(item => {
+        if (item.matches("select")) {
+          return item.selectedOptions[0]?.textContent.trim() || "";
+        }
+        return typeof item.value === "string" ? item.value.trim() : item.textContent.trim();
+      })
+      .filter(Boolean);
+
+    if (listItems.length) {
+      return lines.map(line => `${prefix}${line}`).join("\n");
+    }
+
+    return field.textContent
+      .split("\n")
+      .map(line => line.trim())
+      .filter(Boolean)
+      .map(line => `${prefix}${line}`)
+      .join("\n");
+  }
+
+  function saveCharacterSheet() {
+    const character = {
+      nombre: getFieldValue("#character-name"),
+      jugador: getFieldValue("#player-name"),
+      arquetipo: getSelectedText("#archetype"),
+      oficio: getSelectedText("#occupation"),
+      descripcionArquetipo: getFieldValue("#archetype-description"),
+      descripcionOficio: getFieldValue("#occupation-description"),
+      habilidadesArquetipo: getListValue("#archetype-abilities-list"),
+      peculiaridades: getListValue("#archetype-peculiarities-list"),
+      habilidadBloqueada: getFieldValue("#locked-ability"),
+      requisitoDesbloqueo: getFieldValue("#locked-ability-requirement"),
+      limiteCordura: getListValue("#sanity-limit-list"),
+      reservaCordura: getFieldValue("#maximum-sanity"),
+      limiteHeridas: getFieldValue("#wound-limit"),
+      dieta: getFieldValue("#diet"),
+      afinidadMagica: getSelectedText("#magical-affinity"),
+      puntoCorrupcion: getFieldValue("#corruption-points"),
+      nivelCorrupcion: getCorruptionLevel(),
+      estadoCorrupcion: getListValue("#corruption-status-list select"),
+      hazanas: getListValue("#occupation-feats-list"),
+      habilidades: getListValue("#occupation-abilities-list"),
+      equipamiento: getListValue("#occupation-equipment-list"),
+      virtudes: getListValue("#archetype-virtues-list"),
+      defectos: getListValue("#archetype-defects-list"),
+      descripcionPersonaje: getFieldValue("#character-description"),
+      fobia: getSelectedText("#phobia-1") || getFieldValue("#custom-phobia-1"),
+      efectoFobia: getFieldValue("#phobia-effect-1"),
+      maldicion: getSelectedText("#curse") || getFieldValue("#custom-curse"),
+      efectoMaldicion: getFieldValue("#curse-benefit"),
+      penalizacionMaldicion: getFieldValue("#curse-penalty"),
+      rupturaMaldicion: getFieldValue("#curse-condition"),
+      vicio: getFieldValue("#vice"),
+      descripcionVicio: getFieldValue("#vice-description"),
+      cuentoOrigen: getFieldValue("#origin-story")
+    };
+
+    localStorage.setItem("cuentos-caceria-character-sheet", JSON.stringify(character));
+    window.location.href = "../ficha_rpg_dinamica/index.html";
+  }
+
+  document.querySelector("form").addEventListener("submit", event => {
+    event.preventDefault();
+    if (!currentStepIsValid()) {
+      return;
+    }
+    saveCharacterSheet();
+  });
+
   updateStep();
 })();
