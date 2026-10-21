@@ -540,13 +540,39 @@ select option:hover {
   border-radius: 6px;
   display: inline-flex;
   gap: 8px;
+  overflow: hidden;
   padding: 5px 8px 5px 0;
+  position: relative;
+  animation: sanity-limit-reveal .6s cubic-bezier(.2, .8, .2, 1) both;
   transition: background .3s, box-shadow .3s, transform .3s;
   width: 100%;
 }
 
+#sanity-limit-list > span::after {
+  background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, .5) 48%, transparent 76%);
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  transform: translateX(-120%);
+  animation: sanity-limit-shimmer 4.8s ease-in-out infinite;
+}
+
+#sanity-limit-list > span > label,
+#sanity-limit-list > span > input {
+  position: relative;
+  z-index: 1;
+}
+
+#sanity-limit-list > span:nth-child(1) { animation-delay: .05s; }
+#sanity-limit-list > span:nth-child(2) { animation-delay: .15s; }
+#sanity-limit-list > span:nth-child(3) { animation-delay: .25s; }
+#sanity-limit-list > span:nth-child(4) { animation-delay: .35s; }
+#sanity-limit-list > span:nth-child(5) { animation-delay: .45s; }
+
 #sanity-limit-list > span:hover {
-  transform: translateX(3px);
+  box-shadow: 0 5px 14px rgba(75, 22, 30, .12);
+  transform: translateX(3px) translateY(-2px);
 }
 
 #sanity-limit-list > span > br {
@@ -715,7 +741,31 @@ select option:hover {
   50% { background-position: 0 0, 100% 0, 35px 0, 100% 100%; }
 }
 
+@keyframes sanity-limit-shimmer {
+  0%, 58%, 100% { transform: translateX(-120%); }
+  78% { transform: translateX(120%); }
+}
+
+@keyframes sanity-limit-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  #sanity-limit-list > span {
+    animation: none;
+  }
+
+  #sanity-limit-list > span::after {
+    animation: none;
+  }
+
   .sanity-magic > input,
   .sanity-strength > input,
   .sanity-berserker > input,
@@ -1091,5 +1141,22 @@ button:focus-visible {
 
   .form-actions {
     flex-direction: column;
+  }
+
+  #sanity-limit-list > span {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 10px 12px;
+  }
+
+  #sanity-limit-list > span > label {
+    font-size: 15px;
+    line-height: 1.3;
+    min-width: 0;
+  }
+
+  #sanity-limit-list > span > input {
+    min-height: 46px;
   }
 }
