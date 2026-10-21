@@ -8,12 +8,32 @@
   const previousButton = document.querySelector("#previous-step");
   const nextButton = document.querySelector("#next-step");
   const formActions = document.querySelector("#form-actions");
+  const randomOptionValue = "__random__";
   let activeStep = 0;
+
+  function supportsRandomOption(select) {
+    return select.matches(
+      "#archetype, #occupation, #curse, #corruption-status-list select, #phobias-list select"
+    );
+  }
+
+  function addRandomOption(select) {
+    if (!supportsRandomOption(select) || select.querySelector(`option[value="${randomOptionValue}"]`)) {
+      return;
+    }
+
+    const randomOption = document.createElement("option");
+    randomOption.value = randomOptionValue;
+    randomOption.textContent = "Aleatorio";
+    select.appendChild(randomOption);
+  }
 
   function enhanceSelect(select) {
     if (select.closest(".custom-select")) {
       return;
     }
+
+    addRandomOption(select);
 
     const wrapper = document.createElement("div");
     const button = document.createElement("button");
@@ -75,6 +95,9 @@
       optionButton.type = "button";
       optionButton.textContent = option.textContent;
       optionButton.setAttribute("role", "option");
+      if (option.value === randomOptionValue) {
+        optionButton.classList.add("random-option");
+      }
       if (select.id === "magical-affinity" && option.value) {
         optionButton.classList.add(`affinity-option-${option.value}`);
       }
@@ -104,7 +127,22 @@
       }
     });
 
-    select.addEventListener("change", sync);
+    select.addEventListener("change", () => {
+      if (select.value === randomOptionValue) {
+        const availableOptions = Array.from(select.options).filter(
+          (option) => option.value && option.value !== randomOptionValue
+        );
+        const randomOption = availableOptions[Math.floor(Math.random() * availableOptions.length)];
+
+        if (randomOption) {
+          select.value = randomOption.value;
+          select.dispatchEvent(new Event("change", { bubbles: true }));
+          return;
+        }
+      }
+
+      sync();
+    }, true);
     sync();
   }
 
