@@ -53,12 +53,13 @@
     dadosOverlay.classList.add("visible");
     dadosOverlay.setAttribute("aria-hidden", "false");
 
-    // Reiniciar el iframe para reproducir la animación desde cero.
+    // Reiniciar el iframe y reutilizar la URL para aprovechar la caché.
     dadosFrame.src = "about:blank";
 
     requestAnimationFrame(() => {
-      dadosFrame.src = "../dados20/dados.html?run=" + Date.now();
+      dadosFrame.src = "../dados20/dados.html";
     });
+
   };
 
   // Recibir el aviso de que los dados terminaron.
