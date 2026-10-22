@@ -15,6 +15,8 @@
   let dadosFrame = null;
   let dadosEnAnimacion = false;
   let temporizadorDados = null;
+  const TIEMPO_MAXIMO_DADOS = 7000; // 10 segundos
+
 
   // Preparar los elementos del HTML.
   function prepararDados() {
@@ -62,6 +64,24 @@
 
   };
 
+  function finalizarDados() {
+    clearTimeout(temporizadorDados);
+
+    if (!dadosOverlay || !dadosFrame) return;
+
+    dadosOverlay.classList.remove("visible");
+    dadosOverlay.setAttribute("aria-hidden", "true");
+    dadosOverlay.style.display = "none";
+
+    // Detener la animación y liberar el iframe.
+    dadosFrame.src = "about:blank";
+
+    dadosEnAnimacion = false;
+
+    console.log("Dados finalizados o retirados por tiempo máximo.");
+  }
+
+
   // Recibir el aviso de que los dados terminaron.
   window.addEventListener("message", (event) => {
     if (
@@ -72,23 +92,14 @@
       return;
     }
 
+    // Mantener el pequeño desvanecimiento visual.
     clearTimeout(temporizadorDados);
 
-    // Dejar que termine el desvanecimiento visual.
     temporizadorDados = setTimeout(() => {
-      dadosOverlay.classList.remove("visible");
-      dadosOverlay.setAttribute("aria-hidden", "true");
-      dadosOverlay.style.display = "none";
-
-      // Descargar el documento anterior.
-      dadosFrame.src = "about:blank";
-
-      // IMPORTANTE: desbloquear el siguiente lanzamiento.
-      dadosEnAnimacion = false;
-
-      console.log("Dados finalizados. Listos para volver a lanzarse.");
+      finalizarDados();
     }, 1100);
   });
+
 
 
   function supportsRandomOption(select) {
