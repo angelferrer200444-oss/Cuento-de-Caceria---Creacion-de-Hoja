@@ -192,3 +192,208 @@ body {
     animation: none;
   }
 }
+
+/* =========================================
+   NIEVE GRIS CENIZA — BOSQUE GÓTICO
+   ========================================= */
+
+.snow-ground {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 34%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Nieve del fondo, teñida por el cielo */
+.snow-hill {
+  position: absolute;
+  left: -10%;
+  width: 120%;
+  border-radius: 50% 50% 0 0 / 20% 25% 0 0;
+}
+
+.snow-hill-back {
+  bottom: 12%;
+  height: 48%;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(133, 73, 80, 0.24),
+      transparent 72%
+    ),
+    linear-gradient(
+      180deg,
+      #93888d 0%,
+      #999398 30%,
+      #858991 70%,
+      #707985 100%
+    );
+
+  box-shadow:
+    inset 0 7px 15px rgba(65, 30, 37, 0.16);
+
+  transform: rotate(-2deg);
+}
+
+/* Montículo intermedio */
+.snow-hill-front {
+  position: absolute;
+  left: -8%;
+  bottom: -17%;
+  width: 116%;
+  height: 78%;
+
+  border-radius: 48% 52% 0 0 / 19% 25% 0 0;
+
+  background:
+    /* Reflejo tenue del cielo borgoña */
+    radial-gradient(
+      ellipse at 50% 2%,
+      rgba(128, 61, 70, 0.24),
+      transparent 68%
+    ),
+
+    /* Variaciones de relieve y nieve compactada */
+    radial-gradient(
+      ellipse at 18% 34%,
+      rgba(178, 171, 175, 0.28),
+      transparent 36%
+    ),
+    radial-gradient(
+      ellipse at 76% 48%,
+      rgba(78, 83, 94, 0.22),
+      transparent 39%
+    ),
+
+    /* Color base gris frío */
+    linear-gradient(
+      180deg,
+      #aaa3a8 0%,
+      #9b9da4 24%,
+      #9299a2 53%,
+      #828c98 78%,
+      #727e8c 100%
+    );
+
+  box-shadow:
+    inset 0 6px 16px rgba(63, 31, 40, 0.15);
+
+  transform: rotate(1deg);
+}
+
+/* Primer plano: nieve gris, fría y en sombra */
+.snow-surface {
+  position: absolute;
+  left: -5%;
+  bottom: -35%;
+  width: 110%;
+  height: 65%;
+
+  border-radius: 50% 50% 0 0;
+
+  background:
+    /* Luz ambiental rojiza muy difusa */
+    radial-gradient(
+      ellipse at 48% 0%,
+      rgba(137, 77, 83, 0.16),
+      transparent 65%
+    ),
+
+    /* Gradiente de profundidad */
+    linear-gradient(
+      180deg,
+      #a6a2a7 0%,
+      #999da5 30%,
+      #89939e 65%,
+      #758290 100%
+    );
+
+  box-shadow:
+    inset 0 4px 12px rgba(58, 34, 43, 0.12);
+}
+
+/* =========================================
+   TEXTURA DE NIEVE
+   ========================================= */
+
+/* Textura irregular y natural de la nieve */
+.snow-sparkles {
+  position: absolute;
+  inset: 12% 0 0;
+  opacity: 0.42;
+  pointer-events: none;
+
+  background-image:
+    /* Granos finos dispersos */
+    radial-gradient(
+      ellipse at 23% 37%,
+      rgba(194, 193, 198, 0.32) 0.5px,
+      transparent 2px
+    ),
+    radial-gradient(
+      ellipse at 71% 62%,
+      rgba(63, 65, 77, 0.25) 0.5px,
+      transparent 2.5px
+    ),
+
+    /* Manchas difusas de nieve compactada */
+    radial-gradient(
+      ellipse at 35% 55%,
+      rgba(174, 169, 176, 0.18),
+      transparent 65%
+    ),
+
+    /* Sutiles irregularidades horizontales */
+    repeating-linear-gradient(
+      172deg,
+      transparent 0px,
+      transparent 24px,
+      rgba(57, 61, 73, 0.035) 26px,
+      transparent 30px,
+      transparent 47px
+    );
+
+  background-size:
+    137px 113px,
+    181px 149px,
+    223px 167px,
+    100% 137px;
+
+  background-position:
+    17px 31px,
+    73px 19px,
+    41px 67px,
+    0 0;
+
+  filter: blur(0.4px);
+}
+
+
+/* Ajuste para móviles */
+@media (max-width: 600px) {
+  .snow-ground {
+    height: 37%;
+  }
+
+  .snow-hill-back {
+    height: 43%;
+    bottom: 14%;
+  }
+
+  .snow-hill-front {
+    height: 76%;
+  }
+
+  .snow-sparkles {
+    background-size:
+      14px 17px,
+      25px 27px,
+      57px 39px,
+      100% 43px;
+  }
+}
