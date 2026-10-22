@@ -8,12 +8,31 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../static/css/creador.css">
+  <link rel="stylesheet" href="../fondo/style.css">
+
 </head>
 <body>
-  <div class="horror-branches" aria-hidden="true">
-    <span class="horror-branch horror-branch-left"></span>
-    <span class="horror-branch horror-branch-right"></span>
+  <div class="forest-background" aria-hidden="true">
+    <div class="moon"></div>
+
+    <div class="mist mist-one"></div>
+    <div class="mist mist-two"></div>
+
+    <canvas id="forest"></canvas>
+
+    <div class="snow-ground">
+      <div class="snow-hill snow-hill-back"></div>
+      <div class="snow-hill snow-hill-front"></div>
+      <div class="snow-surface"></div>
+      <div class="snow-sparkles"></div>
+    </div>
+
+    <div class="wind-lines">
+      <i></i><i></i><i></i><i></i><i></i>
+    </div>
   </div>
+
+  
   <canvas id="snow-effect" aria-hidden="true"></canvas>
   <main>
     <header>
@@ -415,6 +434,9 @@
   <script src="../static/js/maldiciones.js"></script>
   <script src="../static/js/fobias.js"></script>
   <script src="../static/js/nieve-creador.js"></script>
+
+  <script src="../fondo/script.js"></script>
   <script src="../static/js/creador.js"></script>
+
 </body>
 </html>
