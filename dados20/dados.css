@@ -1,0 +1,247 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Fondo transparente con oscurecimiento */
+html,
+body {
+  background: transparent !important;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+  z-index: 99990;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+body.animacion-terminada::before {
+  opacity: 0;
+}
+
+.dado-volador {
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+body.animacion-terminada .dado-volador {
+  opacity: 0;
+}
+
+body.animacion-terminada .sombra-dado {
+  opacity: 0 !important;
+  transition: opacity 1s ease;
+}
+
+/* Los dados permanecen por encima del filtro */
+.dado-volador {
+  z-index: 99999;
+}
+
+
+body {
+  overflow-x: hidden;
+}
+
+
+/* Contenedor exterior: JavaScript mueve cada dado */
+.dado-volador {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  z-index: 99999;
+  pointer-events: none;
+  will-change: transform;
+}
+
+
+/* Perspectiva 3D original */
+.content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 1500px;
+}
+
+/* Este elemento solamente gira sobre sus ejes */
+.die {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(-53deg);
+  will-change: transform;
+  counter-reset: steps;
+}
+
+/* Las veinte caras triangulares */
+.face {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin: 0 -50px;
+
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 86px solid rgba(78, 20, 15, 0.94);
+
+  width: 0;
+  height: 0;
+
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+
+  filter:
+    drop-shadow(1px 0 0 #d4af37)
+    drop-shadow(-1px 0 0 #d4af37)
+    drop-shadow(0 1px 0 #d4af37)
+    drop-shadow(0 -1px 0 #d4af37);
+
+  counter-increment: steps 1;
+}
+
+/* Números centrados dentro de cada cara triangular */
+.face::before {
+  content: counter(steps);
+
+  position: absolute;
+
+  /* Centrado horizontal */
+  left: -50px;
+  width: 100px;
+
+  /* Posición vertical dentro del triángulo */
+  top: 12px;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #f7e7b0;
+
+  font-family: Georgia, serif;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 1;
+
+  text-align: center;
+
+  text-shadow:
+    1px 1px 2px #000,
+    0 0 5px rgba(212, 175, 55, 0.7);
+
+  pointer-events: none;
+}
+
+
+/* Caras superiores: 1–5 */
+.face:nth-child(1) {
+  transform: rotateY(0deg) translateZ(33.5px) translateY(-12.9px) rotateX(53deg);
+}
+
+.face:nth-child(2) {
+  transform: rotateY(-72deg) translateZ(33.5px) translateY(-12.9px) rotateX(53deg);
+}
+
+.face:nth-child(3) {
+  transform: rotateY(-144deg) translateZ(33.5px) translateY(-12.9px) rotateX(53deg);
+}
+
+.face:nth-child(4) {
+  transform: rotateY(-216deg) translateZ(33.5px) translateY(-12.9px) rotateX(53deg);
+}
+
+.face:nth-child(5) {
+  transform: rotateY(-288deg) translateZ(33.5px) translateY(-12.9px) rotateX(53deg);
+}
+
+/* Anillo intermedio: 6–10 */
+.face:nth-child(6) {
+  transform: rotateY(360deg) translateZ(75px) translateY(54.18px) rotateZ(180deg) rotateX(-11deg);
+}
+
+.face:nth-child(7) {
+  transform: rotateY(288deg) translateZ(75px) translateY(54.18px) rotateZ(180deg) rotateX(-11deg);
+}
+
+.face:nth-child(8) {
+  transform: rotateY(216deg) translateZ(75px) translateY(54.18px) rotateZ(180deg) rotateX(-11deg);
+}
+
+.face:nth-child(9) {
+  transform: rotateY(144deg) translateZ(75px) translateY(54.18px) rotateZ(180deg) rotateX(-11deg);
+}
+
+.face:nth-child(10) {
+  transform: rotateY(72deg) translateZ(75px) translateY(54.18px) rotateZ(180deg) rotateX(-11deg);
+}
+
+/* Anillo intermedio: 11–15 */
+.face:nth-child(11) {
+  transform: rotateY(252deg) translateZ(75px) translateY(54.18px) rotateX(-11deg);
+}
+
+.face:nth-child(12) {
+  transform: rotateY(324deg) translateZ(75px) translateY(54.18px) rotateX(-11deg);
+}
+
+.face:nth-child(13) {
+  transform: rotateY(396deg) translateZ(75px) translateY(54.18px) rotateX(-11deg);
+}
+
+.face:nth-child(14) {
+  transform: rotateY(468deg) translateZ(75px) translateY(54.18px) rotateX(-11deg);
+}
+
+.face:nth-child(15) {
+  transform: rotateY(540deg) translateZ(75px) translateY(54.18px) rotateX(-11deg);
+}
+
+/* Caras inferiores: 16–20 */
+.face:nth-child(16) {
+  transform: rotateY(-180deg) translateZ(33.5px) translateY(121.08px) rotateZ(180deg) rotateX(53deg);
+}
+
+.face:nth-child(17) {
+  transform: rotateY(-108deg) translateZ(33.5px) translateY(121.08px) rotateZ(180deg) rotateX(53deg);
+}
+
+.face:nth-child(18) {
+  transform: rotateY(-36deg) translateZ(33.5px) translateY(121.08px) rotateZ(180deg) rotateX(53deg);
+}
+
+.face:nth-child(19) {
+  transform: rotateY(36deg) translateZ(33.5px) translateY(121.08px) rotateZ(180deg) rotateX(53deg);
+}
+
+.face:nth-child(20) {
+  transform: rotateY(108deg) translateZ(33.5px) translateY(121.08px) rotateZ(180deg) rotateX(53deg);
+}
+
+/* Sombra independiente para cada dado */
+.sombra-dado {
+  position: fixed;
+  left: 0;
+  bottom: 12px;
+
+  width: 100px;
+  height: 20px;
+
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  filter: blur(10px);
+
+  pointer-events: none;
+  z-index: 99998;
+  will-change: transform, opacity;
+}
+
+

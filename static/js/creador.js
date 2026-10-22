@@ -11,6 +11,85 @@
   const randomOptionValue = "__random__";
   let activeStep = 0;
 
+  let dadosOverlay = null;
+  let dadosFrame = null;
+  let dadosEnAnimacion = false;
+  let temporizadorDados = null;
+
+  // Preparar los elementos del HTML.
+  function prepararDados() {
+    dadosOverlay = document.querySelector("#dados-overlay");
+    dadosFrame = document.querySelector("#dados-frame");
+
+    console.log("Overlay encontrado:", !!dadosOverlay);
+    console.log("Iframe encontrado:", !!dadosFrame);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", prepararDados, {
+      once: true
+    });
+  } else {
+    prepararDados();
+  }
+
+  // Lanzar los dados.
+  window.lanzarDadosMedievales = function () {
+    if (!dadosOverlay || !dadosFrame) {
+      console.error("No se encontró el overlay o el iframe.");
+      return;
+    }
+
+    if (dadosEnAnimacion) {
+      console.warn("Los dados todavía están animándose.");
+      return;
+    }
+
+    clearTimeout(temporizadorDados);
+    dadosEnAnimacion = true;
+
+    // Volver a mostrar el overlay.
+    dadosOverlay.style.display = "block";
+    dadosOverlay.classList.add("visible");
+    dadosOverlay.setAttribute("aria-hidden", "false");
+
+    // Reiniciar el iframe para reproducir la animación desde cero.
+    dadosFrame.src = "about:blank";
+
+    requestAnimationFrame(() => {
+      dadosFrame.src = "../dados20/dados.html?run=" + Date.now();
+    });
+  };
+
+  // Recibir el aviso de que los dados terminaron.
+  window.addEventListener("message", (event) => {
+    if (
+      !dadosFrame ||
+      event.source !== dadosFrame.contentWindow ||
+      event.data !== "dados-terminados"
+    ) {
+      return;
+    }
+
+    clearTimeout(temporizadorDados);
+
+    // Dejar que termine el desvanecimiento visual.
+    temporizadorDados = setTimeout(() => {
+      dadosOverlay.classList.remove("visible");
+      dadosOverlay.setAttribute("aria-hidden", "true");
+      dadosOverlay.style.display = "none";
+
+      // Descargar el documento anterior.
+      dadosFrame.src = "about:blank";
+
+      // IMPORTANTE: desbloquear el siguiente lanzamiento.
+      dadosEnAnimacion = false;
+
+      console.log("Dados finalizados. Listos para volver a lanzarse.");
+    }, 1100);
+  });
+
+
   function supportsRandomOption(select) {
     return select.matches(
       "#archetype, #occupation, #curse, #corruption-status-list select, #phobias-list select"
@@ -129,10 +208,20 @@
 
     select.addEventListener("change", () => {
       if (select.value === randomOptionValue) {
+
+        // Mostrar la animación de los dados medievales.
+        if (typeof window.lanzarDadosMedievales === "function") {
+          window.lanzarDadosMedievales();
+        }
+
+        // Elegir una opción al azar.
         const availableOptions = Array.from(select.options).filter(
           (option) => option.value && option.value !== randomOptionValue
         );
-        const randomOption = availableOptions[Math.floor(Math.random() * availableOptions.length)];
+
+        const randomOption = availableOptions[
+          Math.floor(Math.random() * availableOptions.length)
+        ];
 
         if (randomOption) {
           select.value = randomOption.value;
@@ -143,6 +232,7 @@
 
       sync();
     }, true);
+
     sync();
   }
 

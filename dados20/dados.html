@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dados Medievales</title>
+
+  <link rel="stylesheet" href="dados.css">
+</head>
+
+<body>
+
+  <!-- Primer dado -->
+  <div class="dado-volador">
+    <div class="content">
+      <div class="die"></div>
+    </div>
+  </div>
+
+  <!-- Segundo dado -->
+  <div class="dado-volador">
+    <div class="content">
+      <div class="die"></div>
+    </div>
+  </div>
+
+  <!-- Tercer dado -->
+  <div class="dado-volador">
+    <div class="content">
+      <div class="die"></div>
+    </div>
+  </div>
+
+  <!-- Crear las 20 caras de cada dado -->
+  <script>
+    document.querySelectorAll(".die").forEach((die) => {
+      for (let i = 1; i <= 20; i++) {
+        const cara = document.createElement("figure");
+        cara.className = `face face-${i}`;
+        die.appendChild(cara);
+      }
+    });
+  </script>
+
+  <!-- Animación y rebotes -->
+  <script src="dados.js"></script>
+
+</body>
+</html>
