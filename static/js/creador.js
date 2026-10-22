@@ -316,21 +316,25 @@
     }
 
     const field = matchedFields.length === 1 ? matchedFields[0] : null;
+    const childItems = field ? Array.from(field.children) : [];
     const listItems = field?.matches("input, select, textarea")
       ? [field]
       : field
         ? Array.from(field.querySelectorAll("input, select, textarea"))
         : matchedFields;
-    const lines = (listItems.length ? listItems : [field])
+    const items = listItems.length ? listItems : childItems;
+    const lines = (items.length ? items : [field])
       .map(item => {
         if (item.matches("select")) {
           return item.selectedOptions[0]?.textContent.trim() || "";
         }
-        return typeof item.value === "string" ? item.value.trim() : item.textContent.trim();
+        return typeof item.value === "string"
+          ? item.value.trim()
+          : item.textContent.trim();
       })
       .filter(Boolean);
 
-    if (listItems.length) {
+    if (items.length) {
       return lines.map(line => `${prefix}${line}`).join("\n");
     }
 
@@ -357,6 +361,7 @@
       limiteCordura: getListValue("#sanity-limit-list"),
       reservaCordura: getFieldValue("#maximum-sanity"),
       limiteHeridas: getFieldValue("#wound-limit"),
+      puntosCaracteristicas: getFieldValue("#characteristic-points") || "0",
       dieta: getFieldValue("#diet"),
       afinidadMagica: getSelectedText("#magical-affinity"),
       puntoCorrupcion: getFieldValue("#corruption-points"),

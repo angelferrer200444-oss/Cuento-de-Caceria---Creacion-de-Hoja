@@ -18,6 +18,9 @@ function loadCharacterSheet() {
 
   fields.forEach(field => {
     let value = character[field.dataset.field];
+    if (field.dataset.field === "puntosCaracteristicas") {
+      value = character.puntosCaracteristicas ?? character.characteristicPoints ?? "";
+    }
     if (field.dataset.field === "nivelCorrupcion" && character.puntoCorrupcion !== undefined) {
       const points = Number(character.puntoCorrupcion) || 0;
       value = `Nivel ${points === 0 ? 0 : Math.ceil(points / 5)}`;
