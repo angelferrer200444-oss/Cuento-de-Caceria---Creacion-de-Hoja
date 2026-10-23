@@ -46,16 +46,17 @@ header {
 }
 
 .eyebrow {
-    color: #D93636;
+    color: #C4984F;
     font-size: 13px;
     font-weight: bold;
     letter-spacing: 3px;
     margin-bottom: 12px;
-    
+    text-shadow: 0 2px 5px #000;
 }
 
+
 h1 {
-    color: #A81919;
+    color: #F0E3C8;
     font-family: Georgia, "Times New Roman", serif;
     font-size: clamp(30px, 5vw, 50px);
     line-height: 1.15;
@@ -63,14 +64,13 @@ h1 {
     
 }
 
+
 header > p:last-child {
-    color: #F2E8E8;
+    color: #F0E3C8;
     font-size: 17px;
-    text-shadow:
-        0 2px 4px #000,
-        0 0 8px #000,
-        0 0 12px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 2px 6px #000;
 }
+
 
 
 
@@ -1280,3 +1280,4 @@ main {
   background: transparent;
   pointer-events: none;
 }
+
