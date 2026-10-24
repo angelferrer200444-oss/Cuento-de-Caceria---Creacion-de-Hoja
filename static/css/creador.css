@@ -350,14 +350,18 @@ select option:hover {
   box-shadow: 0 10px 22px rgba(75, 22, 30, .16);
   display: none;
   left: 0;
-  max-height: 260px;
-  overflow-x: clip;
+  height: auto;
+  max-height: 160px;
+  overflow-x: hidden;
   overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
   position: absolute;
   top: calc(100% - 1px);
   width: 100%;
   z-index: 20;
 }
+
 
 .custom-select.open .custom-select-options {
   display: block;
@@ -1280,4 +1284,5 @@ main {
   background: transparent;
   pointer-events: none;
 }
+
 
