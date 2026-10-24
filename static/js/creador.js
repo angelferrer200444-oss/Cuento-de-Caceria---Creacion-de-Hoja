@@ -475,8 +475,17 @@
       virtudes: getListValue("#archetype-virtues-list"),
       defectos: getListValue("#archetype-defects-list"),
       descripcionPersonaje: getFieldValue("#character-description"),
-      fobia: getSelectedText("#phobia-1") || getFieldValue("#custom-phobia-1"),
-      efectoFobia: getFieldValue("#phobia-effect-1"),
+      fobia: [
+        getSelectedText("#phobia-1") || getFieldValue("#custom-phobia-1"),
+        getSelectedText("#phobia-2") || getFieldValue("#custom-phobia-2")
+      ].filter(Boolean).join(", "),
+
+
+      efectoFobia: [
+        getFieldValue("#phobia-effect-1"),
+        getFieldValue("#phobia-effect-2")
+      ].filter(Boolean).join("\n"),
+
       maldicion: getSelectedText("#curse") || getFieldValue("#custom-curse"),
       efectoMaldicion: getFieldValue("#curse-benefit"),
       penalizacionMaldicion: getFieldValue("#curse-penalty"),
