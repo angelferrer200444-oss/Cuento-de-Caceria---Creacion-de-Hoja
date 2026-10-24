@@ -69,35 +69,39 @@
 
         <div class="pre-creator-lights-out"></div>
 
-        <script>
-
-            document.addEventListener("DOMContentLoaded", () => {
-                const manualButton = document.getElementById("manual-character");
-                const screen = document.querySelector(".pre-creator");
-
-                if (!manualButton || !screen) return;
-
-                manualButton.addEventListener("click", () => {
-                    if (screen.classList.contains("lights-out")) return;
-
-                    screen.classList.add("lights-out");
-
-                    // Esperar a que la pantalla quede completamente oscura.
-                    setTimeout(() => {
-                        window.location.href = "../templates/creador.html";
-                    }, 2200);
-                });
-            });
-
-        </script>
+        
 
     </main>
 
 <script>
-document.getElementById("random-character").addEventListener("click", function () {
-    window.location.href = "../templates/creador.html?modo=aleatorio";
+document.addEventListener("DOMContentLoaded", () => {
+    const manualButton = document.getElementById("manual-character");
+    const randomButton = document.getElementById("random-character");
+    const screen = document.querySelector(".pre-creator");
+
+    if (!screen) return;
+
+    function apagarLucesYEntrar(destino) {
+        if (screen.classList.contains("lights-out")) return;
+
+        screen.classList.add("lights-out");
+
+        // Esperar a que la pantalla quede completamente oscura.
+        setTimeout(() => {
+            window.location.href = destino;
+        }, 2200);
+    }
+
+    manualButton?.addEventListener("click", () => {
+        apagarLucesYEntrar("../templates/creador.html");
+    });
+
+    randomButton?.addEventListener("click", () => {
+        apagarLucesYEntrar("../templates/creador.html?modo=aleatorio");
+    });
 });
 </script>
+
 
 
 </body>
