@@ -55,7 +55,7 @@ El proyecto está publicado mediante **GitHub Pages**, por lo que puedes acceder
 
 Puedes visitar la página web para explorar su ambientación, acceder al creador de personajes y probar sus funcionalidades disponibles.
 
-**Enlace a la web:** [Cuentos de Cacería: Creación de Hoja]https://angelferrer200444-oss.github.io/Cuento-de-Caceria---Creacion-de-Hoja/
+**Enlace a la web:** https://angelferrer200444-oss.github.io/Cuento-de-Caceria---Creacion-de-Hoja/
 
 > **Nota:** algunas funciones pueden depender de la configuración del navegador y de las rutas de los archivos del proyecto.
 
