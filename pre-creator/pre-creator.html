@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Preparando personaje</title>
+
+    <link rel="stylesheet" href="pre-creator.css">
+    <link rel="icon" type="image/png" href="../static/images/icono.png">
+
+</head>
+<body>
+
+    <main class="pre-creator">
+
+        <iframe
+            class="pre-creator-background"
+            src="../fondo/index.html"
+            title="Fondo de árboles rojos"
+            aria-hidden="true"
+            tabindex="-1">
+        </iframe>
+
+
+        <div class="pre-creator-content">
+
+            <!-- Logo y título -->
+            <div class="pre-creator-brand">
+
+                <img
+                    src="../static/images/icono.png"
+                    alt="Logo"
+                    class="pre-creator-logo"
+                >
+
+                <img
+                    src="../static/images/titulo.png"
+                    alt="Título del creador"
+                    class="pre-creator-title"
+                >
+
+            </div>
+
+            <!-- Botones -->
+            <div class="pre-creator-buttons">
+
+                <button
+                    type="button"
+                    class="pre-creator-button"
+                    id="random-character"
+                >
+                    Generar personaje aleatorio
+                </button>
+
+                <button
+                    type="button"
+                    class="pre-creator-button"
+                    id="manual-character"
+                >
+                    Crear personaje manualmente
+                </button>
+
+            </div>
+
+        </div>
+
+        </div>
+
+        <div class="pre-creator-lights-out"></div>
+
+        <script>
+
+            document.addEventListener("DOMContentLoaded", () => {
+                const manualButton = document.getElementById("manual-character");
+                const screen = document.querySelector(".pre-creator");
+
+                if (!manualButton || !screen) return;
+
+                manualButton.addEventListener("click", () => {
+                    if (screen.classList.contains("lights-out")) return;
+
+                    screen.classList.add("lights-out");
+
+                    // Esperar a que la pantalla quede completamente oscura.
+                    setTimeout(() => {
+                        window.location.href = "../templates/creador.html";
+                    }, 2200);
+                });
+            });
+
+        </script>
+
+    </main>
+
+
+</body>
+</html>

@@ -161,7 +161,7 @@ createCharacterButton.addEventListener("click", () => {
     document.body.classList.add("navigating");
 
     window.setTimeout(() => {
-        window.location.href = "templates/creador.html";
+        window.location.href = "pre-creator/pre-creator.html";
     }, transitionDuration);
 });
 

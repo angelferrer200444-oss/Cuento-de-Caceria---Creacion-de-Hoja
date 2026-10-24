@@ -1,0 +1,453 @@
+/* ========================================
+   CONFIGURACIÓN GENERAL
+======================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+    background: #160609;
+}
+
+
+/* ========================================
+   PANTALLA PRINCIPAL
+======================================== */
+
+.pre-creator {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+    isolation: isolate;
+
+    background: #160609;
+}
+
+
+/* ========================================
+   FONDO ORIGINAL: LUNA Y ÁRBOLES
+======================================== */
+
+.pre-creator-background {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    pointer-events: none;
+}
+
+
+/* ========================================
+   CONTENIDO
+======================================== */
+
+.pre-creator-content {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+
+    width: 100%;
+    max-width: 850px;
+}
+
+
+/* ========================================
+   LOGO Y TÍTULO
+======================================== */
+
+.pre-creator-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+
+    width: 100%;
+}
+
+
+/* ========================================
+   LOGO
+   Aparece primero y después se desplaza
+======================================== */
+
+.pre-creator-logo {
+    display: block;
+    flex: 0 1 auto;
+    width: min(75vw, 340px);
+    max-width: 100%;
+    max-height: 40vh;
+    object-fit: contain;
+
+    opacity: 0;
+    transform: translateX(0) scale(1.12);
+    filter: blur(24px) brightness(1.5);
+
+    animation: logoSmoke 2.4s ease-out forwards;
+}
+
+@keyframes logoSmoke {
+    0% {
+        opacity: 0;
+        transform: translateX(0) scale(1.12);
+        filter: blur(24px) brightness(1.5);
+    }
+
+    35% {
+        opacity: 0.5;
+        filter: blur(14px) brightness(1.3);
+    }
+
+    65% {
+        opacity: 0.85;
+        filter: blur(5px) brightness(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(-12px) scale(0.78);
+        filter: blur(0) brightness(1);
+    }
+}
+
+
+@keyframes logoAppearAndMove {
+    0% {
+        opacity: 0;
+        transform: translateX(0) scale(0.92);
+        filter: blur(8px);
+    }
+
+    35% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(-12px) scale(0.78);
+        filter: blur(0);
+    }
+}
+
+
+/* ========================================
+   IMAGEN DEL TÍTULO
+   Aparece junto al logo
+======================================== */
+
+.pre-creator-title {
+    display: block;
+    flex: 0 1 auto;
+    width: min(48vw, 390px);
+    max-width: 100%;
+    max-height: 32vh;
+    object-fit: contain;
+
+    opacity: 0;
+    transform: translateX(20px) scale(1.08);
+    filter: blur(22px) brightness(1.5);
+
+    animation: titleSmoke 1.6s ease-out 1.2s forwards;
+}
+
+@keyframes titleSmoke {
+    0% {
+        opacity: 0;
+        transform: translateX(20px) scale(1.08);
+        filter: blur(22px) brightness(1.5);
+    }
+
+    40% {
+        opacity: 0.45;
+        filter: blur(13px) brightness(1.3);
+    }
+
+    75% {
+        opacity: 0.85;
+        filter: blur(4px) brightness(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        filter: blur(0) brightness(1);
+    }
+}
+
+
+@keyframes titleAppear {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* ========================================
+   CONTENEDOR DE BOTONES
+   Aparecen después del logo y el título
+======================================== */
+
+.pre-creator-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+
+    width: 100%;
+    max-width: 480px;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(18px);
+
+    animation: buttonsAppear 0.8s ease 2.7s forwards;
+}
+
+@keyframes buttonsAppear {
+    from {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+
+/* ========================================
+   ESTILO VISUAL DE LOS BOTONES
+======================================== */
+
+.pre-creator-button {
+    display: block;
+
+    width: 100%;
+    min-height: 54px;
+    padding: 14px 20px;
+
+    border: 1px solid #c4984f;
+    border-radius: 6px;
+
+    background: rgba(35, 12, 15, 0.92);
+    color: #efe3cf;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    font-weight: normal;
+    line-height: 1.4;
+    text-align: center;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* Hover */
+
+.pre-creator-button:hover {
+    background: #6e140f;
+    color: #ffffff;
+    border-color: #efe3cf;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Pulsación */
+
+.pre-creator-button:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Foco de teclado */
+
+.pre-creator-button:focus-visible {
+    outline: 2px solid #efe3cf;
+    outline-offset: 4px;
+}
+
+
+/* ========================================
+   MÓVILES
+======================================== */
+
+@media (max-width: 620px) {
+    .pre-creator {
+        padding: 20px;
+    }
+
+    .pre-creator-content {
+        gap: 26px;
+    }
+
+    .pre-creator-brand {
+        gap: 12px;
+    }
+
+    .pre-creator-logo {
+        width: 38vw;
+        max-height: 28vh;
+    }
+
+    .pre-creator-title {
+        width: 48vw;
+        max-height: 24vh;
+    }
+
+    .pre-creator-buttons {
+        gap: 12px;
+    }
+
+    .pre-creator-button {
+        min-height: 50px;
+        padding: 13px 14px;
+        font-size: 15px;
+    }
+}
+
+
+/* ========================================
+   PANTALLAS BAJAS / MÓVIL HORIZONTAL
+======================================== */
+
+@media (max-height: 500px) {
+    .pre-creator {
+        padding: 12px;
+    }
+
+    .pre-creator-content {
+        gap: 14px;
+    }
+
+    .pre-creator-brand {
+        gap: 12px;
+    }
+
+    .pre-creator-logo {
+        width: auto;
+        max-width: 35vw;
+        max-height: 24vh;
+    }
+
+    .pre-creator-title {
+        width: auto;
+        max-width: 40vw;
+        max-height: 20vh;
+    }
+
+    .pre-creator-buttons {
+        gap: 8px;
+    }
+
+    .pre-creator-button {
+        min-height: 42px;
+        padding: 9px 12px;
+        font-size: 14px;
+    }
+}
+
+
+/* ========================================
+   ACCESIBILIDAD
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .pre-creator-logo,
+    .pre-creator-title,
+    .pre-creator-buttons {
+        animation-duration: 0.01ms;
+        animation-delay: 0ms;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        filter: none;
+    }
+
+    .pre-creator-button {
+        transition: none;
+    }
+}
+
+/* Efecto de apagado de luces */
+.pre-creator-lights-out {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 2s ease;
+}
+
+.pre-creator.lights-out .pre-creator-lights-out {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Evitar interacción mientras se apaga la pantalla */
+.pre-creator.lights-out {
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pre-creator-lights-out {
+        transition-duration: 0.3s;
+    }
+}
