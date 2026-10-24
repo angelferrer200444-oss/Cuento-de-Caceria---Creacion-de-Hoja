@@ -557,23 +557,52 @@ function refreshCorruptionStatusControls() {
 }
 
 addCorruptionStatusButton.addEventListener("click", () => {
-  const number = corruptionStatusList.querySelectorAll("select").length + 1;
-  const entry = corruptionStatusList.querySelector(".corruption-status-entry").cloneNode(true);
+  const number = corruptionStatusList.querySelectorAll(
+    ".corruption-status-entry"
+  ).length + 1;
+
+  const original = corruptionStatusList.querySelector(
+    ".corruption-status-entry"
+  );
+
+  if (!original) return;
+
+  // Clonar la entrada original.
+  const entry = original.cloneNode(true);
+
+  // Eliminar el menú personalizado clonado y conservar el select.
+  entry.querySelectorAll(".custom-select").forEach((wrapper) => {
+    const select = wrapper.querySelector("select");
+
+    if (select) {
+      wrapper.parentNode.insertBefore(select, wrapper);
+    }
+
+    wrapper.remove();
+  });
+
   const select = entry.querySelector("select");
   const label = entry.querySelector("label");
 
+  // Asignar un identificador nuevo.
   select.id = `corruption-status-${number}`;
   label.htmlFor = select.id;
   label.textContent = `Estado ${number}`;
+
+  // Reiniciar el select.
   select.required = false;
-  select.value = "";
-  const existingButton = entry.querySelector(".remove-trait");
-  if (existingButton) {
-    existingButton.remove();
-  }
+  select.selectedIndex = 0;
+
+  // Eliminar cualquier botón de eliminación heredado.
+  entry.querySelectorAll(".remove-trait").forEach((button) => {
+    button.remove();
+  });
+
   corruptionStatusList.appendChild(entry);
+
   refreshCorruptionStatusControls();
 });
+
 
 refreshCorruptionStatusControls();
 corruptionPoints.addEventListener("input", updateCorruptionLevel);

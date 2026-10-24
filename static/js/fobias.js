@@ -56,21 +56,55 @@ document.querySelectorAll(".phobia-entry").forEach(bindPhobia);
 
 document.querySelector("#add-phobia").addEventListener("click", () => {
   const list = document.querySelector("#phobias-list");
-  const entry = list.querySelector(".phobia-entry").cloneNode(true);
+  const original = list.querySelector(".phobia-entry");
+
+  if (!original) return;
+
+  // Clonar la entrada de fobia.
+  const entry = original.cloneNode(true);
   const number = list.querySelectorAll(".phobia-entry").length + 1;
 
+  // Quitar la interfaz personalizada clonada.
+  entry.querySelectorAll(".custom-select").forEach((wrapper) => {
+    const select = wrapper.querySelector("select");
+
+    if (select) {
+      wrapper.parentNode.insertBefore(select, wrapper);
+    }
+
+    wrapper.remove();
+  });
+
+  // Actualizar los identificadores.
   entry.querySelectorAll("[id]").forEach((field) => {
     field.id = field.id.replace(/-\d+$/, `-${number}`);
   });
+
   entry.querySelectorAll("[for]").forEach((label) => {
     label.htmlFor = label.htmlFor.replace(/-\d+$/, `-${number}`);
   });
+
+  // Limpiar campos.
   entry.querySelectorAll("input, textarea").forEach((field) => {
     field.value = "";
   });
-  entry.querySelector("select").value = "";
-  entry.querySelector("[id^='zoophobia-type-field-']").hidden = true;
+
+  const select = entry.querySelector("select");
+
+  if (select) {
+    select.value = "";
+  }
+
+  const zoophobiaField = entry.querySelector(
+    "[id^='zoophobia-type-field-']"
+  );
+
+  if (zoophobiaField) {
+    zoophobiaField.hidden = true;
+  }
 
   list.appendChild(entry);
+
+  // Registrar el comportamiento de la nueva fobia.
   bindPhobia(entry);
 });
