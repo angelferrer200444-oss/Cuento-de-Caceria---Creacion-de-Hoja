@@ -309,9 +309,16 @@ body.portada-final .contenido {
     }
 
     body.portada-final {
-        background-image: url("../images/porta2_movil.jpg");
+        background-image:
+            linear-gradient(
+                rgba(239, 227, 207, 0.45),
+                rgba(239, 227, 207, 0.45)
+            ),
+            url("../images/porta2_movil.jpg");
+
         background-position: left center;
     }
+
 
     .final-actions {
         width: min(320px, 100%);
