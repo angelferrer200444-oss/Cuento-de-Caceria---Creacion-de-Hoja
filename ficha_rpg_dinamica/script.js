@@ -69,30 +69,45 @@ function waitForImages(root) {
 }
 
 async function exportSheet(type) {
+  if (type === "pdf") {
+    await document.fonts.ready;
+    await waitForImages(sheet);
+    window.print();
+    return;
+  }
+
   if (typeof html2canvas !== "function") {
     alert("No se pudo cargar el exportador. Comprueba tu conexión a Internet e inténtalo de nuevo.");
     return;
   }
+
   await document.fonts.ready;
   await waitForImages(sheet);
+
   const canvas = await html2canvas(sheet, {
     scale: 2,
     backgroundColor: "#f7f5f2",
     useCORS: true,
     logging: false,
-    windowWidth: Math.max(document.documentElement.clientWidth, sheet.scrollWidth)
+    windowWidth: Math.max(
+      document.documentElement.clientWidth,
+      sheet.scrollWidth
+    )
   });
-  const mime = type === "jpg" ? "image/jpeg" : "image/png";
-  const url = canvas.toDataURL(mime, type === "jpg" ? 0.94 : undefined);
+
+  const url = canvas.toDataURL("image/png");
   const link = document.createElement("a");
-  link.download = `ficha-personaje.${type}`;
+
+  link.download = "ficha-personaje.png";
   link.href = url;
   link.click();
   URL.revokeObjectURL(url);
 }
 
+
 document.getElementById("downloadPng").addEventListener("click", () => exportSheet("png"));
-document.getElementById("downloadJpg").addEventListener("click", () => exportSheet("jpg"));
+document.getElementById("downloadPdf").addEventListener("click", () => exportSheet("pdf"));
+
 
 document.getElementById("clearBtn").addEventListener("click", () => {
   if (!confirm("¿Quieres borrar todo el contenido de la ficha?")) return;
