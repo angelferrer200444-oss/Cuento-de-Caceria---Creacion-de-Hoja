@@ -11,6 +11,37 @@
   const randomOptionValue = "__random__";
   let activeStep = 0;
 
+  const modoAleatorio = new URLSearchParams(window.location.search)
+  .get("modo") === "aleatorio";
+
+function elegirOpcionAleatoria(selector) {
+  const select = document.querySelector(selector);
+
+  if (!select) {
+    console.warn(`No se encontró el selector: ${selector}`);
+    return false;
+  }
+
+  const opciones = Array.from(select.options).filter(option =>
+    option.value.trim() &&
+    option.value !== randomOptionValue &&
+    !option.disabled
+  );
+
+  if (!opciones.length) {
+    console.warn(`No hay opciones disponibles para: ${selector}`);
+    return false;
+  }
+
+  const opcion = opciones[Math.floor(Math.random() * opciones.length)];
+
+  select.value = opcion.value;
+  select.dispatchEvent(new Event("change", { bubbles: true }));
+
+  return true;
+}
+
+
   let dadosOverlay = null;
   let dadosFrame = null;
   let dadosEnAnimacion = false;
@@ -348,8 +379,11 @@
     progressFill.style.width = `${((activeStep + 1) / steps.length) * 100}%`;
     previousButton.disabled = activeStep === 0;
     previousButton.style.visibility = activeStep === 0 ? "hidden" : "visible";
-    nextButton.textContent = activeStep === steps.length - 1 ? "Revisar hoja" : "Continuar";
+    nextButton.textContent = "Continuar";
+    nextButton.hidden = activeStep === steps.length - 1;
+
     formActions.classList.toggle("visible", activeStep === steps.length - 1);
+
   }
 
   function currentStepIsValid() {
@@ -507,5 +541,24 @@
     saveCharacterSheet();
   });
 
+if (modoAleatorio) {
+  requestAnimationFrame(() => {
+    const arquetipoElegido = elegirOpcionAleatoria("#archetype");
+    const oficioElegido = elegirOpcionAleatoria("#occupation");
+    const fobiaElegida = elegirOpcionAleatoria("#phobia-1");
+
+    if (arquetipoElegido && oficioElegido && fobiaElegida) {
+      activeStep = 6;
+    }
+
+    updateStep();
+
+    if (activeStep === 6) {
+      document.querySelector("#character-name")?.focus();
+    }
+  });
+} else {
   updateStep();
+}
 })();
+
