@@ -1285,4 +1285,57 @@ main {
   pointer-events: none;
 }
 
+.creator-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 12px;
+    position: relative;
+    left: -50px;
+}
+
+
+.creator-logo {
+    display: block;
+    width: clamp(65px, 10vw, 110px);
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.creator-brand h1 {
+    margin-bottom: 0;
+    text-align: left;
+}
+
+@media (max-width: 620px) {
+    .creator-heading {
+        width: 100%;
+        text-align: center;
+    }
+
+    .eyebrow {
+        text-align: center;
+        position: static;
+        left: auto;
+    }
+
+    .creator-brand {
+        gap: 12px;
+        left: 0;
+    }
+
+    .creator-logo {
+        width: clamp(50px, 16vw, 75px);
+    }
+
+    .creator-brand h1 {
+        font-size: clamp(22px, 6vw, 32px);
+        text-align: center;
+    }
+}
+
 
