@@ -178,20 +178,41 @@ async function captureSheet() {
   });
 }
 
+function obtenerNombreArchivo() {
+    const campoNombre = document.querySelector(
+        '[data-field="nombre"]'
+    );
+
+    const nombrePersonaje = (
+        campoNombre?.innerText ||
+        campoNombre?.textContent ||
+        ""
+    ).trim();
+
+    const nombreSeguro = nombrePersonaje
+        .replace(/[<>:"/\\|?*\x00-\x1F]/g, "")
+        .replace(/\s+/g, " ")
+        .replace(/[. ]+$/g, "")
+        .slice(0, 100);
+
+    return `${nombreSeguro || "Personaje"} - Hoja de personaje`;
+}
+
+
+
 // =========================================
 // DESCARGAR PNG
 // =========================================
 
 function downloadImage(canvas) {
-  const link = document.createElement("a");
+    const link = document.createElement("a");
 
-  link.download = "ficha-personaje.png";
-  link.href = canvas.toDataURL("image/png");
+    link.download = `${obtenerNombreArchivo()}.png`;
+    link.href = canvas.toDataURL("image/png");
 
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
+    link.click();
 }
+
 
 // =========================================
 // CONVERTIR LA CAPTURA A PDF
@@ -295,10 +316,7 @@ function downloadPDF(canvas) {
         "FAST"
     );
 
-    const nombreArchivo =
-        formato === "1"
-            ? "ficha-personaje-A4.pdf"
-            : "ficha-personaje-tamano-real.pdf";
+    const nombreArchivo = `${obtenerNombreArchivo()}.pdf`;
 
     pdf.save(nombreArchivo);
 }
