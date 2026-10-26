@@ -1,11 +1,11 @@
-# 🌙 Cuentos de Cacería: Creación de Hoja
+# 🌑 Cuentos de Cacería: Creación de Hoja
 
 <p align="center">
   <img src="static/images/propuesta%201_compressed_page-0001.jpg" alt="Propuesta visual de Cuentos de Cacería" width="100%">
 </p>
 
 <p align="center">
-  <strong>🕯️ Cada cazador tiene una historia. Cada historia esconde un misterio.</strong>
+  <strong>🐺 Cada cazador tiene una historia. Cada historia esconde un misterio.</strong>
 </p>
 
 <p align="center">
