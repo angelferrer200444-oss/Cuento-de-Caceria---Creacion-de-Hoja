@@ -65,9 +65,9 @@ body { margin: 0; color: var(--ink); font-family: "Cinzel", Georgia, serif; }
 .sheet {
   --sheet-width: 1024px;
 
-  width: min(1024px, 100%);
-  min-width: 0;
-  max-width: 1024px;
+  width: 1024px;
+  min-width: 1024px;
+  max-width: none;
   margin: 0 auto;
   padding: 24px 22px 28px;
 
