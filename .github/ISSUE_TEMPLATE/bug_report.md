@@ -1,10 +1,11 @@
 ---
-name: 🐛 Reportar un error
-about: Informa de un problema en Cuentos de Cacería: Creación de Hoja
+name: "🐛 Reportar un error"
+about: "Informa de un problema en Cuentos de Cacería: Creación de Hoja"
 title: "[Error] "
 labels: bug
-assignees: ''
+assignees: ""
 ---
+
 
 ## Descripción del error
 
