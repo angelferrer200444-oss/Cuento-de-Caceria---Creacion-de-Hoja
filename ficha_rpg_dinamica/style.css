@@ -256,12 +256,7 @@ body { margin: 0; color: var(--ink); font-family: "Cinzel", Georgia, serif; }
 .final-row .panel { min-height:115px; }
 .final-row .combined-panel { min-height:115px; }
 
-@media print {
-  .toolbar,.portrait-upload { display:none!important; }
-  html,body { background:white; }
-  .sheet-wrap { padding:0; }
-  .sheet { width:100%; min-width:0; box-shadow:none; }
-}
+
 
 /* Cuento de origen: de esquina a esquina */
 .origin-panel {
@@ -309,75 +304,4 @@ body { margin: 0; color: var(--ink); font-family: "Cinzel", Georgia, serif; }
 /* Ajuste específico para los paneles pequeños de atributos */
 .attributes-row .attribute-content {
   margin-left: -42px;
-}
-
-/* Conservar los colores al imprimir o guardar como PDF */
-@media print {
-  @page {
-    size: A4 portrait;
-    margin: 8mm;
-  }
-
-  html,
-  body {
-    margin: 0 !important;
-    padding: 0 !important;
-    background: white !important;
-  }
-
-  .toolbar,
-  .portrait-upload {
-    display: none !important;
-  }
-
-  .sheet-wrap {
-    width: 100% !important;
-    padding: 0 !important;
-    overflow: visible !important;
-  }
-
-  .sheet {
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: none !important;
-    margin: 0 !important;
-    padding: 5mm !important;
-    box-shadow: none !important;
-  }
-
-  /* Evitar cortes dentro de bloques importantes */
-  .identity,
-  .identity-field,
-  .frame,
-  .panel,
-  .emblem-panel,
-  .description-panel,
-  .combined-panel,
-  .stat-panel,
-  .attribute,
-  .points-panel,
-  .list-panel,
-  .rupture-panel,
-  .origin-panel {
-    break-inside: avoid !important;
-    page-break-inside: avoid !important;
-  }
-
-  /* Permitir que las filas completas continúen en otra página
-     si no caben, en lugar de forzar toda la hoja a una página. */
-  .overview,
-  .stats-row,
-  .attributes-row,
-  .wide-row,
-  .triple-row {
-    break-inside: auto;
-    page-break-inside: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
 }
