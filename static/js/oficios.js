@@ -56,6 +56,19 @@ const occupations = {
 };
 
 const occupationSelect = document.querySelector("#occupation");
+const occupationIllustrationContainer = document.querySelector("#occupation-illustration");
+const occupationIllustration = document.querySelector("#occupation-illustration img");
+const occupationIllustrations = {
+  "cazadores-lobos": "Cazadores de lobos.svg",
+  "cazador-brujas": "Cazador de Brujas.svg",
+  "comerciante": "Comerciante.svg",
+  "ocultista": "Ocultista.svg",
+  "mercenario": "Mercenario.svg",
+  "apostol": "Apostol.svg",
+  "alquimista": "Alquimista.svg",
+  "guardia-real": "Guardia Real.svg",
+  "pirata": "Pirata.svg"
+};
 const characteristicPoints = document.querySelector("#characteristic-points");
 const abilityError = document.querySelector("#ability-error");
 const abilityErrorMessage = document.querySelector("#ability-error-message");
@@ -196,7 +209,11 @@ function renderOccupationEquipment() {
 function fillOccupation() {
   const occupation = occupations[occupationSelect.value];
   const description = document.querySelector("#occupation-description");
+  const illustration = occupationIllustrations[occupationSelect.value];
 
+  occupationIllustrationContainer.hidden = !illustration;
+  occupationIllustration.src = illustration ? `../static/images/svg/${illustration}` : "";
+  occupationIllustration.alt = occupation ? `Ilustraci&oacute;n de ${occupationSelect.selectedOptions[0].textContent}` : "";
   description.value = occupation ? decodeHtml(occupation.description) : "";
   selectedOccupationAbilities = occupation ? [""] : [];
   selectedOccupationAbilities.options = occupation ? parseList(occupation.abilities) : [];

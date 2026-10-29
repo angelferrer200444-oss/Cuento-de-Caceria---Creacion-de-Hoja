@@ -130,6 +130,20 @@ const archetypes = {
 };
 
 const archetypeSelect = document.querySelector("#archetype");
+const archetypeIllustrationContainer = document.querySelector("#archetype-illustration");
+const archetypeIllustration = document.querySelector("#archetype-illustration img");
+const archetypeIllustrations = {
+  "licantropo": "licantropo.svg",
+  "ninos-perdidos": "Los niños perdidos.svg",
+  "brujeria": "Brujeria.svg",
+  "automata": "Automata.svg",
+  "linaje-maldito": "Linaje maldito.svg",
+  "heroico": "Heroico.svg",
+  "ogro": "Ogro.svg",
+  "sonador": "Soñador.svg",
+  "animal-astuto": "Animal astuto.svg",
+  "feerico": "Feerico.svg"
+};
 const fields = {
   description: document.querySelector("#archetype-description"),
   lockedAbility: document.querySelector("#locked-ability"),
@@ -468,7 +482,11 @@ function fillArchetype() {
   const specialDescriptionField = document.querySelector("#special-description-field");
   const imaginaryFriendDescriptionField = document.querySelector("#imaginary-friend-description-field");
   const pocketDimensionDescriptionField = document.querySelector("#pocket-dimension-description-field");
+  const illustration = archetypeIllustrations[archetypeSelect.value];
 
+  archetypeIllustrationContainer.hidden = !illustration;
+  archetypeIllustration.src = illustration ? `../static/images/svg/${illustration}` : "";
+  archetypeIllustration.alt = archetype ? `Ilustraci&oacute;n de ${archetypeSelect.selectedOptions[0].textContent}` : "";
   Object.keys(fields).forEach((field) => {
     fields[field].value = archetype ? decodeHtml(archetype[field] || "") : "";
   });

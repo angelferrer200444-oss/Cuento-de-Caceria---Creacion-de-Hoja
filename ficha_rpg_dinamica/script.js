@@ -47,6 +47,83 @@ function loadCharacterSheet() {
 }
 
 // =========================================
+// ICONOS SVG DEL ARQUETIPO Y DEL OFICIO
+// =========================================
+
+const iconosPersonaje = {
+  "alquimista": "Alquimista.svg",
+  "animal astuto": "Animal astuto.svg",
+  "apostol": "Apostol.svg",
+  "automata": "Automata.svg",
+  "brujeria": "Brujeria.svg",
+  "cazador de brujas": "Cazador de Brujas.svg",
+  "cazadores de lobos": "Cazadores de lobos.svg",
+  "comerciante": "Comerciante.svg",
+  "feerico": "Feerico.svg",
+  "guardia real": "Guardia Real.svg",
+  "heroico": "Heroico.svg",
+  "licantropo": "licantropo.svg",
+  "linaje maldito": "Linaje maldito.svg",
+  "los ninos perdidos": "Los niños perdidos.svg",
+  "mercenario": "Mercenario.svg",
+  "ocultista": "Ocultista.svg",
+  "ogro": "Ogro.svg",
+  "pirata": "Pirata.svg",
+  "sonador": "Soñador.svg"
+};
+
+// Normaliza los nombres para ignorar mayúsculas y tildes.
+function normalizarNombreIcono(nombre) {
+  return nombre
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+// Actualiza la imagen de un arquetipo o un oficio.
+function actualizarIcono(campo, idImagen) {
+  const imagen = document.getElementById(idImagen);
+  if (!imagen) return;
+
+  const nombre = normalizarNombreIcono(campo);
+  const archivo = iconosPersonaje[nombre];
+
+  if (!archivo) {
+    imagen.hidden = true;
+    imagen.removeAttribute("src");
+    return;
+  }
+
+  imagen.onerror = () => {
+    imagen.hidden = true;
+    console.error("No se pudo cargar el icono:", archivo);
+  };
+
+  imagen.onload = () => {
+    imagen.hidden = false;
+  };
+
+  imagen.hidden = true;
+  imagen.src = `../static/images/svg/${encodeURIComponent(archivo)}`;
+}
+
+// Lee los nombres que ya están escritos en la ficha.
+function actualizarIconosPersonaje() {
+  const arquetipo = document.querySelector(
+    '[data-field="arquetipo"]'
+  );
+
+  const oficio = document.querySelector(
+    '[data-field="oficio"]'
+  );
+
+  actualizarIcono(arquetipo?.textContent || "", "archetypeIcon");
+  actualizarIcono(oficio?.textContent || "", "occupationIcon");
+}
+
+
+// =========================================
 // AJUSTAR LOS CAMPOS AL CONTENIDO
 // =========================================
 
@@ -393,4 +470,15 @@ document.getElementById("clearBtn").addEventListener("click", () => {
 // =========================================
 
 loadCharacterSheet();
+actualizarIconosPersonaje();
 fitSheetToContent();
+
+// Si se cambia el nombre manualmente en la ficha,
+// actualizar también el icono correspondiente.
+document
+  .querySelector('[data-field="arquetipo"]')
+  ?.addEventListener("input", actualizarIconosPersonaje);
+
+document
+  .querySelector('[data-field="oficio"]')
+  ?.addEventListener("input", actualizarIconosPersonaje);

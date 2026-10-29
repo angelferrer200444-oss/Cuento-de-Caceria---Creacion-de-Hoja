@@ -76,27 +76,33 @@
 
         <p>El Arquetipo define la identidad, los rasgos, las habilidades y la resistencia mental y f&iacute;sica del personaje.</p>
 
-        <p>
-          <label for="archetype">Arquetipo</label>
-          <select id="archetype" name="archetype" required>
-            <option value="">Selecciona un Arquetipo</option>
-            <option value="licantropo">Lic&aacute;ntropo</option>
-            <option value="ninos-perdidos">Los Ni&ntilde;os Perdidos</option>
-            <option value="brujeria">Brujer&iacute;a</option>
-            <option value="automata">Aut&oacute;mata</option>
-            <option value="linaje-maldito">Linaje Maldito</option>
-            <option value="heroico">Heroico</option>
-            <option value="ogro">Ogro</option>
-            <option value="sonador">So&ntilde;ador</option>
-            <option value="animal-astuto">Animal Astuto</option>
-            <option value="feerico">Fe&eacute;rico</option>
-          </select>
-        </p>
+        <div class="selection-overview">
+          <p>
+            <label for="archetype">Arquetipo</label>
+            <select id="archetype" name="archetype" required>
+              <option value="">Selecciona un Arquetipo</option>
+              <option value="licantropo">Lic&aacute;ntropo</option>
+              <option value="ninos-perdidos">Los Ni&ntilde;os Perdidos</option>
+              <option value="brujeria">Brujer&iacute;a</option>
+              <option value="automata">Aut&oacute;mata</option>
+              <option value="linaje-maldito">Linaje Maldito</option>
+              <option value="heroico">Heroico</option>
+              <option value="ogro">Ogro</option>
+              <option value="sonador">So&ntilde;ador</option>
+              <option value="animal-astuto">Animal Astuto</option>
+              <option value="feerico">Fe&eacute;rico</option>
+            </select>
+          </p>
 
-        <p>
-          <label for="archetype-description">Descripci&oacute;n del Arquetipo</label><br>
-          <textarea id="archetype-description" name="archetype_description" rows="5" cols="60"></textarea>
-        </p>
+          <p>
+            <label for="archetype-description">Descripci&oacute;n del Arquetipo</label><br>
+            <textarea id="archetype-description" name="archetype_description" rows="5" cols="60"></textarea>
+          </p>
+
+          <figure class="selection-illustration" id="archetype-illustration" aria-hidden="true" hidden>
+            <img alt="">
+          </figure>
+        </div>
 
         <h2>Habilidades del Arquetipo</h2>
         <p>
@@ -214,26 +220,32 @@
 
         <p>El oficio proporcionar&aacute; al personaje una Descripci&oacute;n adicional que se suma a los Rasgos del Arquetipo y ayuda a definir mejor qui&eacute;n es el personaje y c&oacute;mo act&uacute;a en la historia. El jugador puede interpretar libremente la Descripci&oacute;n de su Oficio para obtener ventajas narrativas, siempre que el Narrador lo considere adecuado.</p>
 
-        <p>
-          <label for="occupation">Oficio</label>
-          <select id="occupation" name="occupation" required>
-            <option value="">Selecciona un Oficio</option>
-            <option value="cazadores-lobos">Cazadores de lobos</option>
-            <option value="cazador-brujas">Cazador de brujas</option>
-            <option value="comerciante">Comerciante</option>
-            <option value="ocultista">Ocultista</option>
-            <option value="mercenario">Mercenario</option>
-            <option value="apostol">Ap&oacute;stol</option>
-            <option value="alquimista">Alquimista</option>
-            <option value="guardia-real">Guardia Real</option>
-            <option value="pirata">Pirata</option>
-          </select>
-        </p>
+        <div class="selection-overview">
+          <p>
+            <label for="occupation">Oficio</label>
+            <select id="occupation" name="occupation" required>
+              <option value="">Selecciona un Oficio</option>
+              <option value="cazadores-lobos">Cazadores de lobos</option>
+              <option value="cazador-brujas">Cazador de brujas</option>
+              <option value="comerciante">Comerciante</option>
+              <option value="ocultista">Ocultista</option>
+              <option value="mercenario">Mercenario</option>
+              <option value="apostol">Ap&oacute;stol</option>
+              <option value="alquimista">Alquimista</option>
+              <option value="guardia-real">Guardia Real</option>
+              <option value="pirata">Pirata</option>
+            </select>
+          </p>
 
-        <p>
-          <label for="occupation-description">Descripci&oacute;n del Oficio</label><br>
-          <textarea id="occupation-description" name="occupation_description" rows="5" cols="60"></textarea>
-        </p>
+          <p>
+            <label for="occupation-description">Descripci&oacute;n del Oficio</label><br>
+            <textarea id="occupation-description" name="occupation_description" rows="5" cols="60"></textarea>
+          </p>
+
+          <figure class="selection-illustration" id="occupation-illustration" aria-hidden="true" hidden>
+            <img alt="">
+          </figure>
+        </div>
 
         <p>
           <label for="characteristic-points">Puntos de Caracter&iacute;stica disponibles</label>
@@ -462,4 +474,3 @@
     tabindex="-1"
   ></iframe>
 </div>
-

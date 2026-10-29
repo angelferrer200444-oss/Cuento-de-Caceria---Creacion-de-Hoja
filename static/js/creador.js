@@ -562,3 +562,166 @@ if (modoAleatorio) {
 }
 })();
 
+const archetypeStep = document
+  .querySelector("#archetype-illustration")
+  ?.closest(".creator-step");
+
+const archetypeFigure = document.querySelector("#archetype-illustration");
+
+const occupationStep = document
+  .querySelector("#occupation-illustration")
+  ?.closest(".creator-step");
+
+const occupationFigure = document.querySelector("#occupation-illustration");
+
+function updateIllustrationsScroll() {
+  const isMobile = window.matchMedia("(max-width: 620px)").matches;
+
+  const archetypeIsActive =
+    isMobile &&
+    archetypeStep?.classList.contains("active");
+
+  const occupationIsActive =
+    isMobile &&
+    occupationStep?.classList.contains("active");
+
+  archetypeFigure?.classList.toggle(
+    "follow-scroll",
+    Boolean(archetypeIsActive)
+  );
+
+  occupationFigure?.classList.toggle(
+    "follow-scroll",
+    Boolean(occupationIsActive)
+  );
+}
+
+updateIllustrationsScroll();
+
+window.addEventListener("resize", updateIllustrationsScroll);
+
+document.querySelectorAll("#next-step, #previous-step").forEach((button) => {
+  button.addEventListener("click", () => {
+    requestAnimationFrame(updateIllustrationsScroll);
+  });
+});
+
+(() => {
+  const archetypeSelect = document.querySelector("#archetype");
+  const archetypeStep = archetypeSelect?.closest(".creator-step");
+
+  if (!archetypeSelect || !archetypeStep) return;
+
+  const overview = archetypeStep.querySelector(".selection-overview");
+
+  function updateArchetypeDetails() {
+    const hasSelection = Boolean(archetypeSelect.value);
+
+    archetypeStep.querySelectorAll(
+      ":scope > h2, :scope > p, :scope > .selection-overview"
+    ).forEach((element) => {
+      // Conservar el selector y la ilustración visibles.
+      if (element === overview) {
+        const description = element.querySelector(
+          'p:has(#archetype-description)'
+        );
+
+        if (description) {
+          description.hidden = !hasSelection;
+        }
+
+        return;
+      }
+
+      if (
+  element.querySelector("#archetype") ||
+  element.querySelector("#archetype-illustration")
+) {
+  return;
+}
+
+      // Estos campos tienen su propia lógica de visibilidad
+      // en arquetipos.js. No debemos modificarlos aquí.
+      if (
+        element.id === "special-description-field" ||
+        element.id === "imaginary-friend-description-field" ||
+        element.id === "pocket-dimension-description-field"
+      ) {
+        return;
+      }
+
+      element.hidden = !hasSelection;
+
+    });
+  }
+
+  archetypeSelect.addEventListener("change", updateArchetypeDetails);
+  updateArchetypeDetails();
+})();
+
+(() => {
+    const archetypeSelect = document.querySelector("#archetype");
+    const archetypeStep = archetypeSelect?.closest(".creator-step");
+
+    if (!archetypeSelect || !archetypeStep) return;
+
+    function updateArchetypeLayout() {
+        archetypeStep.classList.toggle(
+            "archetype-unselected",
+            !archetypeSelect.value.trim()
+        );
+    }
+
+    archetypeSelect.addEventListener("change", updateArchetypeLayout);
+
+    // Aplicar el diseño correcto al abrir el creador
+    updateArchetypeLayout();
+})();
+
+(() => {
+    const occupationSelect = document.querySelector("#occupation");
+    const occupationStep = occupationSelect?.closest(".creator-step");
+
+    if (!occupationSelect || !occupationStep) return;
+
+    const occupationDescription = document.querySelector("#occupation-description");
+    const descriptionContainer = occupationDescription?.closest("p");
+    const overview = occupationSelect.closest(".selection-overview");
+
+    // Contenedores que aparecen después del selector de oficio
+    const children = Array.from(occupationStep.children);
+    const overviewIndex = children.indexOf(overview);
+    const followingContainers = children.slice(overviewIndex + 1);
+
+    function updateOccupationLayout() {
+        // La primera opción debe ser "Selecciona un Oficio"
+        const hasOccupation =
+            occupationSelect.selectedIndex > 0 &&
+            occupationSelect.value.trim() !== "";
+
+        // Ajustar el diseño inicial
+        occupationStep.classList.toggle(
+            "occupation-unselected",
+            !hasOccupation
+        );
+
+        // Ocultar o mostrar la descripción
+        if (descriptionContainer) {
+            descriptionContainer.hidden = !hasOccupation;
+        }
+
+        // Ocultar o mostrar el resto de la información del oficio
+        followingContainers.forEach(container => {
+            container.classList.toggle(
+                "progressive-hidden",
+                !hasOccupation
+            );
+        });
+    }
+
+    occupationSelect.addEventListener("change", updateOccupationLayout);
+    occupationSelect.addEventListener("input", updateOccupationLayout);
+
+    // Aplicar el estado correcto al abrir el creador
+    updateOccupationLayout();
+})();

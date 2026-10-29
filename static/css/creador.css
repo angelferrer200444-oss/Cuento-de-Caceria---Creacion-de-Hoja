@@ -179,6 +179,34 @@ fieldset > p:first-of-type {
   line-height: 1.7;
 }
 
+.selection-overview {
+  min-height: 360px;
+  padding-right: 300px;
+  position: relative;
+}
+
+.selection-illustration {
+  height: 390px;
+  margin: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 270px;
+  z-index: 0;
+}
+
+.selection-illustration img {
+  height: 100%;
+  object-fit: contain;
+  opacity: .8;
+  width: 100%;
+}
+
+.selection-overview > p {
+  position: relative;
+}
+
 h2 {
   color: #8f001b;
   font-size: 22px;
@@ -1218,6 +1246,27 @@ button:focus-visible {
     width: 30vw;
   }
 
+  .selection-overview {
+    min-height: 0;
+    padding-right: 0;
+  }
+
+  .selection-illustration {
+    height: 100%;
+    inset: 0;
+    width: 100%;
+  }
+
+  .selection-illustration img {
+    opacity: .1;
+  }
+
+  #occupation-illustration.follow-scroll,
+  #archetype-illustration.follow-scroll {
+    position: fixed;
+  }
+
+
   #sanity-limit-list > span {
     align-items: stretch;
     flex-direction: column;
@@ -1336,6 +1385,72 @@ main {
         font-size: clamp(22px, 6vw, 32px);
         text-align: center;
     }
+
 }
 
+/* Paso 1: ocultar los detalles hasta elegir un arquetipo */
+#archetype-step-details {
+  display: none;
+}
+
+#archetype-step-details.show {
+  display: block;
+}
+
+/* Paso 1: estado inicial, antes de elegir un arquetipo */
+.creator-step.archetype-unselected .selection-overview {
+    min-height: 0;
+    padding-right: 0;
+}
+
+.creator-step.archetype-unselected #archetype-illustration {
+    display: none !important;
+}
+
+/* El selector ocupa todo el ancho disponible */
+.creator-step.archetype-unselected #archetype {
+    width: 100%;
+}
+
+/* Reduce el espacio inferior antes de los botones */
+.creator-step.archetype-unselected {
+    padding-bottom: 12px;
+}
+
+.creator-step.archetype-unselected #form-actions {
+    margin-top: 8px;
+    padding-top: 0;
+}
+
+/* Paso 2: estado inicial, antes de elegir un oficio */
+.creator-step.occupation-unselected .selection-overview {
+    min-height: 0;
+    padding-right: 0;
+}
+
+.creator-step.occupation-unselected #occupation-illustration {
+    display: none !important;
+}
+
+/* El selector de oficio ocupa todo el ancho disponible */
+.creator-step.occupation-unselected #occupation {
+    width: 100%;
+}
+
+/* Reduce el espacio inferior antes de los botones */
+.creator-step.occupation-unselected {
+    padding-bottom: 12px;
+}
+
+.creator-step.occupation-unselected #form-actions {
+    margin-top: 8px;
+    padding-top: 0;
+}
+
+/* Bajar los títulos de las descripciones */
+label[for="archetype-description"],
+label[for="occupation-description"] {
+    display: inline-block;
+    margin-top: 15px;
+}
 
