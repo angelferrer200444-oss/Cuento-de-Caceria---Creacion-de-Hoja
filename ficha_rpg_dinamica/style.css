@@ -137,12 +137,79 @@ body { margin: 0; color: var(--ink); font-family: "Cinzel", Georgia, serif; }
 .rupture-panel .panel-title { clip-path:none; }
 .panel-title.centered { text-align:center; font-size:17px; padding-top:6px; }
 
-.emblem-panel { min-height:218px; display:flex; flex-direction:column; align-items:stretch; }
+.emblem-panel {
+  min-height: 218px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
 
-.emblem { border:3px double var(--line); border-radius:50%; width:126px; height:126px; margin:8px auto 5px; display:grid;place-items:center;color:var(--line);font-size:68px; font-family:Georgia,serif; position:relative; }
-.eye-emblem::before { content:"";position:absolute;inset:12px;border:1px solid var(--line);border-radius:50%; }
-.crossed { font-size:76px; }
-.name-plaque { margin:0 18px 6px; min-height:28px; border:1px solid var(--line); text-align:center; padding:4px; background:#fff5; position:relative; overflow:hidden; overflow-wrap:anywhere; }
+/* Zona del icono: sin círculo y con más espacio */
+.emblem {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+
+  width: 100%;
+  height: 145px;
+  margin: 8px auto 5px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  overflow: visible;
+  color: var(--line);
+}
+
+/* Eliminar el círculo interior decorativo */
+.eye-emblem::before {
+  content: none;
+}
+
+/* Iconos SVG grandes y centrados */
+.emblem-image,
+#archetypeIcon,
+#occupationIcon {
+  display: block;
+  position: static;
+  transform: none;
+
+  width: 145px;
+  height: 145px;
+  max-width: none;
+  max-height: none;
+
+  object-fit: contain;
+  object-position: center;
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
+/* Ocultar los iconos que todavía no se hayan cargado */
+.emblem-image[hidden] {
+  display: none;
+}
+
+.crossed {
+  font-size: 76px;
+}
+
+.name-plaque {
+  margin: 0 18px 6px;
+  min-height: 28px;
+  border: 1px solid var(--line);
+  text-align: center;
+  padding: 4px;
+  background: #fff5;
+  position: relative;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
 .name-plaque::before,.name-plaque::after { content:"";position:absolute;top:5px;width:12px;height:15px;border:1px solid var(--line);background:var(--paper); }
 .name-plaque::before {left:-7px;transform:skewY(-28deg)} .name-plaque::after {right:-7px;transform:skewY(28deg)}
 .description-panel { min-height:218px; padding:12px 10px 8px; }
@@ -304,4 +371,108 @@ body { margin: 0; color: var(--ink); font-family: "Cinzel", Georgia, serif; }
 /* Ajuste específico para los paneles pequeños de atributos */
 .attributes-row .attribute-content {
   margin-left: -42px;
+}
+
+.emblem-image {
+  display: block;
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  margin: auto;
+}
+
+/* El icono del oficio ocupa más espacio */
+#occupationIcon {
+  width: 115%;
+  height: 115%;
+  max-width: none;
+  max-height: none;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.emblem-image[hidden] {
+  display: none;
+}
+
+/* Emblemas sin círculos ni decoraciones */
+.emblem,
+.eye-emblem,
+.crossed {
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Evitar que los adornos circulares vuelvan a aparecer */
+.eye-emblem::before,
+.eye-emblem::after,
+.crossed::before,
+.crossed::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Distribución vertical de los emblemas */
+.emblem {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    overflow: visible;
+}
+
+/* Distribución vertical de los emblemas */
+.emblem {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    overflow: visible;
+}
+
+/* Iconos SVG grandes */
+.emblem-image {
+    display: block;
+    width: 10%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: contain;
+    object-position: center;
+    margin: 0 auto;
+}
+
+/* El oficio y el arquetipo tienen el mismo tratamiento */
+#archetypeIcon,
+#occupationIcon {
+    position: static;
+    transform: none;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* Los títulos siempre debajo de sus iconos */
+.emblem-title,
+.eye-emblem .emblem-title,
+.crossed .emblem-title {
+    display: block;
+    position: static;
+    width: 100%;
+    margin: 0;
+    text-align: center;
 }
