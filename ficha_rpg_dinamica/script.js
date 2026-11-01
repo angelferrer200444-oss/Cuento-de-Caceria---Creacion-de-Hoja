@@ -38,35 +38,42 @@ function loadCharacterSheet() {
 
   fields.forEach(field => {
     let value = character[field.dataset.field];
+    const hasSavedField = Object.prototype.hasOwnProperty.call(
+      character,
+      field.dataset.field
+    );
 
     if (field.dataset.field === "descripcionEspecial") {
       value =
-        value ||
-        storedSpecialDescriptions.archetype ||
-        specialDescriptions.archetype ||
-        character.specialDescription ||
-        character.descripcionEspecialArquetipo ||
-        "";
+        hasSavedField
+          ? value
+          : storedSpecialDescriptions.archetype ||
+            specialDescriptions.archetype ||
+            character.specialDescription ||
+            character.descripcionEspecialArquetipo ||
+            "";
     }
 
     if (field.dataset.field === "descripcionAmigoImaginario") {
       value =
-        value ||
-        storedSpecialDescriptions.imaginaryFriend ||
-        specialDescriptions.imaginaryFriend ||
-        character.imaginaryFriendDescription ||
-        character.descripcionAmigo ||
-        "";
+        hasSavedField
+          ? value
+          : storedSpecialDescriptions.imaginaryFriend ||
+            specialDescriptions.imaginaryFriend ||
+            character.imaginaryFriendDescription ||
+            character.descripcionAmigo ||
+            "";
     }
 
     if (field.dataset.field === "descripcionDimensionBolsillo") {
       value =
-        value ||
-        storedSpecialDescriptions.pocketDimension ||
-        specialDescriptions.pocketDimension ||
-        character.pocketDimensionDescription ||
-        character.descripcionDimension ||
-        "";
+        hasSavedField
+          ? value
+          : storedSpecialDescriptions.pocketDimension ||
+            specialDescriptions.pocketDimension ||
+            character.pocketDimensionDescription ||
+            character.descripcionDimension ||
+            "";
     }
 
     if (field.dataset.field === "puntosCaracteristicas") {
@@ -189,10 +196,17 @@ function actualizarDescripcionesEspeciales() {
   if (specialSection && specialDescription) {
     specialSection.hidden =
       isDreamer || !specialDescription.textContent.trim();
+    specialSection.style.display = specialSection.hidden ? "none" : "";
   }
 
   if (dreamerSection && imaginaryFriendDescription && pocketDimensionDescription) {
     dreamerSection.hidden = !isDreamer;
+    dreamerSection.style.display = dreamerSection.hidden ? "none" : "";
+
+    if (!isDreamer) {
+      imaginaryFriendDescription.textContent = "";
+      pocketDimensionDescription.textContent = "";
+    }
   }
 }
 
