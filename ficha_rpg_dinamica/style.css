@@ -135,6 +135,21 @@ body { margin: 0; color: var(--ink); font-family: "Cinzel", Georgia, serif; }
 .list-panel .panel-title,
 .triple-row .panel-title,
 .rupture-panel .panel-title { clip-path:none; }
+
+.special-description-panel {
+  margin-top: 10px;
+}
+
+.special-description-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.special-description-row .special-description-panel {
+  margin-top: 0;
+}
 .panel-title.centered { text-align:center; font-size:17px; padding-top:6px; }
 
 .emblem-panel {

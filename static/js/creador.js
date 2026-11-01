@@ -483,12 +483,25 @@ function elegirOpcionAleatoria(selector) {
   }
 
   function saveCharacterSheet() {
+    const specialDescriptions = {
+      archetype: getFieldValue("#special-description"),
+      imaginaryFriend: getFieldValue("#imaginary-friend-description"),
+      pocketDimension: getFieldValue("#pocket-dimension-description")
+    };
+
     const character = {
       nombre: getFieldValue("#character-name"),
       jugador: getFieldValue("#player-name"),
       arquetipo: getSelectedText("#archetype"),
       oficio: getSelectedText("#occupation"),
       descripcionArquetipo: getFieldValue("#archetype-description"),
+      descripcionEspecial: getFieldValue("#special-description"),
+      descripcionAmigoImaginario: getFieldValue("#imaginary-friend-description"),
+      descripcionDimensionBolsillo: getFieldValue("#pocket-dimension-description"),
+      specialDescriptions,
+      specialDescription: specialDescriptions.archetype,
+      imaginaryFriendDescription: specialDescriptions.imaginaryFriend,
+      pocketDimensionDescription: specialDescriptions.pocketDimension,
       descripcionOficio: getFieldValue("#occupation-description"),
       habilidadesArquetipo: getListValue("#archetype-abilities-list"),
       peculiaridades: getListValue("#archetype-peculiarities-list"),
@@ -530,8 +543,76 @@ function elegirOpcionAleatoria(selector) {
     };
 
     localStorage.setItem("cuentos-caceria-character-sheet", JSON.stringify(character));
+    localStorage.setItem(
+      "cuentos-caceria-special-descriptions",
+      JSON.stringify(specialDescriptions)
+    );
     window.location.href = "../ficha_rpg_dinamica/index.html";
   }
+
+  [
+    ["#special-description", "archetype"],
+    ["#imaginary-friend-description", "imaginaryFriend"],
+    ["#pocket-dimension-description", "pocketDimension"]
+  ].forEach(([selector, key]) => {
+    const field = document.querySelector(selector);
+
+    field?.addEventListener("input", () => {
+      const saved = localStorage.getItem(
+        "cuentos-caceria-special-descriptions"
+      );
+      let descriptions = {};
+
+      if (saved) {
+        try {
+          descriptions = JSON.parse(saved);
+        } catch {
+          localStorage.removeItem("cuentos-caceria-special-descriptions");
+        }
+      }
+
+      descriptions[key] = field.value.trim();
+      localStorage.setItem(
+        "cuentos-caceria-special-descriptions",
+        JSON.stringify(descriptions)
+      );
+
+      const savedCharacter = localStorage.getItem(
+        "cuentos-caceria-character-sheet"
+      );
+
+      if (savedCharacter) {
+        try {
+          const character = JSON.parse(savedCharacter);
+          const fieldNames = {
+            archetype: [
+              "descripcionEspecial",
+              "specialDescription"
+            ],
+            imaginaryFriend: [
+              "descripcionAmigoImaginario",
+              "imaginaryFriendDescription"
+            ],
+            pocketDimension: [
+              "descripcionDimensionBolsillo",
+              "pocketDimensionDescription"
+            ]
+          };
+
+          fieldNames[key].forEach(fieldName => {
+            character[fieldName] = descriptions[key];
+          });
+          character.specialDescriptions = descriptions;
+          localStorage.setItem(
+            "cuentos-caceria-character-sheet",
+            JSON.stringify(character)
+          );
+        } catch {
+          localStorage.removeItem("cuentos-caceria-character-sheet");
+        }
+      }
+    });
+  });
 
   document.querySelector("form").addEventListener("submit", event => {
     event.preventDefault();

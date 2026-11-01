@@ -22,8 +22,52 @@ function loadCharacterSheet() {
     return;
   }
 
+  const specialDescriptions = character.specialDescriptions || {};
+  const savedSpecialDescriptions = localStorage.getItem(
+    "cuentos-caceria-special-descriptions"
+  );
+  let storedSpecialDescriptions = {};
+
+  if (savedSpecialDescriptions) {
+    try {
+      storedSpecialDescriptions = JSON.parse(savedSpecialDescriptions);
+    } catch {
+      localStorage.removeItem("cuentos-caceria-special-descriptions");
+    }
+  }
+
   fields.forEach(field => {
     let value = character[field.dataset.field];
+
+    if (field.dataset.field === "descripcionEspecial") {
+      value =
+        value ||
+        storedSpecialDescriptions.archetype ||
+        specialDescriptions.archetype ||
+        character.specialDescription ||
+        character.descripcionEspecialArquetipo ||
+        "";
+    }
+
+    if (field.dataset.field === "descripcionAmigoImaginario") {
+      value =
+        value ||
+        storedSpecialDescriptions.imaginaryFriend ||
+        specialDescriptions.imaginaryFriend ||
+        character.imaginaryFriendDescription ||
+        character.descripcionAmigo ||
+        "";
+    }
+
+    if (field.dataset.field === "descripcionDimensionBolsillo") {
+      value =
+        value ||
+        storedSpecialDescriptions.pocketDimension ||
+        specialDescriptions.pocketDimension ||
+        character.pocketDimensionDescription ||
+        character.descripcionDimension ||
+        "";
+    }
 
     if (field.dataset.field === "puntosCaracteristicas") {
       value =
@@ -120,6 +164,36 @@ function actualizarIconosPersonaje() {
 
   actualizarIcono(arquetipo?.textContent || "", "archetypeIcon");
   actualizarIcono(oficio?.textContent || "", "occupationIcon");
+}
+
+function actualizarDescripcionesEspeciales() {
+  const archetype = document.querySelector('[data-field="arquetipo"]');
+  const specialDescription = document.querySelector(
+    '[data-field="descripcionEspecial"]'
+  );
+  const imaginaryFriendDescription = document.querySelector(
+    '[data-field="descripcionAmigoImaginario"]'
+  );
+  const pocketDimensionDescription = document.querySelector(
+    '[data-field="descripcionDimensionBolsillo"]'
+  );
+  const specialSection = document.querySelector(
+    '[data-special-section="descripcionEspecial"]'
+  );
+  const dreamerSection = document.querySelector(
+    '[data-special-section="sonador"]'
+  );
+  const isDreamer =
+    normalizarNombreIcono(archetype?.textContent || "") === "sonador";
+
+  if (specialSection && specialDescription) {
+    specialSection.hidden =
+      isDreamer || !specialDescription.textContent.trim();
+  }
+
+  if (dreamerSection && imaginaryFriendDescription && pocketDimensionDescription) {
+    dreamerSection.hidden = !isDreamer;
+  }
 }
 
 
@@ -563,6 +637,7 @@ document.getElementById("clearBtn").addEventListener("click", () => {
 
 loadCharacterSheet();
 actualizarIconosPersonaje();
+actualizarDescripcionesEspeciales();
 fitSheetToContent();
 
 // Si se cambia el nombre manualmente en la ficha,
