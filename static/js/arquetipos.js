@@ -146,6 +146,16 @@ const archetypeIllustrations = {
   "animal-astuto": "Animal astuto.svg",
   "feerico": "Feerico.svg"
 };
+
+function precargarIlustracionesArquetipos() {
+  Object.values(archetypeIllustrations).forEach(fileName => {
+    const image = new Image();
+    image.src = `../static/images/svg/${encodeURIComponent(fileName)}`;
+  });
+}
+
+precargarIlustracionesArquetipos();
+
 const fields = {
   description: document.querySelector("#archetype-description"),
   lockedAbility: document.querySelector("#locked-ability"),

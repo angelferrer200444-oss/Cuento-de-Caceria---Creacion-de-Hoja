@@ -69,6 +69,16 @@ const occupationIllustrations = {
   "guardia-real": "Guardia Real.svg",
   "pirata": "Pirata.svg"
 };
+
+function precargarIlustracionesOficios() {
+  Object.values(occupationIllustrations).forEach(fileName => {
+    const image = new Image();
+    image.src = `../static/images/svg/${encodeURIComponent(fileName)}`;
+  });
+}
+
+precargarIlustracionesOficios();
+
 const characteristicPoints = document.querySelector("#characteristic-points");
 const abilityError = document.querySelector("#ability-error");
 const abilityErrorMessage = document.querySelector("#ability-error-message");
