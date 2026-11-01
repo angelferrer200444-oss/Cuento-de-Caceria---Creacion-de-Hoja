@@ -224,6 +224,64 @@ function waitForLayout() {
 // CAPTURAR LA FICHA COMO IMAGEN
 // =========================================
 
+function imageToDataUrl(image) {
+  const canvas = document.createElement("canvas");
+  const scale = 2;
+  const isPortrait = image.id === "portraitImage";
+  const bounds = image.getBoundingClientRect();
+  const width = isPortrait ? Math.max(1, Math.round(bounds.width)) : 145;
+  const height = isPortrait ? Math.max(1, Math.round(bounds.height)) : 145;
+
+  canvas.width = width * scale;
+  canvas.height = height * scale;
+
+  const context = canvas.getContext("2d");
+  const sourceRatio = image.naturalWidth / image.naturalHeight;
+  const targetRatio = width / height;
+
+  if (isPortrait) {
+    let sourceX = 0;
+    let sourceY = 0;
+    let sourceWidth = image.naturalWidth;
+    let sourceHeight = image.naturalHeight;
+
+    if (sourceRatio > targetRatio) {
+      sourceWidth = image.naturalHeight * targetRatio;
+      sourceX = (image.naturalWidth - sourceWidth) / 2;
+    } else {
+      sourceHeight = image.naturalWidth / targetRatio;
+      sourceY = (image.naturalHeight - sourceHeight) / 2;
+    }
+
+    context.drawImage(
+      image,
+      sourceX,
+      sourceY,
+      sourceWidth,
+      sourceHeight,
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+  } else {
+    const drawWidth = sourceRatio >= 1 ? width : width * sourceRatio;
+    const drawHeight = sourceRatio >= 1 ? height / sourceRatio : height;
+    const offsetX = (width - drawWidth) / 2;
+    const offsetY = (height - drawHeight) / 2;
+
+    context.drawImage(
+      image,
+      offsetX * scale,
+      offsetY * scale,
+      drawWidth * scale,
+      drawHeight * scale
+    );
+  }
+
+  return canvas.toDataURL("image/png");
+}
+
 async function captureSheet() {
   if (typeof html2canvas !== "function") {
     throw new Error("No se pudo cargar la biblioteca html2canvas.");
@@ -235,11 +293,43 @@ async function captureSheet() {
   fitSheetToContent();
   await waitForLayout();
 
+  const imageData = new Map();
+  const images = [...sheet.querySelectorAll("img")].filter(
+    image => !image.hidden && image.src
+  );
+
+  for (const image of images) {
+    imageData.set(image.id, imageToDataUrl(image));
+  }
+
   return html2canvas(sheet, {
     scale: 2,
     backgroundColor: "#f7f5f2",
     useCORS: true,
     logging: false,
+
+    onclone: clonedDocument => {
+      imageData.forEach((dataUrl, id) => {
+        const image = clonedDocument.getElementById(id);
+
+        if (image) {
+          if (id === "portraitImage") {
+            image.style.setProperty("width", "100%", "important");
+            image.style.setProperty("height", "100%", "important");
+            image.style.setProperty("object-fit", "fill", "important");
+          } else {
+            image.style.setProperty("width", "145px", "important");
+            image.style.setProperty("height", "145px", "important");
+            image.style.setProperty("flex-shrink", "0", "important");
+            image.style.setProperty("object-fit", "contain", "important");
+            image.style.setProperty("object-position", "center", "important");
+          }
+
+          image.src = dataUrl;
+        }
+      });
+    },
+
     width: sheet.scrollWidth,
     height: sheet.scrollHeight,
     windowWidth: Math.max(
@@ -254,6 +344,8 @@ async function captureSheet() {
     scrollY: 0
   });
 }
+
+
 
 function obtenerNombreArchivo() {
     const campoNombre = document.querySelector(

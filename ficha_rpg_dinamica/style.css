@@ -138,7 +138,7 @@ body { margin: 0; color: var(--ink); font-family: "Cinzel", Georgia, serif; }
 .panel-title.centered { text-align:center; font-size:17px; padding-top:6px; }
 
 .emblem-panel {
-  min-height: 218px;
+  min-height: 236px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -153,8 +153,8 @@ body { margin: 0; color: var(--ink); font-family: "Cinzel", Georgia, serif; }
   outline: none;
 
   width: 100%;
-  height: 145px;
-  margin: 8px auto 5px;
+  height: 158px;
+  margin: 8px auto 2px;
   padding: 0;
 
   display: flex;
@@ -433,13 +433,14 @@ body { margin: 0; color: var(--ink); font-family: "Cinzel", Georgia, serif; }
 /* Iconos SVG grandes */
 .emblem-image {
     display: block;
-    width: 10%;
-    height: 100%;
+    width: 145px;
+    height: 145px;
     max-width: none;
     max-height: none;
     object-fit: contain;
     object-position: center;
     margin: 0 auto;
+    flex-shrink: 0;
 }
 
 /* El oficio y el arquetipo tienen el mismo tratamiento */
