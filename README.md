@@ -107,6 +107,16 @@ Además de facilitar este proceso, el proyecto busca ofrecer una experiencia vis
   </tr>
   <tr>
     <td>
+      <h3>🔄 Recuperación desde PNG o PDF</h3>
+      Permite cargar un PNG descargado o el PDF completo de la ficha para recuperar los datos del personaje mediante el código QR incluido.
+    </td>
+    <td>
+      <h3>💾 Conservación de la ficha</h3>
+      La información recuperada se carga nuevamente en el formulario para continuar editando el personaje sin tener que introducir todos los datos otra vez.
+    </td>
+  </tr>
+  <tr>
+    <td>
       <h3>🎲 Dados animados en 3D</h3>
       Incluye una experiencia visual con movimiento, rebotes y una animación asociada a la generación aleatoria.
     </td>
@@ -139,6 +149,7 @@ El proceso de creación está organizado para acompañar al usuario desde la sel
 6. **🕯️ Elementos opcionales:** ofrece apartados para añadir una maldición, un vicio y otros datos disponibles.
 7. **📖 Identidad y origen:** permite introducir la información del Cazador, los datos del jugador y sus cuentos de origen.
 8. **📄 Ficha final:** tras guardar la hoja, los datos se trasladan a una ficha RPG dinámica en la que se puede editar la información, incorporar un retrato y exportar el resultado en PDF.
+9. **🔄 Recuperación:** desde la pantalla de preparación, selecciona **Cargar personaje descargado** y sube un PNG descargado o el PDF completo. La aplicación busca el código QR de recuperación y restaura los datos en el formulario.
 
 ### 🎲 Generación aleatoria
 
@@ -261,6 +272,7 @@ Si deseas ejecutar el proyecto desde tu computadora, puedes hacerlo siguiendo es
 5. Selecciona la creación manual o la generación aleatoria.
 6. Completa los campos disponibles y guarda la hoja.
 7. Continúa en la ficha dinámica para editar la información, incorporar un retrato y utilizar las opciones de exportación disponibles.
+8. Para recuperar una ficha, vuelve a la pantalla de preparación, pulsa **Cargar personaje descargado** y selecciona el PNG descargado o el PDF completo. El PDF incluye el código QR de recuperación en su segunda página.
 
 También puedes abrir directamente `templates/creador.html` para acceder al formulario cuando solo necesites consultar la interfaz. Para probar la exportación, conserva siempre el acceso mediante un servidor HTTP.
 
@@ -306,7 +318,9 @@ Al guardar la hoja, la información del personaje se almacena temporalmente medi
 
 Desde la ficha dinámica es posible editar los campos disponibles, añadir un retrato y utilizar la opción de exportación en PDF.
 
-Como el almacenamiento es local, los datos no deben considerarse una copia de seguridad permanente: borrar los datos del sitio o utilizar otro navegador o dispositivo puede impedir recuperarlos.
+Al exportar la ficha, el PNG y el PDF incluyen un código QR de recuperación. Puedes cargar cualquiera de esos archivos desde **Cargar personaje descargado** para restaurar los datos del formulario, incluidos los campos dinámicos y las selecciones realizadas. En el caso del PDF, se debe subir el archivo completo; la aplicación busca el QR en la segunda página.
+
+Como el almacenamiento y la recuperación local dependen del navegador, los datos no deben considerarse una copia de seguridad permanente: borrar los datos del sitio o utilizar otro navegador o dispositivo puede impedir recuperarlos si no conservas el PNG o el PDF descargado.
 
 ## 🤝 Contribuciones
 
