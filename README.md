@@ -43,6 +43,7 @@ En un mundo donde los cuentos esconden peligros y los monstruos acechan entre la
 - [📂 Estructura del proyecto](#-estructura-del-proyecto)
 - [🚀 Acceso a la web](#-acceso-a-la-web)
 - [💻 Uso local](#-uso-local)
+- [🖼️ Problemas al exportar la ficha](#️-problemas-al-exportar-la-ficha)
 - [📌 Estado del proyecto](#-estado-del-proyecto)
 - [🤝 Contribuciones](#-contribuciones)
 - [📬 Contacto y consultas](#-contacto-y-consultas)
@@ -255,15 +256,33 @@ Si deseas ejecutar el proyecto desde tu computadora, puedes hacerlo siguiendo es
 
 1. Descarga el repositorio desde GitHub o clónalo con Git.
 2. Conserva la estructura de carpetas y archivos.
-3. Abre `index.html` en un navegador.
+3. Inicia un servidor HTTP local y abre la aplicación desde `http://localhost`, especialmente si vas a exportar la ficha.
 4. Pulsa **Empezar** para acceder a las opciones de creación.
 5. Selecciona la creación manual o la generación aleatoria.
 6. Completa los campos disponibles y guarda la hoja.
 7. Continúa en la ficha dinámica para editar la información, incorporar un retrato y utilizar las opciones de exportación disponibles.
 
-También puedes abrir directamente `templates/creador.html` para acceder al formulario, siempre que las rutas y los recursos necesarios estén correctamente disponibles.
+También puedes abrir directamente `templates/creador.html` para acceder al formulario cuando solo necesites consultar la interfaz. Para probar la exportación, conserva siempre el acceso mediante un servidor HTTP.
 
-> 💡 **Consejo:** si alguna función o ruta no se comporta como esperas al abrir los archivos directamente, prueba el proyecto desde GitHub Pages o mediante un servidor web local. El comportamiento puede variar según el navegador y la forma en que se abran las páginas.
+> 💡 **Servidor local recomendado:** desde la raíz del repositorio ejecuta `python -m http.server 8000` y abre `http://127.0.0.1:8000/`.
+
+## 🖼️ Problemas al exportar la ficha
+
+La ficha utiliza `html2canvas` para generar las imágenes PNG y PDF. Si la página se abre directamente desde el sistema de archivos (`file:///...`), el navegador puede considerar que los iconos SVG, las imágenes y el retrato tienen un origen no permitido. Al intentar ejecutar `canvas.toDataURL()`, aparece el error:
+
+```text
+Failed to execute 'toDataURL' on 'HTMLCanvasElement':
+Tainted canvases may not be exported.
+```
+
+Para evitarlo:
+
+1. Abre la aplicación desde [GitHub Pages](https://angelferrer200444-oss.github.io/Cuento-de-Caceria---Creacion-de-Hoja/) o desde un servidor HTTP local.
+2. No abras `ficha_rpg_dinamica/index.html` mediante doble clic si vas a descargar la ficha.
+3. Conserva las rutas relativas y los recursos dentro del mismo proyecto, incluidos los iconos SVG de `static/images/svg/`.
+4. Si el navegador conserva una versión anterior, recarga la página con `Ctrl + F5`.
+
+GitHub Pages sirve la página y sus recursos desde el mismo sitio, por lo que la exportación de la ficha funciona sin retirar los SVG ni convertirlos manualmente a PNG. El retrato seleccionado desde el equipo se carga como una imagen local del navegador y también puede incluirse en la exportación.
 
 ## 📌 Estado del proyecto
 
