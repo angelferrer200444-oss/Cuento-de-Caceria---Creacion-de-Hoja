@@ -451,3 +451,37 @@ body {
         transition-duration: 0.3s;
     }
 }
+
+/* Ajuste independiente del título */
+.pre-creator-title {
+    margin-left: -320px;
+    width: min(65vw, 550px);
+
+    max-width: none;
+    flex: 0 0 auto;
+}
+
+.pre-creator-brand {
+    position: relative;
+}
+
+/* Ajuste independiente del título en móviles */
+@media (max-width: 620px) {
+    .pre-creator-title {
+    margin-left: -150px; /* Antes -320px */
+    width: min(65vw, 550px);
+
+    max-width: none;
+    flex: 0 0 auto;
+}
+
+}
+
+/* Ajuste para teléfonos más pequeños */
+@media (max-width: 400px) {
+    .pre-creator-title {
+        margin-left: -110px;
+        width: 60vw;
+    }
+}
+
