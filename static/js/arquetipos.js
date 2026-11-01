@@ -130,6 +130,8 @@ const archetypes = {
 };
 
 const archetypeSelect = document.querySelector("#archetype");
+const modoAleatorio =
+  new URLSearchParams(window.location.search).get("modo") === "aleatorio";
 const archetypeIllustrationContainer = document.querySelector("#archetype-illustration");
 const archetypeIllustration = document.querySelector("#archetype-illustration img");
 const archetypeIllustrations = {
@@ -487,13 +489,37 @@ function fillArchetype() {
   archetypeIllustrationContainer.hidden = !illustration;
   archetypeIllustration.src = illustration ? `../static/images/svg/${illustration}` : "";
   archetypeIllustration.alt = archetype ? `Ilustraci&oacute;n de ${archetypeSelect.selectedOptions[0].textContent}` : "";
-  Object.keys(fields).forEach((field) => {
+  const specialFields = [
+    ["specialDescription", fields.specialDescription, specialDescriptionField],
+    [
+      "imaginaryFriendDescription",
+      fields.imaginaryFriendDescription,
+      imaginaryFriendDescriptionField
+    ],
+    [
+      "pocketDimensionDescription",
+      fields.pocketDimensionDescription,
+      pocketDimensionDescriptionField
+    ]
+  ];
+
+  Object.keys(fields)
+    .filter(field => !specialFields.some(([, element]) => fields[field] === element))
+    .forEach((field) => {
     fields[field].value = archetype ? decodeHtml(archetype[field] || "") : "";
   });
 
-  specialDescriptionField.hidden = !archetype || !archetype.specialDescription;
-  imaginaryFriendDescriptionField.hidden = !archetype || !archetype.imaginaryFriendDescription;
-  pocketDimensionDescriptionField.hidden = !archetype || !archetype.pocketDimensionDescription;
+  specialFields.forEach(([key, field, container]) => {
+    const description = archetype ? decodeHtml(archetype[key] || "") : "";
+    const isOptionalForArchetype =
+      key === "specialDescription" && archetypeSelect.value === "feerico";
+
+    field.value = "";
+    field.placeholder = description || field.getAttribute("placeholder") || "";
+    field.required =
+      Boolean(description) && !isOptionalForArchetype && !modoAleatorio;
+    container.hidden = !description;
+  });
 
   if (archetype) {
     const traitSections = archetype.traits.split("\n\nDefectuosos:\n");
