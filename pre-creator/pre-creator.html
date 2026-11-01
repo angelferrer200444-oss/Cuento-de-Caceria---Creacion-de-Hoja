@@ -61,6 +61,14 @@
                     Crear personaje manualmente
                 </button>
 
+                <button
+                    type="button"
+                    class="pre-creator-button"
+                    id="load-character"
+                >
+                    Cargar personaje descargado
+                </button>
+
             </div>
 
         </div>
@@ -73,10 +81,17 @@
 
     </main>
 
+<input id="recovery-file" type="file" accept=".png,.pdf,image/png,application/pdf" hidden>
+
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../static/js/recovery.js?v=20261122"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const manualButton = document.getElementById("manual-character");
     const randomButton = document.getElementById("random-character");
+    const loadButton = document.getElementById("load-character");
+    const recoveryFile = document.getElementById("recovery-file");
     const screen = document.querySelector(".pre-creator");
 
     if (!screen) return;
@@ -99,6 +114,140 @@ document.addEventListener("DOMContentLoaded", () => {
     randomButton?.addEventListener("click", () => {
         apagarLucesYEntrar("../templates/creador.html?modo=aleatorio");
     });
+
+    loadButton?.addEventListener("click", () => recoveryFile?.click());
+
+    recoveryFile?.addEventListener("change", async () => {
+        const file = recoveryFile.files?.[0];
+        if (!file) return;
+
+        try {
+            const recoveryParts = await readRecoveryFile(file);
+            const recoveryText = combineRecoveryParts(recoveryParts);
+            const data = await decompressRecoveryData(recoveryText);
+
+            if (!data.character || typeof data.character !== "object") {
+                throw new Error("El archivo no contiene una ficha válida.");
+            }
+
+            localStorage.setItem(
+                "cuentos-caceria-character-sheet",
+                JSON.stringify(data.character)
+            );
+            window.location.href = "../templates/creador.html?recuperado=1";
+        } catch (error) {
+            alert(error.message || "No se pudo leer el archivo de recuperación.");
+            recoveryFile.value = "";
+        }
+    });
+
+    async function readRecoveryFile(file) {
+        if (file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf")) {
+            return readRecoveryPdf(file);
+        }
+
+        return readRecoveryPng(file);
+    }
+
+    async function readRecoveryPng(file) {
+        const image = new Image();
+        image.src = URL.createObjectURL(file);
+        await image.decode();
+
+        const canvas = document.createElement("canvas");
+        canvas.width = image.naturalWidth;
+        canvas.height = image.naturalHeight;
+        const context = canvas.getContext("2d");
+        context.drawImage(image, 0, 0);
+        URL.revokeObjectURL(image.src);
+
+        const results = scanRecoveryCanvas(canvas);
+        if (!results.length) {
+            throw new Error("No se encontró un código QR de recuperación en el PNG.");
+        }
+
+        return results;
+    }
+
+    async function readRecoveryPdf(file) {
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+        const pdf = await pdfjsLib.getDocument({
+            data: await file.arrayBuffer()
+        }).promise;
+
+        for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+            const page = await pdf.getPage(pageNumber);
+            const viewport = page.getViewport({ scale: 2.5 });
+            const canvas = document.createElement("canvas");
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+            await page.render({
+                canvasContext: canvas.getContext("2d"),
+                viewport
+            }).promise;
+
+            const results = scanRecoveryCanvas(canvas);
+            if (results.length) return results;
+        }
+
+        throw new Error("No se encontró un código QR de recuperación en el PDF.");
+    }
+
+    function scanRecoveryCanvas(canvas) {
+        const regions = [{ x: 0, y: 0, width: canvas.width, height: canvas.height }];
+        if (canvas.width >= 2000) {
+            const columns = 2;
+            const qrSize = Math.floor((canvas.width - 300) / 2);
+            const gap = 100;
+            const top = 220;
+            const rows = Math.ceil((canvas.height - top - gap) / (qrSize + gap));
+
+            for (let row = 0; row < rows; row += 1) {
+                for (let column = 0; column < columns; column += 1) {
+                    regions.push({
+                        x: 100 + column * (qrSize + gap),
+                        y: top + row * (qrSize + gap),
+                        width: qrSize,
+                        height: qrSize
+                    });
+                }
+            }
+        } else {
+            const columns = 2;
+            const rows = 4;
+            const gap = Math.floor(canvas.width * 0.02);
+            const regionWidth = Math.floor((canvas.width - gap) / columns);
+            const regionHeight = Math.floor((canvas.height - 250) / rows);
+
+            for (let row = 0; row < rows; row += 1) {
+                for (let column = 0; column < columns; column += 1) {
+                    regions.push({
+                        x: column * (regionWidth + gap / 2),
+                        y: 180 + row * regionHeight,
+                        width: regionWidth,
+                        height: regionHeight
+                    });
+                }
+            }
+        }
+
+        const results = [];
+        for (const region of regions) {
+            const imageData = canvas
+                .getContext("2d")
+                .getImageData(region.x, region.y, region.width, region.height);
+            const result = jsQR(
+                imageData.data,
+                imageData.width,
+                imageData.height
+            );
+            if (result && !results.includes(result.data)) {
+                results.push(result.data);
+            }
+        }
+        return results;
+    }
 });
 </script>
 

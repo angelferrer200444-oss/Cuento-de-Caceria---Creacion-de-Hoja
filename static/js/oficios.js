@@ -148,6 +148,12 @@ function renderOccupationAbilities() {
       const previousValue = selectedOccupationAbilities[index];
       selectedOccupationAbilities[index] = select.value;
 
+      if (select.dataset.restoring === "true") {
+        hideAbilityError();
+        updateCharacteristicPoints();
+        return;
+      }
+
       if (getSelectedAbilityCost() > initialCharacteristicPoints) {
         showAbilityError(select.value, initialCharacteristicPoints - getSelectedAbilityCost() + getAbilityCost(select.value));
         selectedOccupationAbilities[index] = previousValue;

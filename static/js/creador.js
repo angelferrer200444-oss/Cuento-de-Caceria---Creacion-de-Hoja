@@ -435,6 +435,32 @@ function elegirOpcionAleatoria(selector) {
       : field.textContent.trim();
   }
 
+  function collectFormState() {
+    const state = {};
+    const elements = Array.from(document.querySelectorAll("input, select, textarea"));
+    const nameCounters = {};
+
+    elements.forEach(element => {
+      const baseName = element.name || element.type;
+      const key =
+        element.id ||
+        `${baseName}-${nameCounters[baseName] || 0}`;
+      nameCounters[baseName] = (nameCounters[baseName] || 0) + 1;
+
+      state[key] = {
+        type: element.type,
+        value: element.value,
+        checked: "checked" in element ? element.checked : undefined,
+        selectedValues:
+          element instanceof HTMLSelectElement && element.multiple
+            ? Array.from(element.selectedOptions).map(option => option.value)
+            : undefined
+      };
+    });
+
+    return state;
+  }
+
   function getSelectedText(selector) {
     const field = document.querySelector(selector);
     return field?.selectedOptions[0]?.textContent.trim() || "";
@@ -542,12 +568,286 @@ function elegirOpcionAleatoria(selector) {
       cuentoOrigen: getFieldValue("#origin-story")
     };
 
+    character.formState = collectFormState();
+
     localStorage.setItem("cuentos-caceria-character-sheet", JSON.stringify(character));
     localStorage.setItem(
       "cuentos-caceria-special-descriptions",
       JSON.stringify(specialDescriptions)
     );
     window.location.href = "../ficha_rpg_dinamica/index.html";
+  }
+
+  function seleccionarPorTexto(selector, value) {
+    const select = document.querySelector(selector);
+
+    if (!select || !value) {
+      return false;
+    }
+
+    const normalizedValue = value.trim().toLowerCase();
+    const option = Array.from(select.options).find(
+      candidate =>
+        candidate.textContent.trim().toLowerCase() === normalizedValue
+    );
+
+    if (!option) {
+      return false;
+    }
+
+    select.value = option.value;
+    select.dispatchEvent(new Event("change", { bubbles: true }));
+    return true;
+  }
+
+  function establecerValor(selector, value) {
+    const field = document.querySelector(selector);
+
+    if (!field || value === undefined || value === null) {
+      return;
+    }
+
+    field.value = value;
+    field.dispatchEvent(new Event("input", { bubbles: true }));
+    field.dispatchEvent(new Event("change", { bubbles: true }));
+  }
+
+  function restaurarEstadoFormulario(formState) {
+    if (!formState || typeof formState !== "object") {
+      return;
+    }
+
+    Object.entries(formState).forEach(([key, savedField]) => {
+      const field = document.getElementById(key);
+
+      if (!field || !savedField) {
+        return;
+      }
+
+      if (
+        (field.type === "checkbox" || field.type === "radio") &&
+        typeof savedField.checked === "boolean"
+      ) {
+        field.checked = savedField.checked;
+      } else if (field instanceof HTMLSelectElement && field.multiple) {
+        const selectedValues = new Set(savedField.selectedValues || []);
+        Array.from(field.options).forEach(option => {
+          option.selected = selectedValues.has(option.value);
+        });
+      } else if (savedField.value !== undefined) {
+        if (field instanceof HTMLSelectElement) {
+          const option = Array.from(field.options).find(
+            candidate =>
+              candidate.value === savedField.value ||
+              candidate.textContent.trim() === savedField.value
+          );
+          field.value = option ? option.value : savedField.value;
+        } else {
+          field.value = savedField.value;
+        }
+      }
+
+      field.dispatchEvent(new Event("input", { bubbles: true }));
+      if (field.id === "archetype" || field.id === "occupation") {
+        return;
+      }
+      if (field.id.startsWith("occupation-ability-")) {
+        field.dataset.restoring = "true";
+      }
+      field.dispatchEvent(new Event("change", { bubbles: true }));
+      delete field.dataset.restoring;
+    });
+  }
+
+  function sincronizarFilasDinamicas(formState) {
+    const groups = [
+      ["archetype-ability", "#archetype-abilities-list", "Añadir habilidad", ".remove-trait"],
+      ["archetype-peculiarity", "#archetype-peculiarities-list", "Añadir peculiaridad", ".remove-trait"],
+      ["sanity-limit", "#sanity-limit-list", "Añadir límite de cordura", ".remove-trait"],
+      ["archetype-virtue", "#archetype-virtues-list", "Añadir virtud", ".remove-trait"],
+      ["archetype-defect", "#archetype-defects-list", "Añadir defecto", ".remove-trait"],
+      ["occupation-ability", "#occupation-abilities-list", null, ".remove-trait"],
+      ["occupation-equipment", "#occupation-equipment-list", null, ".remove-equipment"],
+      ["corruption-status", "#corruption-status-list", null, ".remove-trait"],
+      ["phobia", "#phobias-list", null, ".remove-phobia"]
+    ];
+
+    groups.forEach(([prefix, containerSelector, addText, removeSelector]) => {
+      const container = document.querySelector(containerSelector);
+      if (!container) return;
+
+      const savedIds = Object.keys(formState)
+        .filter(key => new RegExp(`^${prefix}-\\d+$`).test(key))
+        .map(key => Number(key.slice(prefix.length + 1)));
+      const targetCount = savedIds.length ? Math.max(...savedIds) : 0;
+      const getFields = () =>
+        Array.from(container.querySelectorAll(`[id^="${prefix}-"]`))
+          .filter(field => new RegExp(`^${prefix}-\\d+$`).test(field.id));
+
+      const getAddButton = () => {
+        if (prefix === "occupation-ability") {
+          return document.querySelector("#add-occupation-ability");
+        }
+
+        if (prefix === "occupation-equipment") {
+          return document.querySelector("#add-occupation-equipment");
+        }
+        if (prefix === "corruption-status") {
+          return document.querySelector("#add-corruption-status");
+        }
+        if (prefix === "phobia") {
+          return document.querySelector("#add-phobia");
+        }
+        return Array.from(container.parentElement.querySelectorAll("button"))
+          .find(button => button.textContent.trim() === addText);
+      };
+
+      while (getFields().length < targetCount) {
+        getAddButton()?.click();
+      }
+
+      while (getFields().length > targetCount && targetCount > 0) {
+        const removeButton = container.querySelector(`${removeSelector}:last-of-type`);
+        if (!removeButton) break;
+        removeButton.click();
+      }
+    });
+  }
+
+  function asegurarFilasGuardadas(formState) {
+    const groups = [
+      ["occupation-ability", "#add-occupation-ability"],
+      ["occupation-equipment", "#add-occupation-equipment"],
+      ["archetype-virtue", null],
+      ["archetype-defect", null]
+    ];
+
+    groups.forEach(([prefix, buttonSelector]) => {
+      const targetCount = Object.keys(formState).filter(key =>
+        new RegExp(`^${prefix}-\\d+$`).test(key)
+      ).length;
+
+      if (!targetCount) {
+        return;
+      }
+
+      const listSelector =
+        prefix === "occupation-ability"
+          ? "#occupation-abilities-list"
+          : prefix === "occupation-equipment"
+            ? "#occupation-equipment-list"
+            : prefix === "archetype-virtue"
+              ? "#archetype-virtues-list"
+              : "#archetype-defects-list";
+      const list = document.querySelector(listSelector);
+      const addButton =
+        buttonSelector && document.querySelector(buttonSelector);
+
+      while (
+        list &&
+        Array.from(list.querySelectorAll(`[id^="${prefix}-"]`)).filter(field =>
+          new RegExp(`^${prefix}-\\d+$`).test(field.id)
+        ).length < targetCount
+      ) {
+        if (addButton) {
+          addButton.click();
+        } else {
+          const genericButton = Array.from(
+            list.parentElement?.querySelectorAll("button") || []
+          ).find(button => button.textContent.trim().startsWith("Añadir"));
+          if (!genericButton) {
+            break;
+          }
+          genericButton.click();
+        }
+      }
+    });
+  }
+
+  function restaurarPersonajeCargado() {
+    if (new URLSearchParams(window.location.search).get("recuperado") !== "1") {
+      return;
+    }
+
+    const savedCharacter = localStorage.getItem("cuentos-caceria-character-sheet");
+
+    if (!savedCharacter) {
+      return;
+    }
+
+    let character;
+
+    try {
+      character = JSON.parse(savedCharacter);
+    } catch {
+      console.error("No se pudo leer el personaje recuperado.");
+      return;
+    }
+
+    establecerValor("#character-name", character.nombre);
+    establecerValor("#player-name", character.jugador);
+
+    seleccionarPorTexto("#archetype", character.arquetipo);
+    establecerValor("#special-description", character.descripcionEspecial);
+    establecerValor(
+      "#imaginary-friend-description",
+      character.descripcionAmigoImaginario
+    );
+    establecerValor(
+      "#pocket-dimension-description",
+      character.descripcionDimensionBolsillo
+    );
+
+    seleccionarPorTexto("#occupation", character.oficio);
+    seleccionarPorTexto("#magical-affinity", character.afinidadMagica);
+    seleccionarPorTexto("#phobia-1", character.fobia);
+    seleccionarPorTexto("#curse", character.maldicion);
+    establecerValor("#character-description", character.descripcionPersonaje);
+    establecerValor("#origin-story", character.cuentoOrigen);
+    establecerValor("#vice", character.vicio);
+    establecerValor("#vice-description", character.descripcionVicio);
+    establecerValor("#curse-benefit", character.efectoMaldicion);
+    establecerValor("#curse-penalty", character.penalizacionMaldicion);
+    establecerValor("#curse-condition", character.rupturaMaldicion);
+    establecerValor("#occupation-description", character.descripcionOficio);
+    establecerValor("#maximum-sanity", character.reservaCordura);
+    establecerValor("#wound-limit", character.limiteHeridas);
+    establecerValor("#characteristic-points", character.puntosCaracteristicas);
+    establecerValor("#diet", character.dieta);
+    establecerValor("#corruption-points", character.puntoCorrupcion);
+
+    const storedSpecialDescriptions = {
+      archetype: character.descripcionEspecial || "",
+      imaginaryFriend: character.descripcionAmigoImaginario || "",
+      pocketDimension: character.descripcionDimensionBolsillo || ""
+    };
+    localStorage.setItem(
+      "cuentos-caceria-special-descriptions",
+      JSON.stringify(storedSpecialDescriptions)
+    );
+
+    const restoreDynamicState = () => {
+      asegurarFilasGuardadas(character.formState);
+      sincronizarFilasDinamicas(character.formState);
+      const occupationAbilityCount = Object.keys(character.formState).filter(key =>
+        /^occupation-ability-\d+$/.test(key)
+      ).length;
+      const occupationAbilityButton = document.querySelector(
+        "#add-occupation-ability"
+      );
+      while (
+        document.querySelectorAll(
+          '#occupation-abilities-list select[id^="occupation-ability-"]'
+        ).length < occupationAbilityCount
+      ) {
+        occupationAbilityButton?.click();
+      }
+      restaurarEstadoFormulario(character.formState);
+      updateStep();
+    };
+
+    restoreDynamicState();
+    setTimeout(restoreDynamicState, 0);
   }
 
   [
@@ -641,6 +941,8 @@ if (modoAleatorio) {
 } else {
   updateStep();
 }
+
+restaurarPersonajeCargado();
 })();
 
 const archetypeStep = document

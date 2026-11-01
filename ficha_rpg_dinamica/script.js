@@ -280,17 +280,19 @@ function waitForImages(root) {
 
   return Promise.all(
     imgs.map(img => {
-      if (img.decode) {
-        return img.decode().catch(() => {});
-      }
-
-      if (img.complete) {
+      if (img.complete && img.naturalWidth > 0) {
         return Promise.resolve();
       }
 
       return new Promise(resolve => {
-        img.onload = resolve;
-        img.onerror = resolve;
+        const timeout = setTimeout(resolve, 3000);
+        const finish = () => {
+          clearTimeout(timeout);
+          resolve();
+        };
+
+        img.onload = finish;
+        img.onerror = finish;
       });
     })
   );
@@ -302,9 +304,19 @@ function waitForImages(root) {
 
 function waitForLayout() {
   return new Promise(resolve => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(resolve);
-    });
+    let frames = 0;
+    const finish = () => resolve();
+    const nextFrame = () => {
+      frames += 1;
+      if (frames >= 2) {
+        finish();
+        return;
+      }
+      requestAnimationFrame(nextFrame);
+    };
+
+    setTimeout(finish, 100);
+    requestAnimationFrame(nextFrame);
   });
 }
 
@@ -387,7 +399,11 @@ async function captureSheet() {
   );
 
   for (const image of images) {
-    imageData.set(image.id, imageToDataUrl(image));
+    try {
+      imageData.set(image.id, imageToDataUrl(image));
+    } catch (error) {
+      console.warn("No se pudo incrustar una imagen en la captura:", error);
+    }
   }
 
   return html2canvas(sheet, {
@@ -399,20 +415,7 @@ async function captureSheet() {
     onclone: clonedDocument => {
       imageData.forEach((dataUrl, id) => {
         const image = clonedDocument.getElementById(id);
-
         if (image) {
-          if (id === "portraitImage") {
-            image.style.setProperty("width", "100%", "important");
-            image.style.setProperty("height", "100%", "important");
-            image.style.setProperty("object-fit", "fill", "important");
-          } else {
-            image.style.setProperty("width", "145px", "important");
-            image.style.setProperty("height", "145px", "important");
-            image.style.setProperty("flex-shrink", "0", "important");
-            image.style.setProperty("object-fit", "contain", "important");
-            image.style.setProperty("object-position", "center", "important");
-          }
-
           image.src = dataUrl;
         }
       });
@@ -470,13 +473,92 @@ function downloadImage(canvas) {
     link.click();
 }
 
+function getRecoveryData() {
+    const savedCharacter = localStorage.getItem(characterSheetStorageKey);
+
+    if (!savedCharacter) {
+        throw new Error("No hay datos guardados para crear la recuperación.");
+    }
+
+    const character = JSON.parse(savedCharacter);
+    const savedSpecialDescriptions = localStorage.getItem(
+        "cuentos-caceria-special-descriptions"
+    );
+
+    if (savedSpecialDescriptions) {
+      character.specialDescriptions = {
+        ...(JSON.parse(savedSpecialDescriptions) || {}),
+        ...(character.specialDescriptions || {})
+      };
+    }
+
+    if (!character.formState || typeof character.formState !== "object") {
+      throw new Error(
+        "La ficha no contiene el estado completo del formulario. Guarda la hoja nuevamente."
+      );
+    }
+
+    return {
+        character,
+        savedAt: new Date().toISOString()
+    };
+}
+
+async function downloadRecoveryImage() {
+    const recoveryDataUrls = await createRecoveryQrs(getRecoveryData());
+    const columns = recoveryDataUrls.length > 1 ? 2 : 1;
+    const qrSize = recoveryDataUrls.length > 1 ? 1000 : 1200;
+    const rows = Math.ceil(recoveryDataUrls.length / columns);
+    const recoveryCanvas = document.createElement("canvas");
+    recoveryCanvas.width = columns * qrSize + (columns + 1) * 100;
+    recoveryCanvas.height = rows * qrSize + 260 + (rows + 1) * 100;
+
+    const context = recoveryCanvas.getContext("2d");
+    context.fillStyle = "#ffffff";
+    context.fillRect(0, 0, recoveryCanvas.width, recoveryCanvas.height);
+    context.fillStyle = "#111111";
+    context.font = "bold 42px Arial";
+    context.textAlign = "center";
+    context.fillText("Datos de recuperación", recoveryCanvas.width / 2, 80);
+    context.font = "28px Arial";
+    context.fillText(
+        "Sube esta imagen en Cargar personaje para restaurar la ficha.",
+        recoveryCanvas.width / 2,
+        130
+    );
+
+    for (let index = 0; index < recoveryDataUrls.length; index += 1) {
+      const qrImage = new Image();
+      await new Promise((resolve, reject) => {
+          qrImage.onload = resolve;
+          qrImage.onerror = reject;
+          qrImage.src = recoveryDataUrls[index];
+      });
+
+      const column = index % columns;
+      const row = Math.floor(index / columns);
+      context.drawImage(
+          qrImage,
+          100 + column * (qrSize + 100),
+          220 + row * (qrSize + 100),
+          qrSize,
+          qrSize
+      );
+    }
+
+    const link = document.createElement("a");
+    link.download = `${obtenerNombreArchivo()} - Recuperacion.png`;
+    link.href = recoveryCanvas.toDataURL("image/png");
+    link.click();
+}
+
 
 // =========================================
 // CONVERTIR LA CAPTURA A PDF
 // Una página A4 vertical, sin cortes
 // =========================================
 
-function downloadPDF(canvas) {
+async function downloadPDF(canvas) {
     if (!window.jspdf || !window.jspdf.jsPDF) {
         throw new Error(
             "No se pudo cargar jsPDF. Comprueba que la biblioteca esté incluida en el HTML."
@@ -574,6 +656,28 @@ function downloadPDF(canvas) {
     );
 
     const nombreArchivo = `${obtenerNombreArchivo()}.pdf`;
+    const recoveryDataUrls = await createRecoveryQrs(getRecoveryData());
+    pdf.addPage("a4", "portrait");
+    pdf.setFontSize(18);
+    pdf.text("Datos de recuperación", 105, 18, { align: "center" });
+    pdf.setFontSize(10);
+    pdf.text("Sube este PDF en Cargar personaje para restaurar la ficha.", 105, 25, {
+        align: "center"
+    });
+    const columns = recoveryDataUrls.length > 1 ? 2 : 1;
+    const qrSize = recoveryDataUrls.length > 1 ? 82 : 170;
+    recoveryDataUrls.forEach((dataUrl, index) => {
+      const column = index % columns;
+      const row = Math.floor(index / columns);
+      pdf.addImage(
+        dataUrl,
+        "PNG",
+        columns === 1 ? 20 : 15 + column * 95,
+        35 + row * 95,
+        qrSize,
+        qrSize
+      );
+    });
 
     pdf.save(nombreArchivo);
 }
@@ -595,14 +699,16 @@ async function exportSheet(type) {
 
     if (type === "png") {
       downloadImage(canvas);
+      await downloadRecoveryImage();
     } else if (type === "pdf") {
-      downloadPDF(canvas);
+      await downloadPDF(canvas);
     }
   } catch (error) {
     console.error("Error al exportar la ficha:", error);
 
     alert(
-      error.message ||
+      error?.message ||
+      String(error) ||
       "No se pudo exportar la ficha. Inténtalo de nuevo."
     );
   } finally {
