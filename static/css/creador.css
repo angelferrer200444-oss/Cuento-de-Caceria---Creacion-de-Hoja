@@ -1215,6 +1215,28 @@ button:focus-visible {
     padding: 22px 18px;
   }
 
+  fieldset > p,
+  fieldset > div {
+    margin-bottom: 30px;
+    padding-bottom: 4px;
+  }
+
+  fieldset > h2 {
+    line-height: 1.3;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    padding-bottom: 4px;
+  }
+
+  fieldset > p + h2 {
+    margin-top: 44px;
+  }
+
+  fieldset label {
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+
   legend {
     margin-left: -18px;
     margin-right: -18px;
@@ -1228,17 +1250,24 @@ button:focus-visible {
   }
 
   .form-navigation {
-    gap: 12px;
+    flex-direction: column;
+    gap: 16px;
   }
 
   .btn-atras,
   .btn-guardar {
-    flex: 1;
+    width: 100%;
     padding: 11px 12px;
   }
 
   .form-actions {
     flex-direction: column;
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .form-actions button {
+    width: 100%;
   }
 
   .horror-branch {
@@ -1282,6 +1311,77 @@ button:focus-visible {
 
   #sanity-limit-list > span > input {
     min-height: 46px;
+  }
+
+  .creator-step p:has(.remove-trait) {
+    gap: 12px;
+    margin-bottom: 22px;
+    padding-bottom: 6px;
+  }
+
+  .creator-step p:has(.remove-trait) label {
+    margin-bottom: 4px;
+  }
+
+  .creator-step p:has(.remove-trait) input,
+  .creator-step p:has(.remove-trait) select,
+  .creator-step p:has(.remove-trait) .custom-select {
+    flex-basis: 100%;
+  }
+
+  .remove-trait,
+  .remove-equipment {
+    margin-left: 0;
+    margin-top: 4px;
+    width: 100%;
+  }
+
+  .add-option {
+    margin-top: 14px;
+    width: 100%;
+  }
+
+  #occupation-abilities-list span,
+  .equipment-row,
+  .corruption-status-entry {
+    margin-bottom: 10px;
+    row-gap: 14px;
+  }
+
+  #occupation-abilities-list span,
+  .equipment-row {
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+  }
+
+  .equipment-row > br {
+    display: none;
+  }
+
+  #occupation-abilities-list span label {
+    flex-basis: 100%;
+    margin-bottom: 4px;
+  }
+
+  #occupation-abilities-list span select,
+  #occupation-abilities-list span .custom-select,
+  .equipment-row label,
+  .equipment-row input,
+  .corruption-status-entry select,
+  .corruption-status-entry .custom-select {
+    flex-basis: 100%;
+  }
+
+  .equipment-row label {
+    margin-bottom: 4px;
+  }
+
+  #phobias-list .phobia-entry > p {
+    margin-bottom: 16px;
+  }
+
+  #phobias-list .phobia-entry > p:first-child {
+    margin-bottom: 12px;
   }
 }
 
@@ -1453,4 +1553,3 @@ label[for="occupation-description"] {
     display: inline-block;
     margin-top: 15px;
 }
-
