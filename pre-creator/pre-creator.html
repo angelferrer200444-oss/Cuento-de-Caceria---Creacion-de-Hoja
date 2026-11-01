@@ -85,7 +85,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script src="../static/js/recovery.js?v=20261122"></script>
+<script src="../static/js/recovery.js?v=20261203"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const manualButton = document.getElementById("manual-character");
@@ -176,9 +176,17 @@ document.addEventListener("DOMContentLoaded", () => {
             data: await file.arrayBuffer()
         }).promise;
 
-        for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+        const pageNumbers = [
+            ...(pdf.numPages >= 2 ? [2] : []),
+            ...Array.from(
+                { length: pdf.numPages },
+                (_, index) => index + 1
+            ).filter(pageNumber => pageNumber !== 2)
+        ];
+
+        for (const pageNumber of pageNumbers) {
             const page = await pdf.getPage(pageNumber);
-            const viewport = page.getViewport({ scale: 2.5 });
+            const viewport = page.getViewport({ scale: 8 });
             const canvas = document.createElement("canvas");
             canvas.width = viewport.width;
             canvas.height = viewport.height;
@@ -187,11 +195,56 @@ document.addEventListener("DOMContentLoaded", () => {
                 viewport
             }).promise;
 
-            const results = scanRecoveryCanvas(canvas);
+            const results = scanPdfCanvas(canvas);
             if (results.length) return results;
         }
 
         throw new Error("No se encontró un código QR de recuperación en el PDF.");
+    }
+
+    function scanPdfCanvas(canvas) {
+        const regions = [];
+        const qrSize = Math.floor(canvas.width * 0.46);
+        const horizontalStep = Math.floor(canvas.width * 0.45);
+        const verticalStep = Math.floor(canvas.height * 0.28);
+
+        for (let row = 0; row < 4; row += 1) {
+            for (let column = 0; column < 2; column += 1) {
+                regions.push({
+                    x: Math.min(
+                        Math.floor(canvas.width * 0.02) + column * horizontalStep,
+                        canvas.width - qrSize
+                    ),
+                    y: Math.min(
+                        Math.floor(canvas.height * 0.08) + row * verticalStep,
+                        canvas.height - qrSize
+                    ),
+                    width: qrSize,
+                    height: qrSize
+                });
+            }
+        }
+
+        const results = [];
+        const context = canvas.getContext("2d", { willReadFrequently: true });
+        for (const region of regions) {
+            const imageData = context.getImageData(
+                region.x,
+                region.y,
+                region.width,
+                region.height
+            );
+            const result = jsQR(
+                imageData.data,
+                imageData.width,
+                imageData.height,
+                { inversionAttempts: "attemptBoth" }
+            );
+            if (result && !results.includes(result.data)) {
+                results.push(result.data);
+            }
+        }
+        return results;
     }
 
     function scanRecoveryCanvas(canvas) {
