@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Estado-En%20desarrollo-8b2635?style=for-the-badge" alt="Estado: en desarrollo">
+  <img src="https://img.shields.io/badge/Estado-Concluido-2e7d32?style=for-the-badge" alt="Estado: concluido">
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5">
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3">
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
@@ -175,7 +175,7 @@ La propuesta muestra parte de la dirección estética del proyecto y sirve como 
 
 La interfaz incorpora fondos temáticos, efectos de iluminación y animaciones, además de ajustes específicos para diferentes tamaños de pantalla.
 
-> 🖌️ **Imágenes pendientes:** todavía falta incorporar varias imágenes representativas en distintas secciones de la web. Se añadirán posteriormente para completar la presentación visual, reforzar la ambientación y mantener una identidad gráfica coherente en toda la aplicación.
+> 🖌️ **Evolución visual:** la presentación actual permite utilizar la aplicación de forma completa. Los detalles visuales que puedan mejorar la ambientación y la coherencia gráfica, incluida una posible actualización visual de la hoja de personaje, se incorporarán progresivamente durante la etapa de mantenimiento.
 
 ## 🛠️ Tecnologías utilizadas
 
@@ -298,19 +298,19 @@ GitHub Pages sirve la página y sus recursos desde el mismo sitio, por lo que la
 
 ## 📌 Estado del proyecto
 
-El proyecto continúa en desarrollo y cuenta con una estructura funcional para la creación y personalización de personajes.
+El proyecto se considera **concluido** en su versión actual y cuenta con una estructura funcional para la creación y personalización de personajes.
 
-Actualmente, el trabajo se centra en seguir mejorando la presentación visual, completar los recursos gráficos pendientes y realizar ajustes en la experiencia de uso.
+La aplicación publicada representa una versión funcional y lista para ser utilizada. El cierre de esta etapa no impide que el proyecto siga evolucionando: las mejoras futuras se incorporarán de acuerdo con las necesidades que surjan y con los comentarios de la comunidad.
 
-### 🔨 Aspectos por completar
+### 🔄 Mantenimiento y futuras actualizaciones
 
-- 🖼️ Incorporar imágenes representativas en las secciones que todavía las necesitan.
-- 🎨 Continuar puliendo la coherencia visual entre las diferentes páginas.
-- 📱 Revisar la presentación y el comportamiento de los componentes en distintos dispositivos.
-- 🧪 Seguir probando los formularios, la generación aleatoria, el traslado de datos y la exportación de la ficha.
-- 📝 Mantener la documentación actualizada conforme evolucione el proyecto.
+- 🎨 Los detalles y refinamientos visuales se evaluarán para mantener una experiencia coherente y atractiva.
+- 📄 La hoja actual de personaje podrá recibir una actualización visual si aparecen nuevas propuestas o necesidades de uso.
+- 🐛 Los errores y reportes de los usuarios serán revisados y atendidos para actualizar y aplicar las correcciones necesarias directamente en la web.
+- 🎲 Las nuevas reglas, contenidos o actualizaciones del juego se tendrán en cuenta para mantener la herramienta alineada con su evolución.
+- 📱 Los ajustes de compatibilidad y experiencia en distintos dispositivos podrán incorporarse de forma progresiva.
 
-La lista anterior describe líneas de trabajo previstas y no implica que todas las funciones principales estén pendientes. El objetivo es continuar perfeccionando una herramienta que ya permite recorrer el proceso de creación y personalización del Cazador.
+Estas líneas no representan funciones pendientes para considerar concluida la versión actual, sino oportunidades de mejora que se valorarán a medida que se reciban comentarios, reportes o nuevas necesidades del juego.
 
 ### 💾 ¿Cómo se conservan los datos?
 
